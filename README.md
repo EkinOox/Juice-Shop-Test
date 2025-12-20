@@ -1,5 +1,23 @@
 # ![Juice Shop Logo](https://raw.githubusercontent.com/juice-shop/juice-shop/master/frontend/src/assets/public/images/JuiceShop_Logo_100px.png) OWASP Juice Shop
 
+lance ton scanner fr�rot : 
+
+```bash
+
+sonar-scanner -Dsonar.projectKey="Juice-shop" -Dsonar.host.url=http://localhost:9000 -Dsonar.login=squ_0de1c1b1ccb1fcd2f7156c6c79df3ef8aaac60d9
+
+```
+ou pour le cloud : 
+
+```bash
+
+sonar \
+  -Dsonar.token=c2acceada47cdd01e82aa2d42cc8393e003e9357 \
+  -Dsonar.projectKey=EkinOox_Juice-Shop-Test \
+  -Dsonar.organization=ekinoox
+
+  ```
+
 [![OWASP Flagship](https://img.shields.io/badge/owasp-flagship%20project-48A646.svg)](https://owasp.org/projects/#sec-flagships)
 [![GitHub release](https://img.shields.io/github/release/juice-shop/juice-shop.svg)](https://github.com/juice-shop/juice-shop/releases/latest)
 [![Twitter Follow](https://img.shields.io/twitter/follow/owasp_juiceshop.svg?style=social&label=Follow)](https://twitter.com/owasp_juiceshop)
@@ -35,22 +53,24 @@ For a detailed introduction, full list of features and architecture overview ple
 
 ## Table of contents
 
-- [Setup](#setup)
+- [ OWASP Juice Shop](#-owasp-juice-shop)
+  - [Table of contents](#table-of-contents)
+  - [Setup](#setup)
     - [From Sources](#from-sources)
     - [Packaged Distributions](#packaged-distributions)
     - [Docker Container](#docker-container)
     - [Vagrant](#vagrant)
-- [Demo](#demo)
-- [Documentation](#documentation)
+  - [Demo](#demo)
+  - [Documentation](#documentation)
     - [Node.js version compatibility](#nodejs-version-compatibility)
     - [Troubleshooting](#troubleshooting)
     - [Official companion guide](#official-companion-guide)
-- [Contributing](#contributing)
-- [References](#references)
-- [Merchandise](#merchandise)
-- [Donations](#donations)
-- [Contributors](#contributors)
-- [Licensing](#licensing)
+  - [Contributing](#contributing)
+  - [References](#references)
+  - [Merchandise](#merchandise)
+  - [Donations](#donations)
+  - [Contributors](#contributors)
+  - [Licensing](#licensing)
 
 ## Setup
 
