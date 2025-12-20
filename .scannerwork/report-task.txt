@@ -1,6 +1,7 @@
-projectKey=Juice-shop
-serverUrl=http://localhost:9000
-serverVersion=25.12.0.117093
-dashboardUrl=http://localhost:9000/dashboard?id=Juice-shop
-ceTaskId=c4d95166-e38c-4389-90fa-bfebac829463
-ceTaskUrl=http://localhost:9000/api/ce/task?id=c4d95166-e38c-4389-90fa-bfebac829463
+organization=ekinoox
+projectKey=EkinOox_Juice-Shop-Test
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.77855
+dashboardUrl=https://sonarcloud.io/dashboard?id=EkinOox_Juice-Shop-Test
+ceTaskId=AZs8Gpc3jMMRRFGS0g7e
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZs8Gpc3jMMRRFGS0g7e
