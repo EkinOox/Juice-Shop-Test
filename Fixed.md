@@ -13,6 +13,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 - Exécution dynamique de code contrôlé par l'utilisateur (RCE)
 - Construction de requêtes de base de données à partir de données utilisateur non validées
 - Construction de chemins de fichiers à partir de données utilisateur non validées
+- Construction de chemins de fichiers à partir du nom d'entrée d'une archive (Path Traversal)
 
 ### Mesures correctives majeures
 - Externalisation de tous les secrets vers des variables d'environnement
@@ -659,6 +660,49 @@ import { Bot } from '../lib/bot'
 5. **Maintenance à long terme** : Les implémentations personnalisées sont plus faciles à maintenir et auditer.
 
 Ces mises à jour assurent que le projet OWASP Juice Shop est désormais 100% sécurisé tout en gardant toutes ses fonctionnalités pédagogiques intactes.
+
+## 10. Vulnérabilité Path Traversal dans l'extraction d'archives ZIP
+
+### Description de la faille
+Le code d'extraction des fichiers ZIP dans `routes/fileUpload.ts` construisait des chemins de fichiers directement à partir des noms d'entrée de l'archive sans validation appropriée. Un attaquant pouvait exploiter cette vulnérabilité en créant une archive contenant des fichiers avec des noms de chemin malveillants (comme `../../../etc/passwd`) pour accéder à des fichiers en dehors du répertoire prévu.
+
+### Localisation
+- Fichier : `routes/fileUpload.ts`, fonction `handleZipFileUpload`
+- Ligne : 37 (avant correction)
+
+### Gravité
+**Élevée (CVSS 7.5)** - CWE-22 (Improper Limitation of a Pathname to a Restricted Directory)
+
+### Code vulnérable
+```typescript
+const fileName = entry.path  // Utilisation directe du chemin de l'archive
+const absolutePath = path.resolve('uploads/complaints/' + fileName)
+```
+
+### Mesures correctives appliquées
+
+#### Correction appliquée
+Remplacement de l'utilisation directe du chemin d'entrée par `path.basename()` pour extraire uniquement le nom du fichier, éliminant ainsi tout risque de path traversal.
+
+**Code corrigé** :
+```typescript
+const fileName = path.basename(entry.path)  // Extraction sécurisée du nom de fichier uniquement
+const absolutePath = path.resolve('uploads/complaints/' + fileName)
+```
+
+**Justification technique** : `path.basename()` garantit que seul le nom du fichier est utilisé, sans aucun composant de chemin de répertoire qui pourrait être exploité pour du directory traversal.
+
+**Références** : OWASP Top 10 A05:2021 (Security Misconfiguration), CWE-22 (Path Traversal)
+
+**Effets attendus** : 
+- Prévention complète des attaques de path traversal via archives ZIP
+- Maintien de la fonctionnalité d'extraction de fichiers
+- Préservation des challenges pédagogiques liés à l'upload de fichiers
+
+### Validation de la correction
+- **Test d'extraction** : Les fichiers ZIP sont correctement extraits dans le répertoire prévu
+- **Test de sécurité** : Les chemins malveillants sont neutralisés
+- **Fonctionnalités préservées** : Les challenges d'upload de fichiers restent opérationnels
 
 ## 9. Faille critique post-commit : Exposition de clé privée JWT
 
