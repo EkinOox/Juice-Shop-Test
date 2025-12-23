@@ -40,6 +40,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 - Démarrage de l'application
 - Test des fonctionnalités critiques (authentification JWT)
 - Vérification de l'absence de secrets dans le code commité
+- Test de validation des entrées utilisateur pour les challenges RCE
 
 ## 3. Analyse des vulnérabilités
 
@@ -191,25 +192,6 @@ JWT_PRIVATE_KEY="-----BEGIN...
 
 **Effets attendus** : Fonctionnement correct de la cryptographie RSA, restauration de l'authentification.
 
-### Correctif 5: Correction du format PEM
-**Description détaillée** : Utilisation de guillemets dans .env pour préserver les sauts de ligne de la clé PEM.
-
-**Justification technique** : Les fichiers .env nécessitent un formatage spécial pour les chaînes multilignes.
-
-**Configuration corrigée** :
-```env
-# Format incorrect
-JWT_PRIVATE_KEY=-----BEGIN...\n...
-
-# Format correct
-JWT_PRIVATE_KEY="-----BEGIN...
-..."
-```
-
-**Références** : Documentation dotenv
-
-**Effets attendus** : Fonctionnement correct de la cryptographie RSA, restauration de l'authentification.
-
 ### Correctif 6: Validation stricte des entrées pour exécution dynamique
 **Description détaillée** : Ajout d'une validation par expression régulière pour limiter les entrées utilisateur à des expressions mathématiques simples uniquement.
 
@@ -244,3 +226,5 @@ if (!/^[0-9+\-*/()\s.]+$/.test(orderLinesData)) {
 - Test d'authentification JWT après chaque déploiement
 - Vérification de l'absence de secrets dans les commits
 - Validation du format des clés cryptographiques
+- Test des challenges RCE avec entrées malveillantes pour vérifier la validation
+- Test des workflows GitHub avec différents noms de branches
