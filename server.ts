@@ -25,7 +25,17 @@ import cookieParser from 'cookie-parser'
 import * as Prometheus from 'prom-client'
 import swaggerUi from 'swagger-ui-express'
 import featurePolicy from 'feature-policy'
-import { IpFilter } from 'express-ipfilter'
+// Custom IP filter middleware to replace vulnerable express-ipfilter
+const ipFilter = (allowedIps: string[], options: { mode: string }) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const clientIp = req.ip || req.connection.remoteAddress || (req as any).socket?.remoteAddress || 'unknown'
+    const isAllowed = allowedIps.includes(clientIp)
+    if (options.mode === 'allow' && !isAllowed) {
+      return res.status(403).json({ error: 'IP address not allowed' })
+    }
+    next()
+  }
+}
 // @ts-expect-error FIXME due to non-existing type definitions for express-security.txt
 import securityTxt from 'express-security.txt'
 import { rateLimit } from 'express-rate-limit'
@@ -422,7 +432,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   /* Accounting users are allowed to check and update quantities */
   app.delete('/api/Quantitys/:id', security.denyAll())
   app.post('/api/Quantitys', security.denyAll())
-  app.use('/api/Quantitys/:id', security.isAccounting(), IpFilter(['123.456.789'], { mode: 'allow' }))
+  app.use('/api/Quantitys/:id', security.isAccounting(), ipFilter(['123.456.789'], { mode: 'allow' }))
   /* Feedbacks: Do not allow changes of existing feedback */
   app.put('/api/Feedbacks/:id', security.denyAll())
   /* PrivacyRequests: Only allowed for authenticated users */

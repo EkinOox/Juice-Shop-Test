@@ -9,7 +9,10 @@ import fs from 'node:fs'
 import logger from './logger'
 import config from 'config'
 import jsSHA from 'jssha'
-import download from 'download'
+// Custom download function to replace vulnerable 'download' package
+import https from 'node:https'
+import http from 'node:http'
+import { URL } from 'node:url'
 import crypto from 'node:crypto'
 import clarinet from 'clarinet'
 import type { Challenge } from 'data/types'
@@ -20,6 +23,31 @@ import isWindows from './is-windows'
 export { default as isDocker } from './is-docker'
 export { default as isWindows } from './is-windows'
 // import isGitpod from 'is-gitpod') // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolve
+
+// Custom download function to replace vulnerable 'download' package
+export const download = (url: string): Promise<Buffer> => {
+  return new Promise((resolve, reject) => {
+    const urlObj = new URL(url)
+    const client = urlObj.protocol === 'https:' ? https : http
+
+    const req = client.get(url, (res) => {
+      if (res.statusCode !== 200) {
+        reject(new Error(`HTTP ${res.statusCode}: ${res.statusMessage}`))
+        return
+      }
+
+      const chunks: Buffer[] = []
+      res.on('data', (chunk) => chunks.push(chunk))
+      res.on('end', () => resolve(Buffer.concat(chunks)))
+    })
+
+    req.on('error', reject)
+    req.setTimeout(30000, () => {
+      req.destroy()
+      reject(new Error('Download timeout'))
+    })
+  })
+}
 const isGitpod = () => false
 
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
