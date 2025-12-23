@@ -22,3 +22,25 @@
 **Solution apportée :** Supprimé le paramètre `branch` pour que l'action commite automatiquement sur la branche actuelle, évitant ainsi l'utilisation de données user-controlled.
 
 **Explication :** En omettant le paramètre branch, le workflow reste fonctionnel tout en éliminant le risque de sécurité associé à l'injection via le nom de branche, car l'action utilise la branche par défaut du contexte GitHub.
+
+## Faille 3: Clé privée RSA codée en dur dans le code
+
+**Problème :** Une clé privée RSA était codée en dur dans le fichier `lib/insecurity.ts`, exposant une clé de sécurité sensible directement dans le code source, ce qui constitue une faille de sécurité majeure.
+
+**Localisation :**
+- Fichier : `lib/insecurity.ts` (ligne 20-21)
+
+**Solution apportée :** Remplacé la clé codée en dur par une lecture depuis une variable d'environnement `JWT_PRIVATE_KEY`. Ajouté le chargement de dotenv dans `app.ts` pour charger les variables depuis un fichier `.env` local. Créé le fichier `.env` avec la clé et ajouté `.env` au `.gitignore` pour éviter les commits de secrets.
+
+**Explication :** Cette modification élimine l'exposition de la clé privée dans le dépôt de code, réduisant les risques de compromission. Les clés sensibles doivent être gérées via des variables d'environnement ou des services de gestion de secrets, pas stockées en dur dans le code.
+
+## Faille 4: Format incorrect de la clé privée RSA dans le fichier .env
+
+**Problème :** La clé privée RSA dans le fichier `.env` était formatée avec des séquences d'échappement `\n` au lieu de vraies nouvelles lignes, causant une erreur OpenSSL "unsupported" lors de la signature des JWT, empêchant la connexion des utilisateurs.
+
+**Localisation :**
+- Fichier : `.env` (ligne 1)
+
+**Solution apportée :** Modifié le format de la variable `JWT_PRIVATE_KEY` dans `.env` en utilisant des guillemets pour préserver les sauts de ligne multilignes de la clé PEM.
+
+**Explication :** Les fichiers `.env` interprètent les séquences d'échappement différemment selon le shell. En utilisant des guillemets, la clé conserve son format PEM valide requis par OpenSSL pour les opérations cryptographiques RSA.
