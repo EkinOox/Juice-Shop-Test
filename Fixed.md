@@ -945,3 +945,65 @@ Après investigation approfondie du fichier `server.ts` et de ses dépendances, 
 - CWE-94 (Code Injection)
 - CWE-22 (Path Traversal)
 - SonarQube Rule S5334 (Dynamic code execution should not be vulnerable to injection attacks)
+
+## 12. Vulnérabilités XXE et SQL Injection dans les handlers de fichiers et d'authentification
+
+### Vulnérabilité 1: Accès aux entités externes dans le parsing XML (XXE)
+**Description de la faille** : Le parsing XML permettait l'accès aux entités externes via le paramètre `noent: true`, permettant des attaques XXE (XML External Entity) pour lire des fichiers système ou effectuer des attaques SSRF.
+
+**Localisation** : `routes/fileUpload.ts`, fonction `handleXmlUpload()`, ligne 80
+
+**Gravité** : Élevée (CVSS 7.5) - CWE-611 (Improper Restriction of XML External Entity Reference)
+
+**Code vulnérable** :
+```typescript
+const xmlDoc = libxml.parseXml(data, { noblanks: true, noent: true, nocdata: true })
+```
+
+**Correction appliquée** :
+```typescript
+const xmlDoc = libxml.parseXml(data, { noblanks: true, noent: false, nocdata: true })
+```
+
+**Justification** : Désactiver l'accès aux entités externes (`noent: false`) empêche les attaques XXE tout en maintenant la fonctionnalité de parsing XML pour les challenges pédagogiques.
+
+### Vulnérabilité 2: Injection SQL dans l'authentification
+**Description de la faille** : La fonction de login construisait directement des requêtes SQL avec des données utilisateur non échappées, permettant des injections SQL classiques.
+
+**Localisation** : `routes/login.ts`, fonction `login()`, ligne 29
+
+**Gravité** : Critique (CVSS 9.8) - CWE-89 (SQL Injection)
+
+**Code vulnérable** :
+```typescript
+models.sequelize.query(`SELECT * FROM Users WHERE email = '${req.body.email || ''}' AND password = '${security.hash(req.body.password || '')}' AND deletedAt IS NULL`, { model: UserModel, plain: true })
+```
+
+**Correction appliquée** :
+```typescript
+UserModel.findOne({
+  where: {
+    email: req.body.email || '',
+    password: security.hash(req.body.password || ''),
+    deletedAt: null
+  }
+})
+```
+
+**Justification** : Utiliser l'ORM Sequelize avec des requêtes paramétrées empêche complètement les injections SQL. Le code a été adapté pour gérer directement l'instance du modèle retournée.
+
+**Références** :
+- OWASP Top 10 A03:2021 (Injection)
+- CWE-89 (SQL Injection)
+- CWE-611 (XXE)
+
+**Effets attendus** :
+- ✅ Élimination complète des vulnérabilités XXE et SQL injection
+- ✅ Maintien de la fonctionnalité d'authentification et de parsing XML
+- ✅ Préservation des challenges pédagogiques
+- ✅ Amélioration de la sécurité globale de l'application
+
+### Validation des corrections
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Authentification et upload de fichiers fonctionnels
+- **Sécurité** : Plus de vulnérabilités XXE ou SQL injection détectées
