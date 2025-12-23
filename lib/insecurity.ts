@@ -51,10 +51,17 @@ export const cutOffPoisonNullByte = (str: string) => {
   return str
 }
 
-export const isAuthorized = () => expressjwt(({ secret: publicKey }) as any)
-export const denyAll = () => expressjwt({ secret: '' + Math.random() } as any)
+export const isAuthorized = () => expressjwt({ secret: publicKey, algorithms: ['RS256'] } as any)
+export const denyAll = () => expressjwt({ secret: '' + Math.random(), algorithms: ['HS256'] } as any)
 export const authorize = (user = {}) => jwt.sign(user, privateKey, { expiresIn: '6h', algorithm: 'RS256' })
-export const verify = (token: string) => token ? (jws.verify as ((token: string, secret: string) => boolean))(token, publicKey) : false
+export const verify = (token: string) => {
+  try {
+    jwt.verify(token, publicKey, { algorithms: ['RS256'] })
+    return true
+  } catch {
+    return false
+  }
+}
 export const decode = (token: string) => { return jws.decode(token)?.payload }
 
 export const sanitizeHtml = (html: string) => sanitizeHtmlLib(html)

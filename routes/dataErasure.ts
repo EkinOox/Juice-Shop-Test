@@ -112,9 +112,12 @@ router.post('/', async (req: Request<Record<string, unknown>, Record<string, unk
         }
       })
     } else {
-      res.render('dataErasureResult', {
-        ...req.body
-      })
+      // Validate and sanitize req.body before rendering
+      const sanitizedBody = {
+        email: typeof req.body.email === 'string' && req.body.email.length <= 100 ? req.body.email : '',
+        securityAnswer: typeof req.body.securityAnswer === 'string' && req.body.securityAnswer.length <= 200 ? req.body.securityAnswer : ''
+      }
+      res.render('dataErasureResult', sanitizedBody)
     }
   } catch (error) {
     next(error)
