@@ -1,6 +1,9 @@
 # App
 node_modules/
 juiceshop.sqlite
+data/juiceshop.sqlite
+encryptionkeys/jwt.key
+encryptionkeys/jwt.pub
 order_*.pdf
 app/
 !frontend/src/app

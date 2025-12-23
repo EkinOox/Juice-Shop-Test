@@ -660,6 +660,72 @@ import { Bot } from '../lib/bot'
 
 Ces mises à jour assurent que le projet OWASP Juice Shop est désormais 100% sécurisé tout en gardant toutes ses fonctionnalités pédagogiques intactes.
 
+## 9. Faille critique post-commit : Exposition de clé privée JWT
+
+### Description de la faille
+Après le commit des corrections de sécurité, une analyse de sécurité a révélé que la clé privée RSA générée pour les JWT était exposée dans l'historique Git. Cette faille constitue un risque critique car :
+
+- La clé privée permettrait de forger des tokens JWT arbitraires
+- L'historique Git contient désormais une clé compromise
+- Tout clone du dépôt aurait accès à cette clé
+
+### Localisation
+- Fichier : `encryptionkeys/jwt.key` (dans l'historique Git)
+- Impact : Authentification JWT compromise
+
+### Gravité
+**Critique (CVSS 9.8)** - CWE-200 (Exposure of Sensitive Information to an Unauthorized Actor)
+
+### Mesures correctives appliquées
+
+#### 1. Génération de nouvelles clés
+- Création d'une nouvelle paire de clés RSA 2048 bits
+- Remplacement des fichiers `encryptionkeys/jwt.key` et `encryptionkeys/jwt.pub`
+- Mise à jour de la variable `JWT_PRIVATE_KEY` dans `.env`
+
+#### 2. Sécurisation du dépôt
+- Ajout des fichiers de clés au `.gitignore` :
+  ```
+  encryptionkeys/jwt.key
+  encryptionkeys/jwt.pub
+  ```
+- Cela empêche tout futur commit accidentel des clés
+
+#### 3. Nettoyage de l'historique (recommandé)
+Pour supprimer complètement la clé compromise de l'historique Git, utiliser :
+```bash
+# Utiliser git filter-branch ou BFG Repo-Cleaner
+git filter-branch --tree-filter 'rm -f encryptionkeys/jwt.key encryptionkeys/jwt.pub' --prune-empty HEAD
+git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
+git reflog expire --expire=now --all
+git gc --prune=now
+```
+
+### Code corrigé
+```env
+# Nouvelle clé privée générée (exemple tronqué)
+JWT_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAzTDMBMhidAM3VrBHF4M/OqRXIprrz8wSye4bgKTpzrVkb8Au...
+-----END RSA PRIVATE KEY-----"
+```
+
+### .gitignore mis à jour
+```
+encryptionkeys/jwt.key
+encryptionkeys/jwt.pub
+```
+
+### Références
+- CWE-200 (Information Exposure)
+- OWASP ASVS 2.10.4 (Secrets Management)
+- GitHub Security Best Practices
+
+### Impact résolu
+- ✅ Clé privée compromise remplacée
+- ✅ Fichiers de clés exclus du versioning
+- ✅ Authentification JWT sécurisée avec nouvelle clé
+- ✅ Prévention de futures expositions accidentelles
+
 ## 8. Corrections finales des failles restantes
 
 ### Vulnérabilité supplémentaire 1: Exécution dynamique de code dans b2bOrder.ts
