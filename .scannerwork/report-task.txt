@@ -3,5 +3,5 @@ projectKey=EkinOox_Juice-Shop-Test
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.77984
 dashboardUrl=https://sonarcloud.io/dashboard?id=EkinOox_Juice-Shop-Test
-ceTaskId=AZtNYqN4LOotIhsGAdB3
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZtNYqN4LOotIhsGAdB3
+ceTaskId=AZtNggCIpyj7Ov1zhpeg
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZtNggCIpyj7Ov1zhpeg
