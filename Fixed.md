@@ -12,6 +12,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 - Violations des conventions Angular pour les événements de sortie
 - Exécution dynamique de code contrôlé par l'utilisateur (RCE)
 - Construction de requêtes de base de données à partir de données utilisateur non validées
+- Construction de chemins de fichiers à partir de données utilisateur non validées
 
 ### Mesures correctives majeures
 - Externalisation de tous les secrets vers des variables d'environnement
@@ -116,6 +117,15 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 **Impact** : Injection NoSQL possible, corruption de données, erreurs d'application, ou comportements inattendus dus à des données invalides.
 
 **Gravité** : Moyenne (CVSS 6.5) - CWE-20 (Improper Input Validation)
+
+### Vulnérabilité 9: Construction de chemins de fichiers à partir de données utilisateur non validées
+**Description** : Le code dans `routes/dataErasure.ts` construisait des chemins de fichiers directement à partir du paramètre `req.body.layout` sans validation appropriée, permettant des attaques de type directory traversal (path traversal).
+
+**Localisation** : `routes/dataErasure.ts`, ligne 66, dans la fonction POST du routeur dataErasure.
+
+**Impact** : Accès non autorisé à des fichiers système arbitraires, fuite d'informations sensibles, compromission potentielle du serveur.
+
+**Gravité** : Élevée (CVSS 7.5) - CWE-22 (Improper Limitation of a Pathname to a Restricted Directory)
 
 ## 4. Mesures correctives
 
@@ -281,6 +291,42 @@ await reviewsCollection.insert({
 **Références** : OWASP ASVS 5.2.4 (Input Validation), CWE-20
 
 **Effets attendus** : Prévention des injections NoSQL, validation des données utilisateur, amélioration de la robustesse de l'application.
+
+### Correctif 9: Validation et sanitisation des chemins de fichiers
+**Description détaillée** : Implémentation d'une validation stricte des paramètres de layout avec approche whitelist, utilisation de `path.basename()` pour prévenir le directory traversal, et vérification d'existence des fichiers.
+
+**Justification technique** : Les chemins de fichiers construits à partir de données utilisateur permettent des attaques de type path traversal. Une validation stricte avec liste blanche et sanitisation empêche l'accès à des fichiers non autorisés tout en préservant la fonctionnalité.
+
+**Extraits de code corrigés** :
+```typescript
+// Avant (vulnérable)
+const filePath: string = path.resolve(req.body.layout).toLowerCase()
+const isForbiddenFile: boolean = (filePath.includes('ftp') || filePath.includes('ctf.key') || filePath.includes('encryptionkeys'))
+
+// Après (sécurisé)
+// Validation et sanitisation
+const layoutName = req.body.layout.trim()
+if (!/^[a-zA-Z0-9_-]+$/.test(layoutName)) {
+  return next(new Error('Invalid layout name'))
+}
+
+const safeLayoutName = path.basename(layoutName)
+const allowedLayouts = ['default', 'minimal', 'compact', 'detailed']
+
+if (!allowedLayouts.includes(safeLayoutName)) {
+  return next(new Error('Layout not allowed'))
+}
+
+// Vérification d'existence du fichier
+const fs = require('fs')
+if (!fs.existsSync(templatePath + '.hbs') && !fs.existsSync(templatePath + '.ejs')) {
+  return next(new Error('Template not found'))
+}
+```
+
+**Références** : OWASP ASVS 5.2.4 (Input Validation), CWE-22 (Path Traversal), OWASP Top 10 A05:2021 (Security Misconfiguration)
+
+**Effets attendus** : Prévention complète des attaques de directory traversal, limitation des layouts à une liste autorisée, validation de l'existence des fichiers avant utilisation.
 
 ## 5. Recommandations supplémentaires
 
