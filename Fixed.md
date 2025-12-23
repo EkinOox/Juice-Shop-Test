@@ -10,6 +10,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 - Utilisation de secrets codés en dur (clés privées, mots de passe HMAC)
 - Injection potentielle via paramètres de workflow GitHub
 - Violations des conventions Angular pour les événements de sortie
+- Exécution dynamique de code contrôlé par l'utilisateur (RCE)
 
 ### Mesures correctives majeures
 - Externalisation de tous les secrets vers des variables d'environnement
@@ -17,6 +18,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 - Sécurisation des workflows CI/CD
 - Conformité aux bonnes pratiques Angular
 - Mise en place d'un système de gestion des secrets via fichier .env
+- Validation stricte des entrées pour prévenir les injections de code
 
 ## 2. Méthodologie
 
@@ -236,11 +238,9 @@ if (!/^[0-9+\-*/()\s.]+$/.test(orderLinesData)) {
 ### Mesures de durcissement global
 - Activation de l'analyse de sécurité dans la CI/CD
 - Mise en place de pre-commit hooks pour détecter les secrets
-- Formation des développeurs sur les bonnes pratiques de sécurité
 - Audit régulier des dépendances
 
 ### Tests de non-régression proposés
 - Test d'authentification JWT après chaque déploiement
 - Vérification de l'absence de secrets dans les commits
-- Test des workflows GitHub avec différents noms de branches
 - Validation du format des clés cryptographiques
