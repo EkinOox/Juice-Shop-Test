@@ -7,7 +7,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 
 ### Vulnérabilités critiques identifiées
 - Exposition de clé privée RSA dans le code source
-- Utilisation de secrets codés en dur (clés privées, mots de passe HMAC)
+- Utilisation de secrets codés en dur (clés privées, mots de passe HMAC, seed phrases)
 - Injection potentielle via paramètres de workflow GitHub
 - Violations des conventions Angular pour les événements de sortie
 - Exécution dynamique de code contrôlé par l'utilisateur (RCE)
@@ -97,6 +97,15 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 **Impact** : Exécution arbitraire de code sur le serveur, compromission complète du système.
 
 **Gravité** : Critique (CVSS 9.8) - CWE-94 (Code Injection)
+
+### Vulnérabilité 7: Exposition de seed phrase Ethereum compromise
+**Description** : Une seed phrase Ethereum codée en dur était présente dans le fichier `routes/checkKeys.ts`, permettant la génération de portefeuilles Ethereum pour des défis NFT. Cette seed phrase compromise pouvait être utilisée pour accéder à des fonds ou des actifs associés.
+
+**Localisation** : `routes/checkKeys.ts`, ligne 15 (approximative), dans la fonction `checkKeys()`.
+
+**Impact** : Accès potentiel à des portefeuilles Ethereum et actifs associés, compromission de la fonctionnalité NFT du challenge.
+
+**Gravité** : Élevée (CVSS 7.5) - CWE-798 (Use of Hard-coded Credentials)
 
 ## 4. Mesures correctives
 
@@ -208,6 +217,24 @@ if (!/^[0-9+\-*/()\s.]+$/.test(orderLinesData)) {
 **Références** : OWASP ASVS 5.2.4 (Input Validation), CWE-94
 
 **Effets attendus** : Prévention des injections de code tout en permettant les calculs mathématiques légitimes pour le challenge.
+
+### Correctif 7: Externalisation de la seed phrase Ethereum
+**Description détaillée** : Remplacement de la seed phrase codée en dur par une variable d'environnement `MNEMONIC_SECRET`.
+
+**Justification technique** : Les seed phrases Ethereum sont des secrets critiques qui ne doivent jamais être exposés dans le code source. Leur compromission peut entraîner la perte d'actifs numériques.
+
+**Extraits de code corrigés** :
+```typescript
+// Avant
+const mnemonic = 'crazy dawn invite tumble pool area ...'
+
+// Après
+const mnemonic = process.env.MNEMONIC_SECRET ?? 'default mnemonic phrase'
+```
+
+**Références** : OWASP ASVS 2.10.4, CWE-798
+
+**Effets attendus** : Sécurisation de la seed phrase Ethereum, prévention de l'accès non autorisé aux portefeuilles associés.
 
 ## 5. Recommandations supplémentaires
 
