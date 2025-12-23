@@ -11,6 +11,7 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 - Injection potentielle via paramètres de workflow GitHub
 - Violations des conventions Angular pour les événements de sortie
 - Exécution dynamique de code contrôlé par l'utilisateur (RCE)
+- Construction de requêtes de base de données à partir de données utilisateur non validées
 
 ### Mesures correctives majeures
 - Externalisation de tous les secrets vers des variables d'environnement
@@ -106,6 +107,15 @@ Le projet OWASP Juice Shop, conçu comme une application web intentionnellement 
 **Impact** : Accès potentiel à des portefeuilles Ethereum et actifs associés, compromission de la fonctionnalité NFT du challenge.
 
 **Gravité** : Élevée (CVSS 7.5) - CWE-798 (Use of Hard-coded Credentials)
+
+### Vulnérabilité 8: Construction de requêtes de base de données à partir de données utilisateur non validées
+**Description** : Les requêtes de base de données dans `routes/createProductReviews.ts` utilisaient directement les paramètres `req.params.id`, `req.body.author` et `req.body.message` sans validation préalable, permettant potentiellement des attaques d'injection NoSQL ou des données malformées.
+
+**Localisation** : `routes/createProductReviews.ts`, lignes 24-26, dans la fonction `createProductReviews()`.
+
+**Impact** : Injection NoSQL possible, corruption de données, erreurs d'application, ou comportements inattendus dus à des données invalides.
+
+**Gravité** : Moyenne (CVSS 6.5) - CWE-20 (Improper Input Validation)
 
 ## 4. Mesures correctives
 
@@ -235,6 +245,42 @@ const mnemonic = process.env.MNEMONIC_SECRET ?? 'default mnemonic phrase'
 **Références** : OWASP ASVS 2.10.4, CWE-798
 
 **Effets attendus** : Sécurisation de la seed phrase Ethereum, prévention de l'accès non autorisé aux portefeuilles associés.
+
+### Correctif 8: Validation stricte des entrées pour les requêtes de base de données
+**Description détaillée** : Ajout d'une validation complète des paramètres utilisateur avant leur utilisation dans les requêtes de base de données.
+
+**Justification technique** : Les données utilisateur non validées peuvent causer des injections NoSQL, des erreurs d'application, ou des corruptions de données. Une validation stricte empêche ces attaques et assure l'intégrité des données.
+
+**Extraits de code corrigés** :
+```typescript
+// Validation ajoutée
+const productId = parseInt(req.params.id)
+if (isNaN(productId) || productId <= 0) {
+  return res.status(400).json({ error: 'Invalid product ID' })
+}
+
+const { author, message } = req.body
+if (!author || typeof author !== 'string' || author.trim().length === 0 || author.length > 100) {
+  return res.status(400).json({ error: 'Invalid author name' })
+}
+
+if (!message || typeof message !== 'string' || message.trim().length === 0 || message.length > 1000) {
+  return res.status(400).json({ error: 'Invalid message content' })
+}
+
+// Utilisation des données validées
+await reviewsCollection.insert({
+  product: productId,
+  message: sanitizedMessage,
+  author: sanitizedAuthor,
+  likesCount: 0,
+  likedBy: []
+})
+```
+
+**Références** : OWASP ASVS 5.2.4 (Input Validation), CWE-20
+
+**Effets attendus** : Prévention des injections NoSQL, validation des données utilisateur, amélioration de la robustesse de l'application.
 
 ## 5. Recommandations supplémentaires
 

@@ -19,11 +19,32 @@ export function createProductReviews () {
       () => user?.data?.email !== req.body.author
     )
 
+    // Validate input parameters
+    const productId = parseInt(req.params.id)
+    if (isNaN(productId) || productId <= 0) {
+      return res.status(400).json({ error: 'Invalid product ID' })
+    }
+
+    const { author, message } = req.body
+
+    // Validate author and message
+    if (!author || typeof author !== 'string' || author.trim().length === 0 || author.length > 100) {
+      return res.status(400).json({ error: 'Invalid author name' })
+    }
+
+    if (!message || typeof message !== 'string' || message.trim().length === 0 || message.length > 1000) {
+      return res.status(400).json({ error: 'Invalid message content' })
+    }
+
+    // Sanitize inputs
+    const sanitizedAuthor = author.trim()
+    const sanitizedMessage = message.trim()
+
     try {
       await reviewsCollection.insert({
-        product: req.params.id,
-        message: req.body.message,
-        author: req.body.author,
+        product: productId,
+        message: sanitizedMessage,
+        author: sanitizedAuthor,
         likesCount: 0,
         likedBy: []
       })
