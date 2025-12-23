@@ -17,6 +17,10 @@ export function b2bOrder () {
   return ({ body }: Request, res: Response, next: NextFunction) => {
     if (utils.isChallengeEnabled(challenges.rceChallenge) || utils.isChallengeEnabled(challenges.rceOccupyChallenge)) {
       const orderLinesData = body.orderLinesData || ''
+      // Validate input to prevent code injection - only allow simple numeric expressions
+      if (!/^[0-9+\-*/()\s.]+$/.test(orderLinesData)) {
+        return next(new Error('Invalid order data format'))
+      }
       try {
         const sandbox = { safeEval, orderLinesData }
         vm.createContext(sandbox)
