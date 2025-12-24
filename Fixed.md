@@ -1003,7 +1003,107 @@ UserModel.findOne({
 - ✅ Préservation des challenges pédagogiques
 - ✅ Amélioration de la sécurité globale de l'application
 
+## 13. Vulnérabilités Open Redirect et SQL Injection dans la recherche et redirection
+
+### Vulnérabilité 1: Redirections ouvertes (Open Redirect)
+**Description de la faille** : La validation des URLs de redirection utilisait `url.includes(allowedUrl)`, permettant à un attaquant de contourner la liste blanche avec des URLs malformées comme `https://evil.com/https://github.com/juice-shop/juice-shop`.
+
+**Localisation** : `lib/insecurity.ts`, fonction `isRedirectAllowed()`
+
+**Gravité** : Moyenne (CVSS 6.1) - CWE-601 (Open Redirect)
+
+**Code vulnérable** :
+```typescript
+allowed = allowed || url.includes(allowedUrl)
+```
+
+**Correction appliquée** :
+```typescript
+allowed = allowed || url === allowedUrl || url.startsWith(allowedUrl + '/')
+```
+
+**Justification** : La nouvelle validation exige soit une correspondance exacte, soit que l'URL commence par l'URL autorisée suivie d'un slash, empêchant les attaques de contournement.
+
+### Vulnérabilité 2: Injection SQL dans la recherche de produits
+**Description de la faille** : La fonction de recherche construisait directement des requêtes SQL avec des données utilisateur non échappées, permettant des injections SQL.
+
+**Localisation** : `routes/search.ts`, fonction `searchProducts()`
+
+**Gravité** : Élevée (CVSS 8.3) - CWE-89 (SQL Injection)
+
+**Code vulnérable** :
+```typescript
+models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) ORDER BY name`)
+```
+
+**Correction appliquée** :
+```typescript
+models.ProductModel.findAll({
+  where: {
+    [Op.or]: [
+      { name: { [Op.like]: `%${criteria}%` } },
+      { description: { [Op.like]: `%${criteria}%` } }
+    ]
+  },
+  order: [['name', 'ASC']]
+})
+```
+
+**Justification** : Utiliser l'ORM Sequelize avec des opérateurs paramétrés empêche complètement les injections SQL tout en maintenant la fonctionnalité de recherche LIKE.
+
+**Références** :
+- OWASP Top 10 A03:2021 (Injection)
+- CWE-89 (SQL Injection)
+- CWE-601 (Open Redirect)
+
+**Effets attendus** :
+- ✅ Élimination des vulnérabilités Open Redirect et SQL injection
+- ✅ Maintien des fonctionnalités de redirection et recherche
+- ✅ Préservation des challenges pédagogiques
+- ✅ Amélioration de la sécurité des redirections et requêtes de base de données
+
 ### Validation des corrections
 - **Compilation** : TypeScript compile sans erreurs
 - **Tests fonctionnels** : Authentification et upload de fichiers fonctionnels
 - **Sécurité** : Plus de vulnérabilités XXE ou SQL injection détectées
+
+## 14. Injection SQL dans la recherche de produits
+
+### Description de la vulnérabilité
+Le endpoint `/rest/products/search` construisait des requêtes SQL directement à partir des paramètres utilisateur sans paramétrisation, permettant des injections SQL.
+
+### Code vulnérable (routes/search.ts)
+```typescript
+// Vulnérable : Construction directe de SQL
+const query = "SELECT * FROM Products WHERE name LIKE '%" + criteria + "%' OR description LIKE '%" + criteria + "%'"
+```
+
+### Code corrigé
+```typescript
+// Sécurisé : Utilisation de Sequelize paramétré
+ProductModel.findAll({
+  where: {
+    [Op.or]: [
+      { name: { [Op.like]: `%${criteria}%` } },
+      { description: { [Op.like]: `%${criteria}%` } }
+    ]
+  },
+  order: [['name', 'ASC']]
+})
+```
+
+### Impact
+- **Avant** : Injection SQL possible via le paramètre `q`
+- **Après** : Requêtes paramétrées empêchant toute injection
+
+### Justification
+L'utilisation de Sequelize avec des opérateurs `Op.like` paramétrés élimine complètement le risque d'injection SQL tout en préservant la fonctionnalité de recherche LIKE.
+
+### Références
+- OWASP Top 10 A03:2021 (Injection)
+- CWE-89 (SQL Injection)
+
+### Validation
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Recherche de produits fonctionne correctement
+- **Sécurité** : Plus de vulnérabilités SQL injection détectées
