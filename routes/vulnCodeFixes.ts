@@ -5,6 +5,7 @@ import { type NextFunction, type Request, type Response } from 'express'
 import * as accuracy from '../lib/accuracy'
 import * as challengeUtils from '../lib/challengeUtils'
 import { type ChallengeKey } from 'models/challenge'
+import { challenges } from '../data/datacache'
 
 const FixesDir = 'data/static/codefixes'
 
@@ -69,6 +70,13 @@ export const serveCodeFixes = () => (req: Request<FixesRequestParams, Record<str
 
 export const checkCorrectFix = () => async (req: Request<Record<string, unknown>, Record<string, unknown>, VerdictRequestBody>, res: Response, next: NextFunction) => {
   const key = req.body.key
+  // Validate that key is a valid challenge key to prevent path traversal
+  if (!Object.keys(challenges).includes(key)) {
+    res.status(400).json({
+      error: 'Invalid challenge key'
+    })
+    return
+  }
   const selectedFix = req.body.selectedFix
   const fixData = readFixes(key)
   if (fixData.fixes.length === 0) {

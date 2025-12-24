@@ -12,6 +12,7 @@ import * as challengeUtils from '../lib/challengeUtils'
 import * as accuracy from '../lib/accuracy'
 import * as utils from '../lib/utils'
 import { type ChallengeKey } from 'models/challenge'
+import { challenges } from '../data/datacache'
 
 interface SnippetRequestBody {
   challenge: string
@@ -69,6 +70,11 @@ export const getVerdict = (vulnLines: number[], neutralLines: number[], selected
 
 export const checkVulnLines = () => async (req: Request<Record<string, unknown>, Record<string, unknown>, VerdictRequestBody>, res: Response, next: NextFunction) => {
   const key = req.body.key
+  // Validate that key is a valid challenge key to prevent path traversal
+  if (!Object.keys(challenges).includes(key)) {
+    res.status(400).json({ status: 'error', error: 'Invalid challenge key' })
+    return
+  }
   let snippetData
   try {
     snippetData = await retrieveCodeSnippet(key)

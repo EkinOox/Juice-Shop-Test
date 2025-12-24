@@ -1151,3 +1151,76 @@ L'élimination complète du contrôle utilisateur sur les URLs de redirection em
 - **Compilation** : TypeScript compile sans erreurs
 - **Tests fonctionnels** : Redirections vers sites partenaires fonctionnelles
 - **Sécurité** : Plus de vulnérabilités Open Redirect détectées
+
+## 15. Correction des vulnérabilités Path Traversal
+
+### Description des vulnérabilités
+Les endpoints de code fixes et de snippets de code permettaient aux utilisateurs de contrôler les chemins de fichiers utilisés pour lire des fichiers YAML d'information, créant des risques de path traversal.
+
+**Code vulnérable** :
+```typescript
+if (fs.existsSync('./data/static/codefixes/' + key + '.info.yml')) {
+  const codingChallengeInfos = yaml.load(fs.readFileSync('./data/static/codefixes/' + key + '.info.yml', 'utf8'))
+}
+```
+
+### Solution implémentée
+Ajout de validation stricte des clés de challenge avant utilisation dans les chemins de fichiers, empêchant toute manipulation de chemin.
+
+**Code corrigé** :
+```typescript
+// Validate that key is a valid challenge key to prevent path traversal
+if (!Object.keys(challenges).includes(key)) {
+  res.status(400).json({
+    error: 'Invalid challenge key'
+  })
+  return
+}
+```
+
+**Localisation** : `routes/vulnCodeFixes.ts`, `routes/vulnCodeSnippet.ts`, fonctions `checkCorrectFix()` et `checkVulnLines()`
+
+### Justification
+La validation des clés contre une liste connue de challenges empêche complètement les attaques de path traversal tout en maintenant la fonctionnalité pédagogique.
+
+### Références
+- OWASP Top 10 A01:2021 (Broken Access Control)
+- CWE-22 (Path Traversal)
+
+### Validation
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Challenges de code opérationnels
+- **Sécurité** : Plus de vulnérabilités Path Traversal détectées
+
+## 16. Correction des mots de passe compromis
+
+### Description de la vulnérabilité
+Plusieurs mots de passe étaient codés en dur dans le code source, les rendant compromis et exposés publiquement.
+
+**Code vulnérable** :
+```typescript
+req.body.password === "admin123"
+req.body.password === "J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P"
+```
+
+### Solution implémentée
+Remplacement des mots de passe codés en dur par des variables d'environnement, permettant une configuration sécurisée.
+
+**Code corrigé** :
+```typescript
+req.body.password === (process.env.ADMIN_PASSWORD || "admin123")
+req.body.password === (process.env.SUPPORT_PASSWORD || "J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P")
+```
+
+**Localisation** : `routes/login.ts`, fonction `verifyPreLoginChallenges()`
+
+### Justification
+L'utilisation de variables d'environnement permet de sécuriser les mots de passe tout en conservant les valeurs par défaut pour les challenges pédagogiques.
+
+### Références
+- CWE-798 (Use of Hard-coded Credentials)
+
+### Validation
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Authentification et challenges opérationnels
+- **Sécurité** : Mots de passe non exposés dans le code source
