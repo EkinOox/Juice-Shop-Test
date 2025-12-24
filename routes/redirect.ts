@@ -7,27 +7,33 @@ import { type Request, type Response, type NextFunction } from 'express'
 
 import * as challengeUtils from '../lib/challengeUtils'
 import { challenges } from '../data/datacache'
-import * as security from '../lib/insecurity'
-import * as utils from '../lib/utils'
 
 export function performRedirect () {
   return ({ query }: Request, res: Response, next: NextFunction) => {
-    const toUrl: string = query.to as string
-    if (security.isRedirectAllowed(toUrl)) {
-      challengeUtils.solveIf(challenges.redirectCryptoCurrencyChallenge, () => { return toUrl === 'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW' || toUrl === 'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm' || toUrl === 'https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6' })
-      challengeUtils.solveIf(challenges.redirectChallenge, () => { return isUnintendedRedirect(toUrl) })
+    const target: string = query.to as string
+    const urlMap: { [key: string]: string } = {
+      github: 'https://github.com/juice-shop/juice-shop',
+      blockchain: 'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm',
+      dash: 'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW',
+      etherscan: 'https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6',
+      spreadshirt_com: 'http://shop.spreadshirt.com/juiceshop',
+      spreadshirt_de: 'http://shop.spreadshirt.de/juiceshop',
+      stickeryou: 'https://www.stickeryou.com/products/owasp-juice-shop/794',
+      leanpub: 'http://leanpub.com/juice-shop'
+    }
+    const toUrl = urlMap[target]
+    if (toUrl) {
+      challengeUtils.solveIf(challenges.redirectCryptoCurrencyChallenge, () => { return target === 'dash' || target === 'blockchain' || target === 'etherscan' })
+      challengeUtils.solveIf(challenges.redirectChallenge, () => { return isUnintendedRedirect(target) })
       res.redirect(toUrl)
     } else {
       res.status(406)
-      next(new Error('Unrecognized target URL for redirect: ' + toUrl))
+      next(new Error('Unrecognized target for redirect: ' + target))
     }
   }
 }
 
-function isUnintendedRedirect (toUrl: string) {
-  let unintended = true
-  for (const allowedUrl of security.redirectAllowlist) {
-    unintended = unintended && !utils.startsWith(toUrl, allowedUrl)
-  }
-  return unintended
+function isUnintendedRedirect (target: string) {
+  const allowedTargets = ['github', 'blockchain', 'dash', 'etherscan', 'spreadshirt_com', 'spreadshirt_de', 'stickeryou', 'leanpub']
+  return !allowedTargets.includes(target)
 }

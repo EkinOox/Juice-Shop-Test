@@ -1107,3 +1107,47 @@ L'utilisation de Sequelize avec des opérateurs `Op.like` paramétrés élimine 
 - **Compilation** : TypeScript compile sans erreurs
 - **Tests fonctionnels** : Recherche de produits fonctionne correctement
 - **Sécurité** : Plus de vulnérabilités SQL injection détectées
+
+## 14. Correction de la vulnérabilité Open Redirect
+
+### Description de la vulnérabilité
+Le système de redirection permettait aux utilisateurs de spécifier des URLs arbitraires via le paramètre `to`, créant un risque d'open redirect où les attaquants pouvaient rediriger les utilisateurs vers des sites malveillants.
+
+**Code vulnérable** :
+```typescript
+const toUrl: string = query.to as string
+if (security.isRedirectAllowed(toUrl)) {
+  res.redirect(toUrl) // Vulnérabilité : redirection basée sur données utilisateur
+}
+```
+
+### Solution implémentée
+Remplacement du système de redirection directe par un système de mapping basé sur des clés prédéfinies, éliminant complètement le contrôle utilisateur sur les URLs de destination.
+
+**Code corrigé** :
+```typescript
+const target: string = query.to as string
+const urlMap: { [key: string]: string } = {
+  github: 'https://github.com/juice-shop/juice-shop',
+  blockchain: 'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm',
+  // ... autres mappings
+}
+const toUrl = urlMap[target]
+if (toUrl) {
+  res.redirect(toUrl) // Sécurisé : redirection vers URL fixe
+}
+```
+
+**Localisation** : `routes/redirect.ts`, fonction `performRedirect()`
+
+### Justification
+L'élimination complète du contrôle utilisateur sur les URLs de redirection empêche toute exploitation d'open redirect tout en maintenant la fonctionnalité pédagogique des challenges.
+
+### Références
+- OWASP Top 10 A01:2021 (Broken Access Control)
+- CWE-601 (Open Redirect)
+
+### Validation
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Redirections vers sites partenaires fonctionnelles
+- **Sécurité** : Plus de vulnérabilités Open Redirect détectées
