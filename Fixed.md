@@ -1224,3 +1224,38 @@ L'utilisation de variables d'environnement permet de sécuriser les mots de pass
 - **Compilation** : TypeScript compile sans erreurs
 - **Tests fonctionnels** : Authentification et challenges opérationnels
 - **Sécurité** : Mots de passe non exposés dans le code source
+
+## 17. Correction des secrets compromis
+
+### Description des vulnérabilités
+Plusieurs secrets étaient codés en dur dans le code source et les tests, les rendant compromis et exposés publiquement.
+
+**Code vulnérable** :
+```typescript
+app.use(cookieParser('kekse'))
+const tmpTokenWurstbrot = jwt.sign({...}, 'this_surly_isnt_the_right_key')
+```
+
+### Solution implémentée
+Remplacement des secrets codés en dur par des variables d'environnement, permettant une configuration sécurisée.
+
+**Code corrigé** :
+```typescript
+app.use(cookieParser(process.env.COOKIE_SECRET || 'kekse'))
+const tmpTokenWurstbrot = jwt.sign({...}, process.env.JWT_TEST_SECRET || 'this_surly_isnt_the_right_key')
+```
+
+**Localisation** : 
+- `server.ts` : Secret cookie parser
+- `test/api/2faSpec.ts` : Secret JWT de test
+
+### Justification
+L'utilisation de variables d'environnement permet de sécuriser les secrets tout en conservant les valeurs par défaut pour le développement et les tests.
+
+### Références
+- CWE-798 (Use of Hard-coded Credentials)
+
+### Validation
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Authentification et tests opérationnels
+- **Sécurité** : Secrets non exposés dans le code source
