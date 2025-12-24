@@ -1294,3 +1294,19 @@ L'utilisation d'un PRNG cryptographiquement sécurisé empêche les attaques de 
 - **Compilation** : TypeScript compile sans erreurs
 - **Tests fonctionnels** : Bot et commandes B2B opérationnels
 - **Sécurité** : Utilisation de PRNG cryptographiquement sécurisé
+
+## 19. Accès FTP via navigateur (Information Disclosure)
+
+**Description**: Les fichiers du répertoire `ftp/` sont accessibles via le navigateur web, permettant aux utilisateurs de lister le contenu du répertoire et de télécharger des fichiers sensibles.
+
+**Cause**: Le serveur Express configure explicitement des routes pour servir le répertoire FTP :
+- `app.use('/ftp', serveIndexMiddleware, serveIndex('ftp', { icons: true }))` - Liste le répertoire
+- `app.use('/ftp(?!/quarantine)/:file', servePublicFiles())` - Sert les fichiers individuels
+
+**Statut**: Vulnérabilité intentionnelle pour les challenges OWASP Juice Shop (directoryListingChallenge). Le fichier `robots.txt` contient `Disallow: /ftp` mais cela n'empêche pas l'accès direct.
+
+**Recommandation**: Cette fonctionnalité est par conception pour l'enseignement des vulnérabilités. En production, ces routes devraient être supprimées ou protégées par authentification.
+
+**Fichiers impliqués**:
+- `server.ts` (lignes 277-279): Configuration des routes FTP
+- `robots.txt`: Contient `Disallow: /ftp` (inefficace contre l'accès direct)

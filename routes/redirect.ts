@@ -16,10 +16,10 @@ export function performRedirect () {
       blockchain: 'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm',
       dash: 'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW',
       etherscan: 'https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6',
-      spreadshirt_com: 'http://shop.spreadshirt.com/juiceshop',
-      spreadshirt_de: 'http://shop.spreadshirt.de/juiceshop',
+      spreadshirt_com: 'https://juiceshop.myspreadshop.com/',
+      spreadshirt_de: 'https://juiceshop.myspreadshop.com/',
       stickeryou: 'https://www.stickeryou.com/products/owasp-juice-shop/794',
-      leanpub: 'http://leanpub.com/juice-shop'
+      leanpub: 'https://leanpub.com/juice-shop'
     }
     const toUrl = urlMap[target]
     if (toUrl) {
