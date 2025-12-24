@@ -1259,3 +1259,38 @@ L'utilisation de variables d'environnement permet de sécuriser les secrets tout
 - **Compilation** : TypeScript compile sans erreurs
 - **Tests fonctionnels** : Authentification et tests opérationnels
 - **Sécurité** : Secrets non exposés dans le code source
+
+## 18. Correction de l'utilisation non sécurisée du PRNG
+
+### Description de la vulnérabilité
+L'application utilisait `Math.random()` pour des opérations nécessitant de l'aléatoire, mais cette fonction n'est pas cryptographiquement sécurisée et peut être prédictible.
+
+**Code vulnérable** :
+```typescript
+const answer = bestMatch.answers[Math.floor(Math.random() * bestMatch.answers.length)]
+if (Math.random() < 0.3) { // 30% chance to simulate timeout
+```
+
+### Solution implémentée
+Remplacement de `Math.random()` par `crypto.randomInt()` qui utilise un générateur de nombres aléatoires cryptographiquement sécurisé.
+
+**Code corrigé** :
+```typescript
+const answer = bestMatch.answers[crypto.randomInt(0, bestMatch.answers.length)]
+if (crypto.randomInt(0, 10) < 3) { // ~30% chance to simulate timeout
+```
+
+**Localisation** :
+- `lib/bot.ts` : Sélection aléatoire des réponses du bot
+- `routes/b2bOrder.ts` : Simulation aléatoire de timeout
+
+### Justification
+L'utilisation d'un PRNG cryptographiquement sécurisé empêche les attaques de prédiction et améliore la sécurité des opérations aléatoires.
+
+### Références
+- CWE-338 (Use of Cryptographically Weak Pseudo-Random Number Generator)
+
+### Validation
+- **Compilation** : TypeScript compile sans erreurs
+- **Tests fonctionnels** : Bot et commandes B2B opérationnels
+- **Sécurité** : Utilisation de PRNG cryptographiquement sécurisé

@@ -4,6 +4,7 @@
  */
 
 import fuzz from 'fuzzball'
+import crypto from 'crypto'
 
 interface TrainingData {
   lang: string
@@ -93,7 +94,7 @@ export default class Bot {
 
     // If we have a good match (score > 60), return a random answer
     if (bestMatch.score > 60 && bestMatch.answers.length > 0) {
-      const answer = bestMatch.answers[Math.floor(Math.random() * bestMatch.answers.length)]
+      const answer = bestMatch.answers[crypto.randomInt(0, bestMatch.answers.length)]
       return {
         action: answer.action,
         body: answer.body,

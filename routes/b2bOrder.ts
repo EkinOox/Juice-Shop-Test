@@ -4,6 +4,7 @@
  */
 
 import { type Request, type Response, type NextFunction } from 'express'
+import crypto from 'crypto'
 
 import * as challengeUtils from '../lib/challengeUtils'
 import { challenges } from '../data/datacache'
@@ -26,7 +27,7 @@ export function b2bOrder () {
         return next(new Error('Infinite loop detected - reached max iterations'))
       }
       // For timeout challenge, randomly simulate timeout
-      if (Math.random() < 0.3) { // 30% chance to simulate timeout
+      if (crypto.randomInt(0, 10) < 3) { // ~30% chance to simulate timeout
         challengeUtils.solveIf(challenges.rceOccupyChallenge, () => { return true })
         res.status(503)
         return next(new Error('Sorry, we are temporarily not available! Please try again later.'))
