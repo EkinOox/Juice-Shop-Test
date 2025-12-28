@@ -30,9 +30,20 @@ describe('redirect', () => {
   })
 
   describe('should be performed for all allowlisted URLs', () => {
+    const urlToKeyMap: { [url: string]: string } = {
+      'https://github.com/juice-shop/juice-shop': 'github',
+      'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm': 'blockchain',
+      'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW': 'dash',
+      'https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6': 'etherscan',
+      'https://juiceshop.myspreadshop.com/': 'spreadshirt_com',
+      'https://www.juiceshop.myspreadshop.com': 'spreadshirt_de',
+      'https://www.stickeryou.com/products/owasp-juice-shop/794': 'stickeryou',
+      'https://leanpub.com/juice-shop': 'leanpub'
+    }
+
     for (const url of redirectAllowlist) {
       it(url, () => {
-        req.query.to = url
+        req.query.to = urlToKeyMap[url]
 
         performRedirect()(req, res, next)
 
@@ -51,7 +62,7 @@ describe('redirect', () => {
   })
 
   it('redirecting to https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm should solve the "redirectCryptoCurrencyChallenge"', () => {
-    req.query.to = 'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm'
+    req.query.to = 'blockchain'
     challenges.redirectCryptoCurrencyChallenge = { solved: false, save } as unknown as Challenge
 
     performRedirect()(req, res, next)
@@ -60,7 +71,7 @@ describe('redirect', () => {
   })
 
   it('redirecting to https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW should solve the "redirectCryptoCurrencyChallenge"', () => {
-    req.query.to = 'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW'
+    req.query.to = 'dash'
     challenges.redirectCryptoCurrencyChallenge = { solved: false, save } as unknown as Challenge
 
     performRedirect()(req, res, next)
@@ -69,7 +80,7 @@ describe('redirect', () => {
   })
 
   it('redirecting to https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6 should solve the "redirectCryptoCurrencyChallenge"', () => {
-    req.query.to = 'https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6'
+    req.query.to = 'etherscan'
     challenges.redirectCryptoCurrencyChallenge = { solved: false, save } as unknown as Challenge
 
     performRedirect()(req, res, next)
@@ -78,7 +89,7 @@ describe('redirect', () => {
   })
 
   it('tricking the allowlist should solve "redirectChallenge"', () => {
-    req.query.to = 'http://kimminich.de?to=https://github.com/juice-shop/juice-shop'
+    req.query.to = 'invalid_key'
     challenges.redirectChallenge = { solved: false, save } as unknown as Challenge
 
     performRedirect()(req, res, next)

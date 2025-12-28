@@ -62,4 +62,18 @@ describe('ChallengeCard', () => {
     expect(fixture.nativeElement.querySelector('[aria-label="Vulnerability mitigation link"]'))
       .toBeTruthy()
   })
+
+  it('should have default hacking instructor functions before ngOnInit', () => {
+    expect(component.hasInstructions).toBeDefined()
+    expect(typeof component.hasInstructions).toBe('function')
+    expect(component.hasInstructions('test')).toBe(false)
+    expect(component.startHackingInstructorFor).toBeDefined()
+    expect(typeof component.startHackingInstructorFor).toBe('function')
+  })
+
+  it('should call ngOnInit during component initialization', () => {
+    spyOn(component, 'ngOnInit').and.callThrough()
+    component.ngOnInit()
+    expect(component.ngOnInit).toHaveBeenCalled()
+  })
 })

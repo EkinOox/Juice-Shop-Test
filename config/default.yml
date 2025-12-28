@@ -3,6 +3,7 @@ server:
   basePath: ''
   baseUrl: 'http://localhost:3000' # used for CSAF, e.g. https://example.com
 application:
+  id: juice-shop
   domain: juice-sh.op # for pre-loaded email users
   name: 'OWASP Juice Shop'
   logo: JuiceShop_Logo.png
@@ -99,6 +100,7 @@ products:
     limitPerUser: 5
     description: 'The all-time classic.'
     image: apple_juice.jpg
+    useForChristmasSpecialChallenge: true
     reviews:
       - { text: 'One of my favorites!', author: admin }
   -
@@ -107,6 +109,7 @@ products:
     price: 2.99
     deluxePrice: 2.49
     image: orange_juice.jpg
+    urlForProductTamperingChallenge: 'https://owasp.slack.com'
     reviews:
       - { text: 'y0ur f1r3wall needs m0r3 musc13', author: uvogin }
   -
@@ -121,6 +124,7 @@ products:
     description: 'Made from blended Raspberry Pi, water and sugar.'
     price: 4.99
     image: raspberry_juice.jpg
+    keywordsForPastebinDataLeakChallenge: ['raspberry', 'pi']
   -
     name: 'Lemon Juice (500ml)'
     description: 'Sour but full of vitamins.'
@@ -371,7 +375,7 @@ products:
     limitPerUser: 1
     image: permafrost.jpg
     reviews:
-      - { text: "🧊 Let it go, let it go 🎶 Can't hold it back anymore 🎶 Let it go, let it go 🎶 Turn away and slam the door ❄️", author: rapper }
+      - { text: "🧊 Let it go, let it go 🎶 Can't hold it back anymore 🎶 Let it go, let it go 🎶 Turn away and slam the door ❄︝", author: rapper }
   -
     name: 'Best Juice Shop Salesman Artwork'
     description: 'Unique digital painting depicting Stan, our most qualified and almost profitable salesman. He made a succesful carreer in selling used ships, coffins, krypts, crosses, real estate, life insurance, restaurant supplies, voodoo enhanced asbestos and courtroom souvenirs before <em>finally</em> adding his expertise to the Juice Shop marketing team.'
@@ -440,7 +444,7 @@ memories:
     geoStalkingVisualSecurityAnswer: 'ITsec'
   -
     image: 'BeeHaven.png'
-    caption: 'Welcome to the Bee Haven (/#/bee-haven)🐝'
+    caption: 'Welcome to the Bee Haven (/#/bee-haven)🝝'
     user: evm
   -
     image: 'sorted-the-pieces,-starting-assembly-process-1721152307290.jpg'
@@ -461,4 +465,7 @@ memories:
 ctf:
   showFlagsInNotifications: false
   showCountryDetailsInNotifications: none # Options: none  name  flag  both
-  countryMapping: ~
+  countryMapping:
+    scoreBoardChallenge:
+      name: United States
+      code: US

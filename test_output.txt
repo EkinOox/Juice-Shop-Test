@@ -1,0 +1,498 @@
+
+> juice-shop@19.1.1 test:server
+> nyc --report-dir=./build/reports/coverage/server-tests mocha
+
+[dotenv@17.2.3] injecting env (3) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+
+
+  angular
+    ✔ should serve index.html for any URL
+    ✔ should raise error for /api endpoint URL
+    ✔ should raise error for /rest endpoint URL
+
+  appConfiguration
+    ✔ should return configuration object
+
+  appVersion
+    ✔ 
+
+  b2bOrder
+    - infinite loop payload does not succeed but solves "rceChallenge"
+    - timeout after 2 seconds solves "rceOccupyChallenge"
+    ✔ deserializing JSON as documented in Swagger should not solve "rceChallenge"
+    ✔ deserializing arbitrary JSON should not solve "rceChallenge"
+    ✔ deserializing broken JSON should not solve "rceChallenge"
+
+  basket
+    retrieveBasket
+      ✔ should retrieve basket with products and translate product names
+      ✔ should handle basket not found
+      ✔ should handle basket with no products
+      ✔ should handle database errors
+
+  blueprint
+    checkExifData
+      ✔ should contain properties from exifForBlueprintChallenge
+
+  botUtils
+    testFunction
+      ✔ returns static test response
+    couponCode
+      ✔ response contains a valid 10% coupon code for current date
+
+  challengeCountryMapping
+    ✔ should have a country mapping for every challenge
+    ✔ should have unique country codes in every mapping
+
+  challengeTutorialSequence
+    ✔ should have unique tutorial orders
+
+  challengeUtils
+    findChallengeByName
+warn: Missing challenge with name: blubbChallenge
+      ✔ returns undefined for non-existing challenge
+      ✔ returns existing challenge
+    findChallengeById
+warn: Missing challenge with id: 43
+      ✔ returns undefined for non-existing challenge
+      ✔ returns existing challenge
+
+  chatBotValidation
+info: Chatbot training data [1mbotDefaultTrainingData.json[22m validated ([32mOK[39m)
+    ✔ should accept the default chatbot training data
+warn: Intent [3mqueries.couponCode[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Intent [3mqueries.productPrice[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Intent [3mqueries.functionTest[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Chatbot training data [1mbotDefaultTrainingData.json[22m validated ([31mNOT OK[39m)
+warn: Visit [33mhttps://pwning.owasp-juice.shop/companion-guide/latest/part5/chatbot.html[39m for the training data schema definition.
+    ✔ should fail if the chatbot training data is empty
+    checkIntentWithHandlerExists
+      ✔ should accept training data with the expected intent and handler
+warn: Intent [3mqueries.test[23m is missing in chatbot training data ([31mNOT OK[39m)
+      ✔ should fail if the training data lacks the expected intent
+warn: Answer with [3mfunction[23m action and handler [3mtestHandler[23m is missing for intent [3mqueries.test[23m ([31mNOT OK[39m)
+      ✔ should fail if the training data lacks the expected handler for the given intent
+
+  vulnCodeSnippet
+    ✔ should assert single correctly selected vuln line as correct
+    ✔ should assert multiple correctly selected vuln lines as correct in any order
+    ✔ should ignore selected neutral lines during correct assertion
+    ✔ should assert missing vuln lines as wrong
+    ✔ should assert additionally selected lines as wrong
+    ✔ should assert lack of selected lines as wrong
+    ✔ should assert empty edge case as correct
+
+  codingChallengeFixes
+    ✔ should have a correct fix for each coding challenge
+    ✔ should have a total of three or more fix options for each coding challenge
+    ✔ should have an info YAML file for each coding challenge
+
+  configValidation
+info: Configuration [1mdefault[22m validated ([32mOK[39m)
+    ✔ should accept the active config from config/undefined.yml
+warn: Only 0 products are configured but at least four are required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Christmas Special" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Product Tampering" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Retrieve Blueprint" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Leaked Unsafe Product" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: Configuration [1mdefault[22m validated ([31mNOT OK[39m)
+warn: Visit [33mhttps://pwning.owasp-juice.shop/companion-guide/latest/part4/customization.html#_yaml_configuration_file[39m for the configuration schema definition.
+    ✔ should fail if the config is invalid
+    ✔ should accept a config with valid schema
+warn: Config schema validation failed with 4 errors ([31mNOT OK[39m)
+warn: application.domain:[31m must be of type String.[39m
+warn: application.welcomeBanner.showOnFirstStart:[31m must be of type Boolean.[39m
+warn: hackingInstructor.avatarImage:[31m must be of type String.[39m
+warn: application.id:[31m is not present in schema[39m
+    ✔ should fail for a config with schema errors
+    checkUnambiguousMandatorySpecialProducts
+      ✔ should accept a valid config
+warn: 2 products are configured as [3m"Christmas Special" challenge product[23m but only one is allowed ([31mNOT OK[39m)
+warn: No product is configured as [3m"Leaked Unsafe Product" challenge product[23m but one is required ([31mNOT OK[39m)
+      ✔ should fail if multiple products are configured for the same challenge
+warn: No product is configured as [3m"Retrieve Blueprint" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Leaked Unsafe Product" challenge product[23m but one is required ([31mNOT OK[39m)
+      ✔ should fail if a required challenge product is missing
+    checkNecessaryExtraKeysOnSpecialProducts
+      ✔ should accept a valid config
+warn: Product [3mMelon Juice[23m configured as [3m"Retrieve Blueprint" challenge product[23m does't contain necessary [3mlist of EXIF metadata properties[23m ([31mNOT OK[39m)
+      ✔ should fail if product has no exifForBlueprintChallenge
+    checkUniqueSpecialOnProducts
+      ✔ should accept a valid config
+warn: Product [3mApple Juice[23m is used as [3m"Christmas Special" challenge product[23m and [3m"Product Tampering" challenge product[23m but can only be used for one challenge ([31mNOT OK[39m)
+      ✔ should fail if a product is configured for multiple challenges
+    checkMinimumRequiredNumberOfProducts
+      ✔ should accept a valid config
+warn: Only 3 products are configured but at least four are required ([31mNOT OK[39m)
+      ✔ should fail if less than 4 products are configured
+    checkUnambiguousMandatorySpecialMemories
+      ✔ should accept a valid config
+warn: 2 memories are configured as [3m"Meta Geo Stalking" challenge memory[23m but only one is allowed ([31mNOT OK[39m)
+      ✔ should fail if multiple memories are configured for the same challenge
+warn: No memory is configured as [3m"Visual Geo Stalking" challenge memory[23m but one is required ([31mNOT OK[39m)
+      ✔ should fail if a required challenge memory is missing
+warn: No memory is configured as [3m"Meta Geo Stalking" challenge memory[23m but one is required ([31mNOT OK[39m)
+warn: No memory is configured as [3m"Visual Geo Stalking" challenge memory[23m but one is required ([31mNOT OK[39m)
+      ✔ should fail if memories have mixed up the required challenge keys
+    checkThatThereIsOnlyOneMemoryPerSpecial
+      ✔ should accept a valid config
+warn: Memory [3mBla[23m is used as [3m"Meta Geo Stalking" challenge memory[23m and [3m"Visual Geo Stalking" challenge memory[23m but can only be used for one challenge ([31mNOT OK[39m)
+      ✔ should fail if a memory is configured for multiple challenges
+    checkSpecialMemoriesHaveNoUserAssociated
+      ✔ should accept a valid config
+      ✔ should accept a config where the default users are associated
+warn: Memory configured as [3m"Meta Geo Stalking" challenge memory[23m must belong to user [3mjohn[23m but was linked to [3madmin[23m user ([31mNOT OK[39m)
+      ✔ should fail if a memory is linked to another user
+    checkMinimumRequiredNumberOfMemories
+      ✔ should accept a valid config
+warn: Only 1 memories are configured but at least two are required ([31mNOT OK[39m)
+      ✔ should fail if less than 2 memories are configured
+
+  continueCode
+    ✔ should be empty when no challenges are solved
+    ✔ should be hashid value of IDs of solved challenges
+
+  countryMapping
+    ✔ should return configured country mappings
+warn: Country mapping was requested but was not found in the selected config file. Take a look at the fbctf.yml config file to find out how to configure the country mappings required by FBCTF.
+    ✔ should return server error when configuration has no country mappings
+warn: Country mapping was requested but was not found in the selected config file. Take a look at the fbctf.yml config file to find out how to configure the country mappings required by FBCTF.
+    ✔ should return server error for active configuration from config/undefined.yml
+
+  currentUser
+    ✔ should return neither ID nor email if no cookie was present in the request headers
+    1) should return ID and email of user belonging to cookie from the request
+
+  easterEgg
+    ✔ should serve /frontend/dist/frontend/assets/private/threejs-demo.html
+    ✔ should solve "easterEggLevelTwoChallenge"
+
+  fileServer
+    ✔ should serve PDF files from folder /ftp
+    ✔ should serve Markdown files from folder /ftp
+    ✔ should serve incident-support.kdbx files from folder /ftp
+    ✔ should raise error for slashes in filename
+    ✔ should raise error for disallowed file type
+    ✔ should solve "directoryListingChallenge" when requesting acquisitions.md
+    ✔ should solve "easterEggLevelOneChallenge" when requesting eastere.gg with Poison Null Byte attack
+    ✔ should solve "forgottenDevBackupChallenge" when requesting package.json.bak with Poison Null Byte attack
+    ✔ should solve "forgottenBackupChallenge" when requesting coupons_2013.md.bak with Poison Null Byte attack
+    ✔ should solve "misplacedSignatureFileChallenge" when requesting suspicious_errors.yml with Poison Null Byte attack
+
+  fileUpload
+    ✔ should solve "uploadSizeChallenge" when file size exceeds 100000 bytes
+    ✔ should solve "uploadTypeChallenge" when file type is not PDF
+    ✔ should not solve "uploadTypeChallenge" when file type is PDF
+    should not solve "uploadSizeChallenge" when file size is
+      ✔ 0 bytes
+      ✔ 1 bytes
+      ✔ 100 bytes
+      ✔ 1000 bytes
+      ✔ 10000 bytes
+      ✔ 99999 bytes
+      ✔ 100000 bytes
+
+  insecurity
+    cutOffPoisonNullByte
+      ✔ returns string unchanged if it contains no null byte
+      ✔ returns string up to null byte
+    userEmailFrom
+      ✔ returns content of "x-user-email" header if present
+      ✔ returns undefined if header "x-user-email" is not present
+    generateCoupon
+      ✔ returns base85-encoded month, year and discount as coupon code
+      ✔ uses current month and year if not specified
+      ✔ does not encode day of month or time into coupon code
+    discountFromCoupon
+      ✔ returns undefined when not passing in a coupon code
+      ✔ returns undefined for malformed coupon code
+      ✔ returns undefined for coupon code not according to expected pattern
+      ✔ returns undefined for expired coupon code
+      ✔ returns discount from valid coupon code
+    authenticatedUsers
+      ✔ returns user by associated token
+      ✔ returns undefined if no token is passed in
+      ✔ returns token by associated user
+      ✔ returns user by associated token from request
+      ✔ returns undefined if no token is present in request
+    sanitizeHtml
+      ✔ handles empty inputs by returning their string representation
+      ✔ returns input unchanged for plain text input
+      ✔ returns input unchanged for HTML input with only harmless text formatting
+      ✔ returns input unchanged for HTML input with only harmless links
+      ✔ removes all Javascript from HTML input
+      2) can be bypassed by exploiting lack of recursive sanitization
+    sanitizeLegacy
+      ✔ returns empty string for undefined input
+      ✔ returns input unchanged for plain text input
+      ✔ removes all opening tags and subsequent character from HTML input
+      ✔ can be bypassed to allow working HTML payload to be returned
+    sanitizeSecure
+      ✔ handles empty inputs by returning their string representation
+      ✔ returns input unchanged for plain text input
+      ✔ returns input unchanged for HTML input with only harmless text formatting
+      ✔ returns input unchanged for HTML input with only harmless links
+      ✔ removes all Javascript from HTML input
+      3) cannot be bypassed by exploiting lack of recursive sanitization
+    hash
+      ✔ returns MD5 hash for any input string
+    hmac
+      ✔ returns SHA-256 HMAC with "pa4qacea4VK9t9nGv7yZtwmj" as salt any input string
+
+  keyServer
+    ✔ should serve requested file from folder /encryptionkeys
+    ✔ should raise error for slashes in filename
+
+  preconditionValidation
+    checkIfRunningOnSupportedNodeVersion
+      ✔ should define the supported semver range as 20 - 24
+info: Detected Node.js version [1m24.2.0[22m ([32mOK[39m)
+info: Detected Node.js version [1m23.11.1[22m ([32mOK[39m)
+info: Detected Node.js version [1m22.16.0[22m ([32mOK[39m)
+info: Detected Node.js version [1m21.7.3[22m ([32mOK[39m)
+info: Detected Node.js version [1m20.19.2[22m ([32mOK[39m)
+      ✔ should accept a supported version
+warn: Detected Node version [1m25.0.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m19.9.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m18.20.4[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m17.3.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m16.10.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m15.9.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m14.0.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m13.13.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m12.16.2[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m11.14.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m10.20.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m9.11.2[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m8.12.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m7.10.1[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m6.14.4[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m4.9.1[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m0.12.8[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+      ✔ should fail for an unsupported version
+    checkIfPortIsAvailable
+info: Port [1m3000[22m is available ([32mOK[39m)
+      ✔ should resolve when port 3000 is closed
+      open a server before running the test
+warn: Port [1m3000[22m is in use ([31mNOT OK[39m)
+        ✔ should reject when port 3000 is open
+
+  premiumReward
+    ✔ should serve /frontend/dist/frontend/assets/private/JuiceShop_Wallpaper_1920x1080_VR.jpg
+    ✔ should solve "premiumPaywallChallenge"
+
+  redirect
+    ✔ should raise error for URL not on allowlist
+    ✔ redirecting to https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm should solve the "redirectCryptoCurrencyChallenge"
+    ✔ redirecting to https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW should solve the "redirectCryptoCurrencyChallenge"
+    ✔ redirecting to https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6 should solve the "redirectCryptoCurrencyChallenge"
+    ✔ tricking the allowlist should solve "redirectChallenge"
+    should be performed for all allowlisted URLs
+      ✔ https://github.com/juice-shop/juice-shop
+      ✔ https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm
+      ✔ https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW
+      ✔ https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6
+      ✔ https://juiceshop.myspreadshop.com/
+      ✔ https://www.juiceshop.myspreadshop.com
+      ✔ https://www.stickeryou.com/products/owasp-juice-shop/794
+      ✔ https://leanpub.com/juice-shop
+
+  utils
+    toSimpleIpAddress
+      ✔ returns ipv6 address unchanged
+      ✔ returns ipv4 address fully specified as ipv6 unchanged
+      ✔ returns ipv6 loopback address as ipv4 address
+      ✔ returns ipv4-mapped address as ipv4 address
+    extractFilename
+      ✔ returns standalone filename unchanged
+      ✔ returns filename from http:// URL
+      ✔ ignores query part of http:// URL
+      ✔ also works for file:// URLs
+    matchesSystemIniFile
+      ✔ fails on plain input string
+      ✔ passes on Windows 10 system.ini file content
+    matchesEtcPasswdFile
+      ✔ fails on plain input string
+      ✔ passes on Arch Linux passwd file content
+    utils.getChallengeEnablementStatus
+      ✔ challenges without disabledEnv are enabled with safetyMode set to enabled
+      ✔ challenges without disabledEnv are enabled with safetyMode set to disabled
+      ✔ challenges without disabledEnv are enabled with safetyMode set to auto
+      ✔ safetyMode: 'enabled': challenge with disabledOnEnv Docker should be marked as disabled
+      ✔ safetyMode: 'auto': challenge with disabledOnEnv Docker should be marked as disabled
+      ✔ safetyMode: 'disabled': challenge with disabledOnEnv Docker should be marked as enabled
+      ✔ safetyMode: 'enabled': challenge with disabledOnEnv Heroku should be marked as disabled
+      ✔ safetyMode: 'auto': challenge with disabledOnEnv Heroku should be marked as disabled
+      ✔ safetyMode: 'disabled': challenge with disabledOnEnv Heroku should be marked as enabled
+      ✔ safetyMode: 'enabled': challenge with disabledOnEnv Windows should be marked as disabled
+      ✔ safetyMode: 'auto': challenge with disabledOnEnv Windows should be marked as disabled
+      ✔ safetyMode: 'disabled': challenge with disabledOnEnv Windows should be marked as enabled
+      ✔ safetyMode: 'enabled': challenge with disabledOnEnv Gitpod should be marked as disabled
+      ✔ safetyMode: 'auto': challenge with disabledOnEnv Gitpod should be marked as disabled
+      ✔ safetyMode: 'disabled': challenge with disabledOnEnv Gitpod should be marked as enabled
+
+  verify
+    "forgedFeedbackChallenge"
+      ✔ is not solved when an authenticated user passes his own ID when writing feedback
+      ✔ is not solved when an authenticated user passes no ID when writing feedback
+      ✔ is solved when an authenticated user passes someone elses ID when writing feedback
+      ✔ is solved when an unauthenticated user passes someones ID when writing feedback
+    accessControlChallenges
+      ✔ "scoreBoardChallenge" is solved when the 1px.png transpixel is requested
+      ✔ "adminSectionChallenge" is solved when the 19px.png transpixel is requested
+      ✔ "tokenSaleChallenge" is solved when the 56px.png transpixel is requested
+      ✔ "extraLanguageChallenge" is solved when the Klingon translation file is requested
+      ✔ "retrieveBlueprintChallenge" is solved when the blueprint file is requested
+      ✔ "missingEncodingChallenge" is solved when the crazy cat photo is requested
+      ✔ "accessLogDisclosureChallenge" is solved when any server access log file is requested
+    "errorHandlingChallenge"
+      ✔ is solved when an error occurs on a response with OK 200 status code
+      ✔ is not solved when no error occurs on a response with OK 200 status code
+      ✔ should pass occurred error on to next route
+      is solved when an error occurs on a response with error
+        ✔ 402 status code
+        ✔ 403 status code
+        ✔ 404 status code
+        ✔ 500 status code
+      is not solved when no error occurs on a response with error
+        ✔ 401 status code
+        ✔ 402 status code
+        ✔ 404 status code
+        ✔ 500 status code
+    databaseRelatedChallenges
+      "changeProductChallenge"
+        ✔ is solved when the link in the O-Saft product goes to https://owasp.slack.com
+        ✔ is not solved when the link in the O-Saft product is changed to an arbitrary URL
+        ✔ is not solved when the link in the O-Saft product remained unchanged
+    jwtChallenges
+      4) "jwtUnsignedChallenge" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload
+      5) "jwtUnsignedChallenge" is solved when forged unsigned token has string "jwtn3d@" in the payload
+      ✔ "jwtUnsignedChallenge" is not solved via regularly signed token even with email jwtn3d@juice-sh.op in the payload
+      6) "jwtForgedChallenge" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload
+      7) "jwtForgedChallenge" is solved when forged token HMAC-signed with public RSA-key has string "rsa_lord@" in the payload
+      ✔ "jwtForgedChallenge" is not solved when token regularly signed with private RSA-key has email rsa_lord@juice-sh.op in the payload
+
+  webhook
+    notify
+      ✔ ignores errors where no webhook URL is provided via environment variable
+      ✔ fails when supplied webhook is not a valid URL
+info: Webhook [1mhttp://localhost:57102[22m notified about [36mkey[39m being solved: [32m200[39m
+      ✔ submits POST with payload to existing URL (42ms)
+
+
+  201 passing (435ms)
+  2 pending
+  7 failing
+
+  1) currentUser
+       should return ID and email of user belonging to cookie from the request:
+     AssertionError: expected json to have been called with arguments {
+  user: {
+    id: 1,
+    email: 'admin@juice-sh.op',
+    lastLoginIp: '0.0.0.0',
+    profileImage: '/assets/public/images/uploads/default.svg'
+  }
+}
+{
+  user: {
+    id: undefined,
+    email: undefined,
+    lastLoginIp: undefined,
+    profileImage: undefined
+    id: 1,
+    email: 'admin@juice-sh.op',
+    lastLoginIp: '0.0.0.0',
+    profileImage: '/assets/public/images/uploads/default.svg'
+  }
+}
+      at Context.<anonymous> (test/server/currentUserSpec.ts:41:35)
+      at processImmediate (node:internal/timers:505:21)
+
+  2) insecurity
+       sanitizeHtml
+         can be bypassed by exploiting lack of recursive sanitization:
+
+      AssertionError: expected '&lt;iframe src="javascript:alert(`xss…' to equal '<iframe src="javascript:alert(`xss`)">'
+      + expected - actual
+
+      -&lt;iframe src="javascript:alert(`xss`)"&gt;
+      +<iframe src="javascript:alert(`xss`)">
+      
+      at Context.<anonymous> (test/server/insecuritySpec.ts:138:102)
+      at processImmediate (node:internal/timers:505:21)
+
+  3) insecurity
+       sanitizeSecure
+         cannot be bypassed by exploiting lack of recursive sanitization:
+
+      AssertionError: expected 'Bla&lt;iframe src="javascript:alert(`…' to equal 'BlaBlubb'
+      + expected - actual
+
+      -Bla&lt;iframe src="javascript:alert(`xss`)"&gt;Blubb
+      +BlaBlubb
+      
+      at Context.<anonymous> (test/server/insecuritySpec.ts:187:112)
+      at processImmediate (node:internal/timers:505:21)
+
+  4) verify
+       jwtChallenges
+         "jwtUnsignedChallenge" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload:
+
+      AssertionError: expected false to equal true
+      + expected - actual
+
+      -false
+      +true
+      
+      at Context.<anonymous> (test/server/verifySpec.ts:267:57)
+      at processImmediate (node:internal/timers:505:21)
+
+  5) verify
+       jwtChallenges
+         "jwtUnsignedChallenge" is solved when forged unsigned token has string "jwtn3d@" in the payload:
+
+      AssertionError: expected false to equal true
+      + expected - actual
+
+      -false
+      +true
+      
+      at Context.<anonymous> (test/server/verifySpec.ts:279:57)
+      at processImmediate (node:internal/timers:505:21)
+
+  6) verify
+       jwtChallenges
+         "jwtForgedChallenge" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload:
+
+      AssertionError: expected false to equal true
+      + expected - actual
+
+      -false
+      +true
+      
+      at Context.<anonymous> (test/server/verifySpec.ts:301:57)
+      at processImmediate (node:internal/timers:505:21)
+
+  7) verify
+       jwtChallenges
+         "jwtForgedChallenge" is solved when forged token HMAC-signed with public RSA-key has string "rsa_lord@" in the payload:
+
+      AssertionError: expected false to equal true
+      + expected - actual
+
+      -false
+      +true
+      
+      at Context.<anonymous> (test/server/verifySpec.ts:313:57)
+      at processImmediate (node:internal/timers:505:21)
+
+
+
+
+=============================== Coverage summary ===============================
+Statements   : 24.09% ( 754/3129 )
+Branches     : 16.06% ( 213/1326 )
+Functions    : 17.86% ( 124/694 )
+Lines        : 21.5% ( 619/2878 )
+================================================================================

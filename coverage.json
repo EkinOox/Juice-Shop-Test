@@ -1,0 +1,3898 @@
+
+> juice-shop@19.1.1 test:server
+> nyc --report-dir=./build/reports/coverage/server-tests mocha --reporter json
+
+[dotenv@17.2.3] injecting env (3) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+warn: Missing challenge with name: blubbChallenge
+warn: Missing challenge with id: 43
+info: Chatbot training data [1mbotDefaultTrainingData.json[22m validated ([32mOK[39m)
+warn: Intent [3mqueries.couponCode[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Intent [3mqueries.productPrice[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Intent [3mqueries.functionTest[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Chatbot training data [1mbotDefaultTrainingData.json[22m validated ([31mNOT OK[39m)
+warn: Visit [33mhttps://pwning.owasp-juice.shop/companion-guide/latest/part5/chatbot.html[39m for the training data schema definition.
+warn: Intent [3mqueries.test[23m is missing in chatbot training data ([31mNOT OK[39m)
+warn: Answer with [3mfunction[23m action and handler [3mtestHandler[23m is missing for intent [3mqueries.test[23m ([31mNOT OK[39m)
+warn: Config schema validation failed with 1 errors ([31mNOT OK[39m)
+warn: application.id:[31m is not present in schema[39m
+warn: 2 products are configured as [3m"Christmas Special" challenge product[23m but only one is allowed ([31mNOT OK[39m)
+warn: 2 products are configured as [3m"Product Tampering" challenge product[23m but only one is allowed ([31mNOT OK[39m)
+warn: 2 products are configured as [3m"Leaked Unsafe Product" challenge product[23m but only one is allowed ([31mNOT OK[39m)
+warn: Configuration [1mdefault[22m validated ([31mNOT OK[39m)
+warn: Visit [33mhttps://pwning.owasp-juice.shop/companion-guide/latest/part4/customization.html#_yaml_configuration_file[39m for the configuration schema definition.
+warn: Config schema validation failed with 1 errors ([31mNOT OK[39m)
+warn: application.id:[31m is not present in schema[39m
+warn: Only 0 products are configured but at least four are required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Christmas Special" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Product Tampering" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Retrieve Blueprint" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Leaked Unsafe Product" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: Configuration [1mdefault[22m validated ([31mNOT OK[39m)
+warn: Visit [33mhttps://pwning.owasp-juice.shop/companion-guide/latest/part4/customization.html#_yaml_configuration_file[39m for the configuration schema definition.
+warn: Config schema validation failed with 4 errors ([31mNOT OK[39m)
+warn: application.domain:[31m must be of type String.[39m
+warn: application.welcomeBanner.showOnFirstStart:[31m must be of type Boolean.[39m
+warn: hackingInstructor.avatarImage:[31m must be of type String.[39m
+warn: application.id:[31m is not present in schema[39m
+warn: 2 products are configured as [3m"Christmas Special" challenge product[23m but only one is allowed ([31mNOT OK[39m)
+warn: No product is configured as [3m"Leaked Unsafe Product" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Retrieve Blueprint" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: No product is configured as [3m"Leaked Unsafe Product" challenge product[23m but one is required ([31mNOT OK[39m)
+warn: Product [3mMelon Juice[23m configured as [3m"Retrieve Blueprint" challenge product[23m does't contain necessary [3mlist of EXIF metadata properties[23m ([31mNOT OK[39m)
+warn: Product [3mApple Juice[23m is used as [3m"Christmas Special" challenge product[23m and [3m"Product Tampering" challenge product[23m but can only be used for one challenge ([31mNOT OK[39m)
+warn: Only 3 products are configured but at least four are required ([31mNOT OK[39m)
+warn: 2 memories are configured as [3m"Meta Geo Stalking" challenge memory[23m but only one is allowed ([31mNOT OK[39m)
+warn: No memory is configured as [3m"Visual Geo Stalking" challenge memory[23m but one is required ([31mNOT OK[39m)
+warn: No memory is configured as [3m"Meta Geo Stalking" challenge memory[23m but one is required ([31mNOT OK[39m)
+warn: No memory is configured as [3m"Visual Geo Stalking" challenge memory[23m but one is required ([31mNOT OK[39m)
+warn: Memory [3mBla[23m is used as [3m"Meta Geo Stalking" challenge memory[23m and [3m"Visual Geo Stalking" challenge memory[23m but can only be used for one challenge ([31mNOT OK[39m)
+warn: Memory configured as [3m"Meta Geo Stalking" challenge memory[23m must belong to user [3mjohn[23m but was linked to [3madmin[23m user ([31mNOT OK[39m)
+warn: Only 1 memories are configured but at least two are required ([31mNOT OK[39m)
+warn: Country mapping was requested but was not found in the selected config file. Take a look at the fbctf.yml config file to find out how to configure the country mappings required by FBCTF.
+info: Detected Node.js version [1m24.2.0[22m ([32mOK[39m)
+info: Detected Node.js version [1m23.11.1[22m ([32mOK[39m)
+info: Detected Node.js version [1m22.16.0[22m ([32mOK[39m)
+info: Detected Node.js version [1m21.7.3[22m ([32mOK[39m)
+info: Detected Node.js version [1m20.19.2[22m ([32mOK[39m)
+warn: Detected Node version [1m25.0.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m19.9.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m18.20.4[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m17.3.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m16.10.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m15.9.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m14.0.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m13.13.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m12.16.2[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m11.14.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m10.20.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m9.11.2[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m8.12.0[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m7.10.1[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m6.14.4[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m4.9.1[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+warn: Detected Node version [1m0.12.8[22m is not in the supported version range of 20 - 24 ([31mNOT OK[39m)
+info: Port [1m3000[22m is available ([32mOK[39m)
+warn: Port [1m3000[22m is in use ([31mNOT OK[39m)
+info: Webhook [1mhttp://localhost:59351[22m notified about [36mkey[39m being solved: [32m200[39m
+{
+  "stats": {
+    "suites": 72,
+    "tests": 210,
+    "passes": 206,
+    "pending": 2,
+    "failures": 2,
+    "start": "2025-12-24T10:14:58.535Z",
+    "end": "2025-12-24T10:14:58.911Z",
+    "duration": 376
+  },
+  "tests": [
+    {
+      "title": "should serve index.html for any URL",
+      "fullTitle": "angular should serve index.html for any URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/angularSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for /api endpoint URL",
+      "fullTitle": "angular should raise error for /api endpoint URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/angularSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for /rest endpoint URL",
+      "fullTitle": "angular should raise error for /rest endpoint URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/angularSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return configuration object",
+      "fullTitle": "appConfiguration should return configuration object",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/appConfigurationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "",
+      "fullTitle": "appVersion ",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/appVersionSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "infinite loop payload does not succeed but solves \"rceChallenge\"",
+      "fullTitle": "b2bOrder infinite loop payload does not succeed but solves \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "timeout after 2 seconds solves \"rceOccupyChallenge\"",
+      "fullTitle": "b2bOrder timeout after 2 seconds solves \"rceOccupyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "deserializing JSON as documented in Swagger should not solve \"rceChallenge\"",
+      "fullTitle": "b2bOrder deserializing JSON as documented in Swagger should not solve \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "deserializing arbitrary JSON should not solve \"rceChallenge\"",
+      "fullTitle": "b2bOrder deserializing arbitrary JSON should not solve \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "deserializing broken JSON should not solve \"rceChallenge\"",
+      "fullTitle": "b2bOrder deserializing broken JSON should not solve \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should retrieve basket with products and translate product names",
+      "fullTitle": "basket retrieveBasket should retrieve basket with products and translate product names",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should handle basket not found",
+      "fullTitle": "basket retrieveBasket should handle basket not found",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should handle basket with no products",
+      "fullTitle": "basket retrieveBasket should handle basket with no products",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should handle database errors",
+      "fullTitle": "basket retrieveBasket should handle database errors",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should contain properties from exifForBlueprintChallenge",
+      "fullTitle": "blueprint checkExifData should contain properties from exifForBlueprintChallenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/blueprintSpec.ts",
+      "duration": 4,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns static test response",
+      "fullTitle": "botUtils testFunction returns static test response",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/botUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "response contains a valid 10% coupon code for current date",
+      "fullTitle": "botUtils couponCode response contains a valid 10% coupon code for current date",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/botUtilsSpec.ts",
+      "duration": 4,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have a country mapping for every challenge",
+      "fullTitle": "challengeCountryMapping should have a country mapping for every challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeCountryMappingSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have unique country codes in every mapping",
+      "fullTitle": "challengeCountryMapping should have unique country codes in every mapping",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeCountryMappingSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have unique tutorial orders",
+      "fullTitle": "challengeTutorialSequence should have unique tutorial orders",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeTutorialSequenceSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for non-existing challenge",
+      "fullTitle": "challengeUtils findChallengeByName returns undefined for non-existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns existing challenge",
+      "fullTitle": "challengeUtils findChallengeByName returns existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for non-existing challenge",
+      "fullTitle": "challengeUtils findChallengeById returns undefined for non-existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns existing challenge",
+      "fullTitle": "challengeUtils findChallengeById returns existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept the default chatbot training data",
+      "fullTitle": "chatBotValidation should accept the default chatbot training data",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the chatbot training data is empty",
+      "fullTitle": "chatBotValidation should fail if the chatbot training data is empty",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept training data with the expected intent and handler",
+      "fullTitle": "chatBotValidation checkIntentWithHandlerExists should accept training data with the expected intent and handler",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the training data lacks the expected intent",
+      "fullTitle": "chatBotValidation checkIntentWithHandlerExists should fail if the training data lacks the expected intent",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the training data lacks the expected handler for the given intent",
+      "fullTitle": "chatBotValidation checkIntentWithHandlerExists should fail if the training data lacks the expected handler for the given intent",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert single correctly selected vuln line as correct",
+      "fullTitle": "vulnCodeSnippet should assert single correctly selected vuln line as correct",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert multiple correctly selected vuln lines as correct in any order",
+      "fullTitle": "vulnCodeSnippet should assert multiple correctly selected vuln lines as correct in any order",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should ignore selected neutral lines during correct assertion",
+      "fullTitle": "vulnCodeSnippet should ignore selected neutral lines during correct assertion",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert missing vuln lines as wrong",
+      "fullTitle": "vulnCodeSnippet should assert missing vuln lines as wrong",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert additionally selected lines as wrong",
+      "fullTitle": "vulnCodeSnippet should assert additionally selected lines as wrong",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert lack of selected lines as wrong",
+      "fullTitle": "vulnCodeSnippet should assert lack of selected lines as wrong",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert empty edge case as correct",
+      "fullTitle": "vulnCodeSnippet should assert empty edge case as correct",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have a correct fix for each coding challenge",
+      "fullTitle": "codingChallengeFixes should have a correct fix for each coding challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codingChallengeFixesSpec.ts",
+      "duration": 10,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have a total of three or more fix options for each coding challenge",
+      "fullTitle": "codingChallengeFixes should have a total of three or more fix options for each coding challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codingChallengeFixesSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have an info YAML file for each coding challenge",
+      "fullTitle": "codingChallengeFixes should have an info YAML file for each coding challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codingChallengeFixesSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept the active config from config/undefined.yml",
+      "fullTitle": "configValidation should accept the active config from config/undefined.yml",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 9,
+      "currentRetry": 0,
+      "err": {
+        "message": "expected false to equal true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected false to equal true\n    at Context.<anonymous> (test/server/configValidationSpec.ts:447:63)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+      }
+    },
+    {
+      "title": "should fail if the config is invalid",
+      "fullTitle": "configValidation should fail if the config is invalid",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 5,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a config with valid schema",
+      "fullTitle": "configValidation should accept a config with valid schema",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail for a config with schema errors",
+      "fullTitle": "configValidation should fail for a config with schema errors",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if multiple products are configured for the same challenge",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialProducts should fail if multiple products are configured for the same challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a required challenge product is missing",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialProducts should fail if a required challenge product is missing",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkNecessaryExtraKeysOnSpecialProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if product has no exifForBlueprintChallenge",
+      "fullTitle": "configValidation checkNecessaryExtraKeysOnSpecialProducts should fail if product has no exifForBlueprintChallenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkUniqueSpecialOnProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a product is configured for multiple challenges",
+      "fullTitle": "configValidation checkUniqueSpecialOnProducts should fail if a product is configured for multiple challenges",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if less than 4 products are configured",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfProducts should fail if less than 4 products are configured",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if multiple memories are configured for the same challenge",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should fail if multiple memories are configured for the same challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a required challenge memory is missing",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should fail if a required challenge memory is missing",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if memories have mixed up the required challenge keys",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should fail if memories have mixed up the required challenge keys",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkThatThereIsOnlyOneMemoryPerSpecial should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a memory is configured for multiple challenges",
+      "fullTitle": "configValidation checkThatThereIsOnlyOneMemoryPerSpecial should fail if a memory is configured for multiple challenges",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkSpecialMemoriesHaveNoUserAssociated should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a config where the default users are associated",
+      "fullTitle": "configValidation checkSpecialMemoriesHaveNoUserAssociated should accept a config where the default users are associated",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a memory is linked to another user",
+      "fullTitle": "configValidation checkSpecialMemoriesHaveNoUserAssociated should fail if a memory is linked to another user",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfMemories should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if less than 2 memories are configured",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfMemories should fail if less than 2 memories are configured",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be empty when no challenges are solved",
+      "fullTitle": "continueCode should be empty when no challenges are solved",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/continueCodeSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be hashid value of IDs of solved challenges",
+      "fullTitle": "continueCode should be hashid value of IDs of solved challenges",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/continueCodeSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return configured country mappings",
+      "fullTitle": "countryMapping should return configured country mappings",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/countryMappingSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return server error when configuration has no country mappings",
+      "fullTitle": "countryMapping should return server error when configuration has no country mappings",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/countryMappingSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return no server error for active configuration from config/undefined.yml",
+      "fullTitle": "countryMapping should return no server error for active configuration from config/undefined.yml",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/countryMappingSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return neither ID nor email if no cookie was present in the request headers",
+      "fullTitle": "currentUser should return neither ID nor email if no cookie was present in the request headers",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/currentUserSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return ID and email of user belonging to cookie from the request",
+      "fullTitle": "currentUser should return ID and email of user belonging to cookie from the request",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/currentUserSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve /frontend/dist/frontend/assets/private/threejs-demo.html",
+      "fullTitle": "easterEgg should serve /frontend/dist/frontend/assets/private/threejs-demo.html",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/easterEggSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"easterEggLevelTwoChallenge\"",
+      "fullTitle": "easterEgg should solve \"easterEggLevelTwoChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/easterEggSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve PDF files from folder /ftp",
+      "fullTitle": "fileServer should serve PDF files from folder /ftp",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve Markdown files from folder /ftp",
+      "fullTitle": "fileServer should serve Markdown files from folder /ftp",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve incident-support.kdbx files from folder /ftp",
+      "fullTitle": "fileServer should serve incident-support.kdbx files from folder /ftp",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for slashes in filename",
+      "fullTitle": "fileServer should raise error for slashes in filename",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for disallowed file type",
+      "fullTitle": "fileServer should raise error for disallowed file type",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"directoryListingChallenge\" when requesting acquisitions.md",
+      "fullTitle": "fileServer should solve \"directoryListingChallenge\" when requesting acquisitions.md",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"easterEggLevelOneChallenge\" when requesting eastere.gg with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"easterEggLevelOneChallenge\" when requesting eastere.gg with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"forgottenDevBackupChallenge\" when requesting package.json.bak with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"forgottenDevBackupChallenge\" when requesting package.json.bak with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"forgottenBackupChallenge\" when requesting coupons_2013.md.bak with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"forgottenBackupChallenge\" when requesting coupons_2013.md.bak with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"misplacedSignatureFileChallenge\" when requesting suspicious_errors.yml with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"misplacedSignatureFileChallenge\" when requesting suspicious_errors.yml with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"uploadSizeChallenge\" when file size exceeds 100000 bytes",
+      "fullTitle": "fileUpload should solve \"uploadSizeChallenge\" when file size exceeds 100000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"uploadTypeChallenge\" when file type is not PDF",
+      "fullTitle": "fileUpload should solve \"uploadTypeChallenge\" when file type is not PDF",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should not solve \"uploadTypeChallenge\" when file type is PDF",
+      "fullTitle": "fileUpload should not solve \"uploadTypeChallenge\" when file type is PDF",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "0 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 0 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "1 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 1 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "100 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 100 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "1000 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 1000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "10000 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 10000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "99999 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 99999 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "100000 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 100000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns string unchanged if it contains no null byte",
+      "fullTitle": "insecurity cutOffPoisonNullByte returns string unchanged if it contains no null byte",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns string up to null byte",
+      "fullTitle": "insecurity cutOffPoisonNullByte returns string up to null byte",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns content of \"x-user-email\" header if present",
+      "fullTitle": "insecurity userEmailFrom returns content of \"x-user-email\" header if present",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined if header \"x-user-email\" is not present",
+      "fullTitle": "insecurity userEmailFrom returns undefined if header \"x-user-email\" is not present",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns base85-encoded month, year and discount as coupon code",
+      "fullTitle": "insecurity generateCoupon returns base85-encoded month, year and discount as coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "uses current month and year if not specified",
+      "fullTitle": "insecurity generateCoupon uses current month and year if not specified",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "does not encode day of month or time into coupon code",
+      "fullTitle": "insecurity generateCoupon does not encode day of month or time into coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined when not passing in a coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns undefined when not passing in a coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for malformed coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns undefined for malformed coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for coupon code not according to expected pattern",
+      "fullTitle": "insecurity discountFromCoupon returns undefined for coupon code not according to expected pattern",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for expired coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns undefined for expired coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns discount from valid coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns discount from valid coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns user by associated token",
+      "fullTitle": "insecurity authenticatedUsers returns user by associated token",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined if no token is passed in",
+      "fullTitle": "insecurity authenticatedUsers returns undefined if no token is passed in",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns token by associated user",
+      "fullTitle": "insecurity authenticatedUsers returns token by associated user",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns user by associated token from request",
+      "fullTitle": "insecurity authenticatedUsers returns user by associated token from request",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined if no token is present in request",
+      "fullTitle": "insecurity authenticatedUsers returns undefined if no token is present in request",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "handles empty inputs by returning their string representation",
+      "fullTitle": "insecurity sanitizeHtml handles empty inputs by returning their string representation",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for plain text input",
+      "fullTitle": "insecurity sanitizeHtml returns input unchanged for plain text input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless text formatting",
+      "fullTitle": "insecurity sanitizeHtml returns input unchanged for HTML input with only harmless text formatting",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless links",
+      "fullTitle": "insecurity sanitizeHtml returns input unchanged for HTML input with only harmless links",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "removes all Javascript from HTML input",
+      "fullTitle": "insecurity sanitizeHtml removes all Javascript from HTML input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "can be bypassed by exploiting lack of recursive sanitization",
+      "fullTitle": "insecurity sanitizeHtml can be bypassed by exploiting lack of recursive sanitization",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns empty string for undefined input",
+      "fullTitle": "insecurity sanitizeLegacy returns empty string for undefined input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for plain text input",
+      "fullTitle": "insecurity sanitizeLegacy returns input unchanged for plain text input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "removes all opening tags and subsequent character from HTML input",
+      "fullTitle": "insecurity sanitizeLegacy removes all opening tags and subsequent character from HTML input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "can be bypassed to allow working HTML payload to be returned",
+      "fullTitle": "insecurity sanitizeLegacy can be bypassed to allow working HTML payload to be returned",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "handles empty inputs by returning their string representation",
+      "fullTitle": "insecurity sanitizeSecure handles empty inputs by returning their string representation",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for plain text input",
+      "fullTitle": "insecurity sanitizeSecure returns input unchanged for plain text input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless text formatting",
+      "fullTitle": "insecurity sanitizeSecure returns input unchanged for HTML input with only harmless text formatting",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless links",
+      "fullTitle": "insecurity sanitizeSecure returns input unchanged for HTML input with only harmless links",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "removes all Javascript from HTML input",
+      "fullTitle": "insecurity sanitizeSecure removes all Javascript from HTML input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "cannot be bypassed by exploiting lack of recursive sanitization",
+      "fullTitle": "insecurity sanitizeSecure cannot be bypassed by exploiting lack of recursive sanitization",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns MD5 hash for any input string",
+      "fullTitle": "insecurity hash returns MD5 hash for any input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns SHA-256 HMAC with \"pa4qacea4VK9t9nGv7yZtwmj\" as salt any input string",
+      "fullTitle": "insecurity hmac returns SHA-256 HMAC with \"pa4qacea4VK9t9nGv7yZtwmj\" as salt any input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve requested file from folder /encryptionkeys",
+      "fullTitle": "keyServer should serve requested file from folder /encryptionkeys",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/keyServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for slashes in filename",
+      "fullTitle": "keyServer should raise error for slashes in filename",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/keyServerSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should define the supported semver range as 20 - 24",
+      "fullTitle": "preconditionValidation checkIfRunningOnSupportedNodeVersion should define the supported semver range as 20 - 24",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a supported version",
+      "fullTitle": "preconditionValidation checkIfRunningOnSupportedNodeVersion should accept a supported version",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail for an unsupported version",
+      "fullTitle": "preconditionValidation checkIfRunningOnSupportedNodeVersion should fail for an unsupported version",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should resolve when port 3000 is closed",
+      "fullTitle": "preconditionValidation checkIfPortIsAvailable should resolve when port 3000 is closed",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should reject when port 3000 is open",
+      "fullTitle": "preconditionValidation checkIfPortIsAvailable open a server before running the test should reject when port 3000 is open",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve /frontend/dist/frontend/assets/private/JuiceShop_Wallpaper_1920x1080_VR.jpg",
+      "fullTitle": "premiumReward should serve /frontend/dist/frontend/assets/private/JuiceShop_Wallpaper_1920x1080_VR.jpg",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/premiumRewardSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"premiumPaywallChallenge\"",
+      "fullTitle": "premiumReward should solve \"premiumPaywallChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/premiumRewardSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for URL not on allowlist",
+      "fullTitle": "redirect should raise error for URL not on allowlist",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "redirecting to https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm should solve the \"redirectCryptoCurrencyChallenge\"",
+      "fullTitle": "redirect redirecting to https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm should solve the \"redirectCryptoCurrencyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "redirecting to https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW should solve the \"redirectCryptoCurrencyChallenge\"",
+      "fullTitle": "redirect redirecting to https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW should solve the \"redirectCryptoCurrencyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "redirecting to https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6 should solve the \"redirectCryptoCurrencyChallenge\"",
+      "fullTitle": "redirect redirecting to https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6 should solve the \"redirectCryptoCurrencyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "tricking the allowlist should solve \"redirectChallenge\"",
+      "fullTitle": "redirect tricking the allowlist should solve \"redirectChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://github.com/juice-shop/juice-shop",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://github.com/juice-shop/juice-shop",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://juiceshop.myspreadshop.com/",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://juiceshop.myspreadshop.com/",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://www.juiceshop.myspreadshop.com",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://www.juiceshop.myspreadshop.com",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://www.stickeryou.com/products/owasp-juice-shop/794",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://www.stickeryou.com/products/owasp-juice-shop/794",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://leanpub.com/juice-shop",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://leanpub.com/juice-shop",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv6 address unchanged",
+      "fullTitle": "utils toSimpleIpAddress returns ipv6 address unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv4 address fully specified as ipv6 unchanged",
+      "fullTitle": "utils toSimpleIpAddress returns ipv4 address fully specified as ipv6 unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv6 loopback address as ipv4 address",
+      "fullTitle": "utils toSimpleIpAddress returns ipv6 loopback address as ipv4 address",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv4-mapped address as ipv4 address",
+      "fullTitle": "utils toSimpleIpAddress returns ipv4-mapped address as ipv4 address",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns standalone filename unchanged",
+      "fullTitle": "utils extractFilename returns standalone filename unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns filename from http:// URL",
+      "fullTitle": "utils extractFilename returns filename from http:// URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "ignores query part of http:// URL",
+      "fullTitle": "utils extractFilename ignores query part of http:// URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "also works for file:// URLs",
+      "fullTitle": "utils extractFilename also works for file:// URLs",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "fails on plain input string",
+      "fullTitle": "utils matchesSystemIniFile fails on plain input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "passes on Windows 10 system.ini file content",
+      "fullTitle": "utils matchesSystemIniFile passes on Windows 10 system.ini file content",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "fails on plain input string",
+      "fullTitle": "utils matchesEtcPasswdFile fails on plain input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "passes on Arch Linux passwd file content",
+      "fullTitle": "utils matchesEtcPasswdFile passes on Arch Linux passwd file content",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "challenges without disabledEnv are enabled with safetyMode set to enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus challenges without disabledEnv are enabled with safetyMode set to enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "challenges without disabledEnv are enabled with safetyMode set to disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus challenges without disabledEnv are enabled with safetyMode set to disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "challenges without disabledEnv are enabled with safetyMode set to auto",
+      "fullTitle": "utils utils.getChallengeEnablementStatus challenges without disabledEnv are enabled with safetyMode set to auto",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Docker should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Docker should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Docker should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Docker should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Docker should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Docker should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Heroku should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Heroku should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Windows should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Windows should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Windows should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Windows should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Windows should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Windows should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Gitpod should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Gitpod should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when an authenticated user passes his own ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is not solved when an authenticated user passes his own ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when an authenticated user passes no ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is not solved when an authenticated user passes no ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when an authenticated user passes someone elses ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is solved when an authenticated user passes someone elses ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when an unauthenticated user passes someones ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is solved when an unauthenticated user passes someones ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"scoreBoardChallenge\" is solved when the 1px.png transpixel is requested",
+      "fullTitle": "verify accessControlChallenges \"scoreBoardChallenge\" is solved when the 1px.png transpixel is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"adminSectionChallenge\" is solved when the 19px.png transpixel is requested",
+      "fullTitle": "verify accessControlChallenges \"adminSectionChallenge\" is solved when the 19px.png transpixel is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"tokenSaleChallenge\" is solved when the 56px.png transpixel is requested",
+      "fullTitle": "verify accessControlChallenges \"tokenSaleChallenge\" is solved when the 56px.png transpixel is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"extraLanguageChallenge\" is solved when the Klingon translation file is requested",
+      "fullTitle": "verify accessControlChallenges \"extraLanguageChallenge\" is solved when the Klingon translation file is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"retrieveBlueprintChallenge\" is solved when the blueprint file is requested",
+      "fullTitle": "verify accessControlChallenges \"retrieveBlueprintChallenge\" is solved when the blueprint file is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"missingEncodingChallenge\" is solved when the crazy cat photo is requested",
+      "fullTitle": "verify accessControlChallenges \"missingEncodingChallenge\" is solved when the crazy cat photo is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"accessLogDisclosureChallenge\" is solved when any server access log file is requested",
+      "fullTitle": "verify accessControlChallenges \"accessLogDisclosureChallenge\" is solved when any server access log file is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when an error occurs on a response with OK 200 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with OK 200 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when no error occurs on a response with OK 200 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with OK 200 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should pass occurred error on to next route",
+      "fullTitle": "verify \"errorHandlingChallenge\" should pass occurred error on to next route",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "402 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 402 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "403 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 403 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "404 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 404 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "500 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 500 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "401 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 401 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "402 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 402 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "404 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 404 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "500 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 500 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when the link in the O-Saft product goes to https://owasp.slack.com",
+      "fullTitle": "verify databaseRelatedChallenges \"changeProductChallenge\" is solved when the link in the O-Saft product goes to https://owasp.slack.com",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {
+        "message": "expected false to equal true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected false to equal true\n    at Context.<anonymous> (test/server/verifySpec.ts:224:61)\n    at processImmediate (node:internal/timers:505:21)"
+      }
+    },
+    {
+      "title": "is not solved when the link in the O-Saft product is changed to an arbitrary URL",
+      "fullTitle": "verify databaseRelatedChallenges \"changeProductChallenge\" is not solved when the link in the O-Saft product is changed to an arbitrary URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when the link in the O-Saft product remained unchanged",
+      "fullTitle": "verify databaseRelatedChallenges \"changeProductChallenge\" is not solved when the link in the O-Saft product remained unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtUnsignedChallenge\" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtUnsignedChallenge\" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtUnsignedChallenge\" is solved when forged unsigned token has string \"jwtn3d@\" in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtUnsignedChallenge\" is solved when forged unsigned token has string \"jwtn3d@\" in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtUnsignedChallenge\" is not solved via regularly signed token even with email jwtn3d@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtUnsignedChallenge\" is not solved via regularly signed token even with email jwtn3d@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 7,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has string \"rsa_lord@\" in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has string \"rsa_lord@\" in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtForgedChallenge\" is not solved when token regularly signed with private RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtForgedChallenge\" is not solved when token regularly signed with private RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "ignores errors where no webhook URL is provided via environment variable",
+      "fullTitle": "webhook notify ignores errors where no webhook URL is provided via environment variable",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/webhookSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "fails when supplied webhook is not a valid URL",
+      "fullTitle": "webhook notify fails when supplied webhook is not a valid URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/webhookSpec.ts",
+      "duration": 5,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "submits POST with payload to existing URL",
+      "fullTitle": "webhook notify submits POST with payload to existing URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/webhookSpec.ts",
+      "duration": 34,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ],
+  "pending": [
+    {
+      "title": "infinite loop payload does not succeed but solves \"rceChallenge\"",
+      "fullTitle": "b2bOrder infinite loop payload does not succeed but solves \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "timeout after 2 seconds solves \"rceOccupyChallenge\"",
+      "fullTitle": "b2bOrder timeout after 2 seconds solves \"rceOccupyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "failures": [
+    {
+      "title": "should accept the active config from config/undefined.yml",
+      "fullTitle": "configValidation should accept the active config from config/undefined.yml",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 9,
+      "currentRetry": 0,
+      "err": {
+        "message": "expected false to equal true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected false to equal true\n    at Context.<anonymous> (test/server/configValidationSpec.ts:447:63)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+      }
+    },
+    {
+      "title": "is solved when the link in the O-Saft product goes to https://owasp.slack.com",
+      "fullTitle": "verify databaseRelatedChallenges \"changeProductChallenge\" is solved when the link in the O-Saft product goes to https://owasp.slack.com",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {
+        "message": "expected false to equal true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "operator": "strictEqual",
+        "stack": "AssertionError: expected false to equal true\n    at Context.<anonymous> (test/server/verifySpec.ts:224:61)\n    at processImmediate (node:internal/timers:505:21)"
+      }
+    }
+  ],
+  "passes": [
+    {
+      "title": "should serve index.html for any URL",
+      "fullTitle": "angular should serve index.html for any URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/angularSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for /api endpoint URL",
+      "fullTitle": "angular should raise error for /api endpoint URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/angularSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for /rest endpoint URL",
+      "fullTitle": "angular should raise error for /rest endpoint URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/angularSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return configuration object",
+      "fullTitle": "appConfiguration should return configuration object",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/appConfigurationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "",
+      "fullTitle": "appVersion ",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/appVersionSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "deserializing JSON as documented in Swagger should not solve \"rceChallenge\"",
+      "fullTitle": "b2bOrder deserializing JSON as documented in Swagger should not solve \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "deserializing arbitrary JSON should not solve \"rceChallenge\"",
+      "fullTitle": "b2bOrder deserializing arbitrary JSON should not solve \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "deserializing broken JSON should not solve \"rceChallenge\"",
+      "fullTitle": "b2bOrder deserializing broken JSON should not solve \"rceChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/b2bOrderSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should retrieve basket with products and translate product names",
+      "fullTitle": "basket retrieveBasket should retrieve basket with products and translate product names",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should handle basket not found",
+      "fullTitle": "basket retrieveBasket should handle basket not found",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should handle basket with no products",
+      "fullTitle": "basket retrieveBasket should handle basket with no products",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should handle database errors",
+      "fullTitle": "basket retrieveBasket should handle database errors",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/basketSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should contain properties from exifForBlueprintChallenge",
+      "fullTitle": "blueprint checkExifData should contain properties from exifForBlueprintChallenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/blueprintSpec.ts",
+      "duration": 4,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns static test response",
+      "fullTitle": "botUtils testFunction returns static test response",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/botUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "response contains a valid 10% coupon code for current date",
+      "fullTitle": "botUtils couponCode response contains a valid 10% coupon code for current date",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/botUtilsSpec.ts",
+      "duration": 4,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have a country mapping for every challenge",
+      "fullTitle": "challengeCountryMapping should have a country mapping for every challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeCountryMappingSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have unique country codes in every mapping",
+      "fullTitle": "challengeCountryMapping should have unique country codes in every mapping",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeCountryMappingSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have unique tutorial orders",
+      "fullTitle": "challengeTutorialSequence should have unique tutorial orders",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeTutorialSequenceSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for non-existing challenge",
+      "fullTitle": "challengeUtils findChallengeByName returns undefined for non-existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns existing challenge",
+      "fullTitle": "challengeUtils findChallengeByName returns existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for non-existing challenge",
+      "fullTitle": "challengeUtils findChallengeById returns undefined for non-existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns existing challenge",
+      "fullTitle": "challengeUtils findChallengeById returns existing challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/challengeUtilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept the default chatbot training data",
+      "fullTitle": "chatBotValidation should accept the default chatbot training data",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the chatbot training data is empty",
+      "fullTitle": "chatBotValidation should fail if the chatbot training data is empty",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept training data with the expected intent and handler",
+      "fullTitle": "chatBotValidation checkIntentWithHandlerExists should accept training data with the expected intent and handler",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the training data lacks the expected intent",
+      "fullTitle": "chatBotValidation checkIntentWithHandlerExists should fail if the training data lacks the expected intent",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the training data lacks the expected handler for the given intent",
+      "fullTitle": "chatBotValidation checkIntentWithHandlerExists should fail if the training data lacks the expected handler for the given intent",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/chatBotValidationSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert single correctly selected vuln line as correct",
+      "fullTitle": "vulnCodeSnippet should assert single correctly selected vuln line as correct",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert multiple correctly selected vuln lines as correct in any order",
+      "fullTitle": "vulnCodeSnippet should assert multiple correctly selected vuln lines as correct in any order",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should ignore selected neutral lines during correct assertion",
+      "fullTitle": "vulnCodeSnippet should ignore selected neutral lines during correct assertion",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert missing vuln lines as wrong",
+      "fullTitle": "vulnCodeSnippet should assert missing vuln lines as wrong",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert additionally selected lines as wrong",
+      "fullTitle": "vulnCodeSnippet should assert additionally selected lines as wrong",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert lack of selected lines as wrong",
+      "fullTitle": "vulnCodeSnippet should assert lack of selected lines as wrong",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should assert empty edge case as correct",
+      "fullTitle": "vulnCodeSnippet should assert empty edge case as correct",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codeSnippetSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have a correct fix for each coding challenge",
+      "fullTitle": "codingChallengeFixes should have a correct fix for each coding challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codingChallengeFixesSpec.ts",
+      "duration": 10,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have a total of three or more fix options for each coding challenge",
+      "fullTitle": "codingChallengeFixes should have a total of three or more fix options for each coding challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codingChallengeFixesSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should have an info YAML file for each coding challenge",
+      "fullTitle": "codingChallengeFixes should have an info YAML file for each coding challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/codingChallengeFixesSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if the config is invalid",
+      "fullTitle": "configValidation should fail if the config is invalid",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 5,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a config with valid schema",
+      "fullTitle": "configValidation should accept a config with valid schema",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail for a config with schema errors",
+      "fullTitle": "configValidation should fail for a config with schema errors",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if multiple products are configured for the same challenge",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialProducts should fail if multiple products are configured for the same challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a required challenge product is missing",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialProducts should fail if a required challenge product is missing",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkNecessaryExtraKeysOnSpecialProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if product has no exifForBlueprintChallenge",
+      "fullTitle": "configValidation checkNecessaryExtraKeysOnSpecialProducts should fail if product has no exifForBlueprintChallenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkUniqueSpecialOnProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a product is configured for multiple challenges",
+      "fullTitle": "configValidation checkUniqueSpecialOnProducts should fail if a product is configured for multiple challenges",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfProducts should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if less than 4 products are configured",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfProducts should fail if less than 4 products are configured",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if multiple memories are configured for the same challenge",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should fail if multiple memories are configured for the same challenge",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a required challenge memory is missing",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should fail if a required challenge memory is missing",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if memories have mixed up the required challenge keys",
+      "fullTitle": "configValidation checkUnambiguousMandatorySpecialMemories should fail if memories have mixed up the required challenge keys",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkThatThereIsOnlyOneMemoryPerSpecial should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a memory is configured for multiple challenges",
+      "fullTitle": "configValidation checkThatThereIsOnlyOneMemoryPerSpecial should fail if a memory is configured for multiple challenges",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkSpecialMemoriesHaveNoUserAssociated should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a config where the default users are associated",
+      "fullTitle": "configValidation checkSpecialMemoriesHaveNoUserAssociated should accept a config where the default users are associated",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if a memory is linked to another user",
+      "fullTitle": "configValidation checkSpecialMemoriesHaveNoUserAssociated should fail if a memory is linked to another user",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a valid config",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfMemories should accept a valid config",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail if less than 2 memories are configured",
+      "fullTitle": "configValidation checkMinimumRequiredNumberOfMemories should fail if less than 2 memories are configured",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/configValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be empty when no challenges are solved",
+      "fullTitle": "continueCode should be empty when no challenges are solved",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/continueCodeSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be hashid value of IDs of solved challenges",
+      "fullTitle": "continueCode should be hashid value of IDs of solved challenges",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/continueCodeSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return configured country mappings",
+      "fullTitle": "countryMapping should return configured country mappings",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/countryMappingSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return server error when configuration has no country mappings",
+      "fullTitle": "countryMapping should return server error when configuration has no country mappings",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/countryMappingSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return no server error for active configuration from config/undefined.yml",
+      "fullTitle": "countryMapping should return no server error for active configuration from config/undefined.yml",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/countryMappingSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return neither ID nor email if no cookie was present in the request headers",
+      "fullTitle": "currentUser should return neither ID nor email if no cookie was present in the request headers",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/currentUserSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return ID and email of user belonging to cookie from the request",
+      "fullTitle": "currentUser should return ID and email of user belonging to cookie from the request",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/currentUserSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve /frontend/dist/frontend/assets/private/threejs-demo.html",
+      "fullTitle": "easterEgg should serve /frontend/dist/frontend/assets/private/threejs-demo.html",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/easterEggSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"easterEggLevelTwoChallenge\"",
+      "fullTitle": "easterEgg should solve \"easterEggLevelTwoChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/easterEggSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve PDF files from folder /ftp",
+      "fullTitle": "fileServer should serve PDF files from folder /ftp",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve Markdown files from folder /ftp",
+      "fullTitle": "fileServer should serve Markdown files from folder /ftp",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve incident-support.kdbx files from folder /ftp",
+      "fullTitle": "fileServer should serve incident-support.kdbx files from folder /ftp",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for slashes in filename",
+      "fullTitle": "fileServer should raise error for slashes in filename",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for disallowed file type",
+      "fullTitle": "fileServer should raise error for disallowed file type",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"directoryListingChallenge\" when requesting acquisitions.md",
+      "fullTitle": "fileServer should solve \"directoryListingChallenge\" when requesting acquisitions.md",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"easterEggLevelOneChallenge\" when requesting eastere.gg with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"easterEggLevelOneChallenge\" when requesting eastere.gg with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"forgottenDevBackupChallenge\" when requesting package.json.bak with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"forgottenDevBackupChallenge\" when requesting package.json.bak with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"forgottenBackupChallenge\" when requesting coupons_2013.md.bak with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"forgottenBackupChallenge\" when requesting coupons_2013.md.bak with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"misplacedSignatureFileChallenge\" when requesting suspicious_errors.yml with Poison Null Byte attack",
+      "fullTitle": "fileServer should solve \"misplacedSignatureFileChallenge\" when requesting suspicious_errors.yml with Poison Null Byte attack",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"uploadSizeChallenge\" when file size exceeds 100000 bytes",
+      "fullTitle": "fileUpload should solve \"uploadSizeChallenge\" when file size exceeds 100000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"uploadTypeChallenge\" when file type is not PDF",
+      "fullTitle": "fileUpload should solve \"uploadTypeChallenge\" when file type is not PDF",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should not solve \"uploadTypeChallenge\" when file type is PDF",
+      "fullTitle": "fileUpload should not solve \"uploadTypeChallenge\" when file type is PDF",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "0 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 0 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "1 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 1 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "100 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 100 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "1000 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 1000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "10000 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 10000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "99999 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 99999 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "100000 bytes",
+      "fullTitle": "fileUpload should not solve \"uploadSizeChallenge\" when file size is 100000 bytes",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/fileUploadSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns string unchanged if it contains no null byte",
+      "fullTitle": "insecurity cutOffPoisonNullByte returns string unchanged if it contains no null byte",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns string up to null byte",
+      "fullTitle": "insecurity cutOffPoisonNullByte returns string up to null byte",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns content of \"x-user-email\" header if present",
+      "fullTitle": "insecurity userEmailFrom returns content of \"x-user-email\" header if present",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined if header \"x-user-email\" is not present",
+      "fullTitle": "insecurity userEmailFrom returns undefined if header \"x-user-email\" is not present",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns base85-encoded month, year and discount as coupon code",
+      "fullTitle": "insecurity generateCoupon returns base85-encoded month, year and discount as coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "uses current month and year if not specified",
+      "fullTitle": "insecurity generateCoupon uses current month and year if not specified",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "does not encode day of month or time into coupon code",
+      "fullTitle": "insecurity generateCoupon does not encode day of month or time into coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined when not passing in a coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns undefined when not passing in a coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for malformed coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns undefined for malformed coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for coupon code not according to expected pattern",
+      "fullTitle": "insecurity discountFromCoupon returns undefined for coupon code not according to expected pattern",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined for expired coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns undefined for expired coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns discount from valid coupon code",
+      "fullTitle": "insecurity discountFromCoupon returns discount from valid coupon code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns user by associated token",
+      "fullTitle": "insecurity authenticatedUsers returns user by associated token",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined if no token is passed in",
+      "fullTitle": "insecurity authenticatedUsers returns undefined if no token is passed in",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns token by associated user",
+      "fullTitle": "insecurity authenticatedUsers returns token by associated user",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns user by associated token from request",
+      "fullTitle": "insecurity authenticatedUsers returns user by associated token from request",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns undefined if no token is present in request",
+      "fullTitle": "insecurity authenticatedUsers returns undefined if no token is present in request",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "handles empty inputs by returning their string representation",
+      "fullTitle": "insecurity sanitizeHtml handles empty inputs by returning their string representation",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for plain text input",
+      "fullTitle": "insecurity sanitizeHtml returns input unchanged for plain text input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless text formatting",
+      "fullTitle": "insecurity sanitizeHtml returns input unchanged for HTML input with only harmless text formatting",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless links",
+      "fullTitle": "insecurity sanitizeHtml returns input unchanged for HTML input with only harmless links",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "removes all Javascript from HTML input",
+      "fullTitle": "insecurity sanitizeHtml removes all Javascript from HTML input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "can be bypassed by exploiting lack of recursive sanitization",
+      "fullTitle": "insecurity sanitizeHtml can be bypassed by exploiting lack of recursive sanitization",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns empty string for undefined input",
+      "fullTitle": "insecurity sanitizeLegacy returns empty string for undefined input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for plain text input",
+      "fullTitle": "insecurity sanitizeLegacy returns input unchanged for plain text input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "removes all opening tags and subsequent character from HTML input",
+      "fullTitle": "insecurity sanitizeLegacy removes all opening tags and subsequent character from HTML input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "can be bypassed to allow working HTML payload to be returned",
+      "fullTitle": "insecurity sanitizeLegacy can be bypassed to allow working HTML payload to be returned",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "handles empty inputs by returning their string representation",
+      "fullTitle": "insecurity sanitizeSecure handles empty inputs by returning their string representation",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for plain text input",
+      "fullTitle": "insecurity sanitizeSecure returns input unchanged for plain text input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless text formatting",
+      "fullTitle": "insecurity sanitizeSecure returns input unchanged for HTML input with only harmless text formatting",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns input unchanged for HTML input with only harmless links",
+      "fullTitle": "insecurity sanitizeSecure returns input unchanged for HTML input with only harmless links",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "removes all Javascript from HTML input",
+      "fullTitle": "insecurity sanitizeSecure removes all Javascript from HTML input",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "cannot be bypassed by exploiting lack of recursive sanitization",
+      "fullTitle": "insecurity sanitizeSecure cannot be bypassed by exploiting lack of recursive sanitization",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns MD5 hash for any input string",
+      "fullTitle": "insecurity hash returns MD5 hash for any input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns SHA-256 HMAC with \"pa4qacea4VK9t9nGv7yZtwmj\" as salt any input string",
+      "fullTitle": "insecurity hmac returns SHA-256 HMAC with \"pa4qacea4VK9t9nGv7yZtwmj\" as salt any input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/insecuritySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve requested file from folder /encryptionkeys",
+      "fullTitle": "keyServer should serve requested file from folder /encryptionkeys",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/keyServerSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for slashes in filename",
+      "fullTitle": "keyServer should raise error for slashes in filename",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/keyServerSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should define the supported semver range as 20 - 24",
+      "fullTitle": "preconditionValidation checkIfRunningOnSupportedNodeVersion should define the supported semver range as 20 - 24",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should accept a supported version",
+      "fullTitle": "preconditionValidation checkIfRunningOnSupportedNodeVersion should accept a supported version",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should fail for an unsupported version",
+      "fullTitle": "preconditionValidation checkIfRunningOnSupportedNodeVersion should fail for an unsupported version",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should resolve when port 3000 is closed",
+      "fullTitle": "preconditionValidation checkIfPortIsAvailable should resolve when port 3000 is closed",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should reject when port 3000 is open",
+      "fullTitle": "preconditionValidation checkIfPortIsAvailable open a server before running the test should reject when port 3000 is open",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/preconditionValidationSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should serve /frontend/dist/frontend/assets/private/JuiceShop_Wallpaper_1920x1080_VR.jpg",
+      "fullTitle": "premiumReward should serve /frontend/dist/frontend/assets/private/JuiceShop_Wallpaper_1920x1080_VR.jpg",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/premiumRewardSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should solve \"premiumPaywallChallenge\"",
+      "fullTitle": "premiumReward should solve \"premiumPaywallChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/premiumRewardSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should raise error for URL not on allowlist",
+      "fullTitle": "redirect should raise error for URL not on allowlist",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "redirecting to https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm should solve the \"redirectCryptoCurrencyChallenge\"",
+      "fullTitle": "redirect redirecting to https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm should solve the \"redirectCryptoCurrencyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "redirecting to https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW should solve the \"redirectCryptoCurrencyChallenge\"",
+      "fullTitle": "redirect redirecting to https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW should solve the \"redirectCryptoCurrencyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "redirecting to https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6 should solve the \"redirectCryptoCurrencyChallenge\"",
+      "fullTitle": "redirect redirecting to https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6 should solve the \"redirectCryptoCurrencyChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "tricking the allowlist should solve \"redirectChallenge\"",
+      "fullTitle": "redirect tricking the allowlist should solve \"redirectChallenge\"",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://github.com/juice-shop/juice-shop",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://github.com/juice-shop/juice-shop",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://juiceshop.myspreadshop.com/",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://juiceshop.myspreadshop.com/",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://www.juiceshop.myspreadshop.com",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://www.juiceshop.myspreadshop.com",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://www.stickeryou.com/products/owasp-juice-shop/794",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://www.stickeryou.com/products/owasp-juice-shop/794",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "https://leanpub.com/juice-shop",
+      "fullTitle": "redirect should be performed for all allowlisted URLs https://leanpub.com/juice-shop",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/redirectSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv6 address unchanged",
+      "fullTitle": "utils toSimpleIpAddress returns ipv6 address unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv4 address fully specified as ipv6 unchanged",
+      "fullTitle": "utils toSimpleIpAddress returns ipv4 address fully specified as ipv6 unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv6 loopback address as ipv4 address",
+      "fullTitle": "utils toSimpleIpAddress returns ipv6 loopback address as ipv4 address",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns ipv4-mapped address as ipv4 address",
+      "fullTitle": "utils toSimpleIpAddress returns ipv4-mapped address as ipv4 address",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns standalone filename unchanged",
+      "fullTitle": "utils extractFilename returns standalone filename unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "returns filename from http:// URL",
+      "fullTitle": "utils extractFilename returns filename from http:// URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "ignores query part of http:// URL",
+      "fullTitle": "utils extractFilename ignores query part of http:// URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "also works for file:// URLs",
+      "fullTitle": "utils extractFilename also works for file:// URLs",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "fails on plain input string",
+      "fullTitle": "utils matchesSystemIniFile fails on plain input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "passes on Windows 10 system.ini file content",
+      "fullTitle": "utils matchesSystemIniFile passes on Windows 10 system.ini file content",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "fails on plain input string",
+      "fullTitle": "utils matchesEtcPasswdFile fails on plain input string",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "passes on Arch Linux passwd file content",
+      "fullTitle": "utils matchesEtcPasswdFile passes on Arch Linux passwd file content",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "challenges without disabledEnv are enabled with safetyMode set to enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus challenges without disabledEnv are enabled with safetyMode set to enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "challenges without disabledEnv are enabled with safetyMode set to disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus challenges without disabledEnv are enabled with safetyMode set to disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "challenges without disabledEnv are enabled with safetyMode set to auto",
+      "fullTitle": "utils utils.getChallengeEnablementStatus challenges without disabledEnv are enabled with safetyMode set to auto",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Docker should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Docker should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Docker should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Docker should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Docker should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Docker should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Heroku should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Heroku should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Heroku should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Windows should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Windows should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Windows should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Windows should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Windows should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Windows should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'enabled': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'enabled': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'auto': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'auto': challenge with disabledOnEnv Gitpod should be marked as disabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "safetyMode: 'disabled': challenge with disabledOnEnv Gitpod should be marked as enabled",
+      "fullTitle": "utils utils.getChallengeEnablementStatus safetyMode: 'disabled': challenge with disabledOnEnv Gitpod should be marked as enabled",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/utilsSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when an authenticated user passes his own ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is not solved when an authenticated user passes his own ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when an authenticated user passes no ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is not solved when an authenticated user passes no ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when an authenticated user passes someone elses ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is solved when an authenticated user passes someone elses ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when an unauthenticated user passes someones ID when writing feedback",
+      "fullTitle": "verify \"forgedFeedbackChallenge\" is solved when an unauthenticated user passes someones ID when writing feedback",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"scoreBoardChallenge\" is solved when the 1px.png transpixel is requested",
+      "fullTitle": "verify accessControlChallenges \"scoreBoardChallenge\" is solved when the 1px.png transpixel is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"adminSectionChallenge\" is solved when the 19px.png transpixel is requested",
+      "fullTitle": "verify accessControlChallenges \"adminSectionChallenge\" is solved when the 19px.png transpixel is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"tokenSaleChallenge\" is solved when the 56px.png transpixel is requested",
+      "fullTitle": "verify accessControlChallenges \"tokenSaleChallenge\" is solved when the 56px.png transpixel is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"extraLanguageChallenge\" is solved when the Klingon translation file is requested",
+      "fullTitle": "verify accessControlChallenges \"extraLanguageChallenge\" is solved when the Klingon translation file is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"retrieveBlueprintChallenge\" is solved when the blueprint file is requested",
+      "fullTitle": "verify accessControlChallenges \"retrieveBlueprintChallenge\" is solved when the blueprint file is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"missingEncodingChallenge\" is solved when the crazy cat photo is requested",
+      "fullTitle": "verify accessControlChallenges \"missingEncodingChallenge\" is solved when the crazy cat photo is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"accessLogDisclosureChallenge\" is solved when any server access log file is requested",
+      "fullTitle": "verify accessControlChallenges \"accessLogDisclosureChallenge\" is solved when any server access log file is requested",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is solved when an error occurs on a response with OK 200 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with OK 200 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when no error occurs on a response with OK 200 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with OK 200 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should pass occurred error on to next route",
+      "fullTitle": "verify \"errorHandlingChallenge\" should pass occurred error on to next route",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "402 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 402 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "403 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 403 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "404 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 404 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "500 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is solved when an error occurs on a response with error 500 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "401 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 401 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "402 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 402 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "404 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 404 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "500 status code",
+      "fullTitle": "verify \"errorHandlingChallenge\" is not solved when no error occurs on a response with error 500 status code",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when the link in the O-Saft product is changed to an arbitrary URL",
+      "fullTitle": "verify databaseRelatedChallenges \"changeProductChallenge\" is not solved when the link in the O-Saft product is changed to an arbitrary URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "is not solved when the link in the O-Saft product remained unchanged",
+      "fullTitle": "verify databaseRelatedChallenges \"changeProductChallenge\" is not solved when the link in the O-Saft product remained unchanged",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtUnsignedChallenge\" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtUnsignedChallenge\" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtUnsignedChallenge\" is solved when forged unsigned token has string \"jwtn3d@\" in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtUnsignedChallenge\" is solved when forged unsigned token has string \"jwtn3d@\" in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtUnsignedChallenge\" is not solved via regularly signed token even with email jwtn3d@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtUnsignedChallenge\" is not solved via regularly signed token even with email jwtn3d@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 7,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has string \"rsa_lord@\" in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtForgedChallenge\" is solved when forged token HMAC-signed with public RSA-key has string \"rsa_lord@\" in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "\"jwtForgedChallenge\" is not solved when token regularly signed with private RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "fullTitle": "verify jwtChallenges \"jwtForgedChallenge\" is not solved when token regularly signed with private RSA-key has email rsa_lord@juice-sh.op in the payload",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/verifySpec.ts",
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "ignores errors where no webhook URL is provided via environment variable",
+      "fullTitle": "webhook notify ignores errors where no webhook URL is provided via environment variable",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/webhookSpec.ts",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "fails when supplied webhook is not a valid URL",
+      "fullTitle": "webhook notify fails when supplied webhook is not a valid URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/webhookSpec.ts",
+      "duration": 5,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "submits POST with payload to existing URL",
+      "fullTitle": "webhook notify submits POST with payload to existing URL",
+      "file": "/Users/ekinoox/Documents/GitHub/Juice-Shop/test/server/webhookSpec.ts",
+      "duration": 34,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ]
+}
+=============================== Coverage summary ===============================
+Statements   : 24.08% ( 753/3127 )
+Branches     : 16.23% ( 215/1324 )
+Functions    : 17.89% ( 124/693 )
+Lines        : 21.48% ( 618/2876 )
+================================================================================

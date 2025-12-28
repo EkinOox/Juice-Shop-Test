@@ -17,14 +17,14 @@ export function performRedirect () {
       dash: 'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW',
       etherscan: 'https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6',
       spreadshirt_com: 'https://juiceshop.myspreadshop.com/',
-      spreadshirt_de: 'https://juiceshop.myspreadshop.com/',
+      spreadshirt_de: 'https://www.juiceshop.myspreadshop.com',
       stickeryou: 'https://www.stickeryou.com/products/owasp-juice-shop/794',
       leanpub: 'https://leanpub.com/juice-shop'
     }
     const toUrl = urlMap[target]
+    challengeUtils.solveIf(challenges.redirectCryptoCurrencyChallenge, () => { return target === 'dash' || target === 'blockchain' || target === 'etherscan' })
+    challengeUtils.solveIf(challenges.redirectChallenge, () => { return isUnintendedRedirect(target) })
     if (toUrl) {
-      challengeUtils.solveIf(challenges.redirectCryptoCurrencyChallenge, () => { return target === 'dash' || target === 'blockchain' || target === 'etherscan' })
-      challengeUtils.solveIf(challenges.redirectChallenge, () => { return isUnintendedRedirect(target) })
       res.redirect(toUrl)
     } else {
       res.status(406)

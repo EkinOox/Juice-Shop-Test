@@ -32,9 +32,12 @@ export class ChallengeCardComponent implements OnInit {
   public hasInstructions: (challengeName: string) => boolean = () => false
   public startHackingInstructorFor: (challengeName: string) => Promise<void> = async () => {}
 
-  async ngOnInit () {
-    const { hasInstructions, startHackingInstructorFor } = await import('../../../../hacking-instructor')
-    this.hasInstructions = hasInstructions
-    this.startHackingInstructorFor = startHackingInstructorFor
+  ngOnInit () {
+    import('../../../../hacking-instructor').then(({ hasInstructions, startHackingInstructorFor }) => {
+      this.hasInstructions = hasInstructions
+      this.startHackingInstructorFor = startHackingInstructorFor
+    }).catch(() => {
+      // Ignore errors if module fails to load
+    })
   }
 }

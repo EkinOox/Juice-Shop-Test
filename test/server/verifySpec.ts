@@ -85,7 +85,7 @@ describe('verify', () => {
   describe('accessControlChallenges', () => {
     it('"scoreBoardChallenge" is solved when the 1px.png transpixel is requested', () => {
       challenges.scoreBoardChallenge = { solved: false, save } as unknown as Challenge
-      req.url = 'http://juice-sh.op/public/images/padding/1px.png'
+      req.url = '/public/images/padding/1px.png'
 
       verify.accessControlChallenges()(req, res, next)
 
@@ -94,7 +94,7 @@ describe('verify', () => {
 
     it('"adminSectionChallenge" is solved when the 19px.png transpixel is requested', () => {
       challenges.adminSectionChallenge = { solved: false, save } as unknown as Challenge
-      req.url = 'http://juice-sh.op/public/images/padding/19px.png'
+      req.url = '/public/images/padding/19px.png'
 
       verify.accessControlChallenges()(req, res, next)
 
@@ -103,7 +103,7 @@ describe('verify', () => {
 
     it('"tokenSaleChallenge" is solved when the 56px.png transpixel is requested', () => {
       challenges.tokenSaleChallenge = { solved: false, save } as unknown as Challenge
-      req.url = 'http://juice-sh.op/public/images/padding/56px.png'
+      req.url = '/public/images/padding/56px.png'
 
       verify.accessControlChallenges()(req, res, next)
 
@@ -122,7 +122,7 @@ describe('verify', () => {
     it('"retrieveBlueprintChallenge" is solved when the blueprint file is requested', () => {
       challenges.retrieveBlueprintChallenge = { solved: false, save } as unknown as Challenge
       setRetrieveBlueprintChallengeFile('test.dxf')
-      req.url = 'http://juice-sh.op/public/images/products/test.dxf'
+      req.url = '/public/images/products/test.dxf'
 
       verify.accessControlChallenges()(req, res, next)
 
@@ -131,7 +131,7 @@ describe('verify', () => {
 
     it('"missingEncodingChallenge" is solved when the crazy cat photo is requested', () => {
       challenges.missingEncodingChallenge = { solved: false, save } as unknown as Challenge
-      req.url = 'http://juice-sh.op/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-%23zatschi-%23whoneedsfourlegs-1572600969477.jpg'
+      req.url = '/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-%23zatschi-%23whoneedsfourlegs-1572600969477.jpg'
 
       verify.accessControlChallenges()(req, res, next)
 
@@ -140,7 +140,7 @@ describe('verify', () => {
 
     it('"accessLogDisclosureChallenge" is solved when any server access log file is requested', () => {
       challenges.accessLogDisclosureChallenge = { solved: false, save } as unknown as Challenge
-      req.url = 'http://juice-sh.op/support/logs/access.log.2019-01-15'
+      req.url = '/support/logs/access.log.2019-01-15'
 
       verify.accessControlChallenges()(req, res, next)
 
