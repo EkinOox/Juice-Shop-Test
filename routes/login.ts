@@ -72,47 +72,47 @@ export function login() {
       return (
         req.body.email ===
           "admin@" + config.get<string>("application.domain") &&
-        req.body.password === (process.env.ADMIN_PASSWORD || "admin123")
+        req.body.password === process.env.ADMIN_PASSWORD
       );
     });
     challengeUtils.solveIf(challenges.loginSupportChallenge, () => {
       return (
         req.body.email ===
           "support@" + config.get<string>("application.domain") &&
-        req.body.password === (process.env.SUPPORT_PASSWORD || "J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P")
+        req.body.password === process.env.SUPPORT_PASSWORD
       );
     });
     challengeUtils.solveIf(challenges.loginRapperChallenge, () => {
       return (
         req.body.email ===
           "mc.safesearch@" + config.get<string>("application.domain") &&
-        req.body.password === (process.env.RAPPER_PASSWORD || "Mr. N00dles")
+        req.body.password === process.env.RAPPER_PASSWORD
       );
     });
     challengeUtils.solveIf(challenges.loginAmyChallenge, () => {
       return (
         req.body.email === "amy@" + config.get<string>("application.domain") &&
-        req.body.password === (process.env.AMY_PASSWORD || "K1f.....................")
+        req.body.password === process.env.AMY_PASSWORD
       );
     });
     challengeUtils.solveIf(challenges.dlpPasswordSprayingChallenge, () => {
       return (
         req.body.email ===
           "J12934@" + config.get<string>("application.domain") &&
-        req.body.password === (process.env.DLP_PASSWORD || "0Y8rMnww$*9VFYE§59-!Fg1L6t&6lB")
+        req.body.password === process.env.DLP_PASSWORD
       );
     });
     challengeUtils.solveIf(challenges.oauthUserPasswordChallenge, () => {
       return (
         req.body.email === "bjoern.kimminich@gmail.com" &&
-        req.body.password === (process.env.OAUTH_PASSWORD || "bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=")
+        req.body.password === process.env.OAUTH_PASSWORD
       );
     });
     challengeUtils.solveIf(challenges.exposedCredentialsChallenge, () => {
       return (
         req.body.email ===
           "testing@" + config.get<string>("application.domain") &&
-        req.body.password === (process.env.TESTING_PASSWORD || "IamUsedForTesting")
+        req.body.password === process.env.TESTING_PASSWORD
       );
     });
   }
