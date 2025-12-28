@@ -31,11 +31,11 @@ interface BotResponse {
 }
 
 export default class Bot {
-  private name: string
-  private greeting: string
-  private trainingData: TrainingData
-  private defaultResponse: string
-  private users: Map<string, User> = new Map()
+  private readonly name: string
+  private readonly greeting: string
+  private readonly trainingData: TrainingData
+  private readonly defaultResponse: string
+  private readonly users = new Map<string, User>()
 
   constructor (name: string, greeting: string, trainingData: string, defaultResponse: string) {
     this.name = name
@@ -46,7 +46,7 @@ export default class Bot {
 
   async train (): Promise<void> {
     // Training is just parsing the data, no actual ML training needed
-    return await Promise.resolve()
+    await Promise.resolve()
   }
 
   get factory () {

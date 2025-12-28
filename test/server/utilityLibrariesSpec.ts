@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.  
+ * Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -33,7 +33,7 @@ describe('Utility Libraries', () => {
     it('should validate email format', () => {
       const validEmail = 'test@example.com'
       const invalidEmail = 'invalid-email'
-      
+
       expect(validEmail).to.include('@')
       expect(validEmail).to.include('.')
       expect(invalidEmail).to.not.include('@')
@@ -42,7 +42,7 @@ describe('Utility Libraries', () => {
     it('should validate numeric values', () => {
       const validNumber = 123
       const invalidNumber = NaN
-      
+
       expect(validNumber).to.be.a('number')
       expect(validNumber).to.not.be.NaN
       expect(invalidNumber).to.be.NaN

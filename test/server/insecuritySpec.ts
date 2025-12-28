@@ -9,6 +9,7 @@ import chai from 'chai'
 import * as security from '../../lib/insecurity'
 import type { UserModel } from 'models/user'
 import type { Request } from 'express'
+import { testPasswords } from '../testPasswords'
 const expect = chai.expect
 
 describe('insecurity', () => {
@@ -192,9 +193,9 @@ describe('insecurity', () => {
     it('returns MD5 hash for any input string', () => {
       const testPassword1 = process.env.TEST_HASH_PASSWORD_1 ?? 'admin123'
       const testPassword2 = process.env.TEST_HASH_PASSWORD_2 ?? 'password'
-      expect(security.hash(testPassword1)).to.equal('0192023a7bbd73250516f069df18b500')
-      expect(security.hash(testPassword2)).to.equal('5f4dcc3b5aa765d61d8327deb882cf99')
-      expect(security.hash('')).to.equal('d41d8cd98f00b204e9800998ecf8427e')
+      expect(security.hash(testPassword1)).to.equal(testPasswords.hashMd5Admin123)
+      expect(security.hash(testPassword2)).to.equal(testPasswords.hashMd5Password)
+      expect(security.hash('')).to.equal(testPasswords.hashMd5Empty)
     })
   })
 
@@ -202,9 +203,9 @@ describe('insecurity', () => {
     it('returns SHA-256 HMAC with "pa4qacea4VK9t9nGv7yZtwmj" as salt any input string', () => {
       const testPassword1 = process.env.TEST_HASH_PASSWORD_1 ?? 'admin123'
       const testPassword2 = process.env.TEST_HASH_PASSWORD_2 ?? 'password'
-      expect(security.hmac(testPassword1)).to.equal('6be13e2feeada221f29134db71c0ab0be0e27eccfc0fb436ba4096ba73aafb20')
-      expect(security.hmac(testPassword2)).to.equal('da28fc4354f4a458508a461fbae364720c4249c27f10fccf68317fc4bf6531ed')
-      expect(security.hmac('')).to.equal('f052179ec5894a2e79befa8060cfcb517f1e14f7f6222af854377b6481ae953e')
+      expect(security.hmac(testPassword1)).to.equal(testPasswords.hmacAdmin123)
+      expect(security.hmac(testPassword2)).to.equal(testPasswords.hmacPassword)
+      expect(security.hmac('')).to.equal(testPasswords.hmacEmpty)
     })
   })
 })

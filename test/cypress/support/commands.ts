@@ -33,19 +33,23 @@ Cypress.Commands.add(
   'login',
   (context: { email: string, password: string, totpSecret?: string }) => {
     cy.visit('/#/login')
-    if (context.email.match(/\S+@\S+\.\S+/) != null) {
-      cy.get('#email').type(context.email)
-    } else {
-      cy.task<string>('GetFromConfig', 'application.domain').then(
-        (appDomain: string) => {
-          const email = context.email.concat('@', appDomain)
-          cy.get('#email').type(email)
-        }
-      )
-    }
-    cy.get('#password').type(context.password)
-    cy.get('#loginButton').click()
-    cy.wait(500)
+    
+    // Récupérer le password depuis l'environnement via GetTestPassword si c'est une clé connue
+    cy.task<string>('GetTestPassword', context.password).then((resolvedPassword: string) => {
+      if (context.email.match(/\S+@\S+\.\S+/) != null) {
+        cy.get('#email').type(context.email)
+      } else {
+        cy.task<string>('GetFromConfig', 'application.domain').then(
+          (appDomain: string) => {
+            const email = context.email.concat('@', appDomain)
+            cy.get('#email').type(email)
+          }
+        )
+      }
+      cy.get('#password').type(resolvedPassword)
+      cy.get('#loginButton').click()
+      cy.wait(500)
+    })
   }
 )
 

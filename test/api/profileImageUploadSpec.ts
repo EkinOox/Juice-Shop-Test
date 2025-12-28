@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 import config from 'config'
 import path from 'node:path'
 import fs from 'node:fs'
@@ -22,7 +23,7 @@ describe('/profile/image/file', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -49,7 +50,7 @@ describe('/profile/image/file', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -94,7 +95,7 @@ describe('/profile/image/url', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -120,7 +121,7 @@ describe('/profile/image/url', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -161,7 +162,7 @@ describe('/profile/image/url', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)

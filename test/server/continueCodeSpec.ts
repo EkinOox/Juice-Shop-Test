@@ -6,6 +6,7 @@
 import sinon from 'sinon'
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
+import { testPasswords } from '../testPasswords'
 import { challenges } from '../../data/datacache'
 import { type Challenge } from 'data/types'
 import { continueCode } from '../../routes/continueCode'
@@ -36,6 +37,6 @@ describe('continueCode', () => {
     challenges.continueCodeChallenge = { id: 3, solved: false } as unknown as Challenge
 
     continueCode()(req, res)
-    expect(res.json).to.have.been.calledWith({ continueCode: 'yXjv6Z5jWJnzD6a3YvmwPRXK7roAyzHDde2Og19yEN84plqxkMBbLVQrDeoY' })
+    expect(res.json).to.have.been.calledWith({ continueCode: testPasswords.continueCode })
   })
 })

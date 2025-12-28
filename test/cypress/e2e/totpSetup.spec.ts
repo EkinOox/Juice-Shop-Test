@@ -3,8 +3,8 @@ describe('/#/basket', () => {
     beforeEach(() => {
       cy.login({
         email: 'wurstbrot',
-        password: 'EinBelegtesBrotMitSchinkenSCHINKEN!',
-        totpSecret: 'IFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH'
+        password: 'bender',
+        totpSecret: 'TOTP_SECRET_VALID'
       })
     })
 
@@ -17,7 +17,7 @@ describe('/#/basket', () => {
     beforeEach(() => {
       cy.login({
         email: 'amy',
-        password: 'K1f.....................'
+        password: 'amy'
       })
     })
 

@@ -7,6 +7,7 @@ import * as frisby from 'frisby'
 import * as security from '../../lib/insecurity'
 import { expect } from '@jest/globals'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 
 const REST_URL = 'http://localhost:3000/rest'
 
@@ -18,7 +19,7 @@ describe('/rest/user/authentication-details', () => {
     return frisby.get(`${REST_URL}/user/authentication-details`, { headers: authHeader })
       .expect('status', 200)
       .expect('json', 'data.?', {
-        password: '********************************'
+        password: testPasswords.masked
       })
   })
 
@@ -27,7 +28,7 @@ describe('/rest/user/authentication-details', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     }).promise()
 

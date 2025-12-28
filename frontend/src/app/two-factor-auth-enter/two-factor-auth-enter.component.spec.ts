@@ -98,14 +98,14 @@ describe('TwoFactorAuthEnterComponent', () => {
   })
 
   it('should store authentication token in cookie', () => {
-    twoFactorAuthService.verify.and.returnValue(of({ token: 'TOKEN' }))
+    twoFactorAuthService.verify.and.returnValue(of({ token: testPasswords.tokenGeneric }))
     component.verify()
 
     expect(cookieService.get('token')).toBe('TOKEN')
   })
 
   it('should store authentication token in local storage', () => {
-    twoFactorAuthService.verify.and.returnValue(of({ token: 'TOKEN' }))
+    twoFactorAuthService.verify.and.returnValue(of({ token: testPasswords.tokenGeneric }))
     component.verify()
 
     expect(localStorage.getItem('token')).toBe('TOKEN')

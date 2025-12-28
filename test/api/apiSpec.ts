@@ -5,6 +5,7 @@
 
 import * as frisby from 'frisby'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 
 const API_URL = 'http://localhost:3000/api'
 const REST_URL = 'http://localhost:3000/rest'

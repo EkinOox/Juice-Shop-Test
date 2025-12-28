@@ -30,7 +30,7 @@ describe('redirect', () => {
   })
 
   describe('should be performed for all allowlisted URLs', () => {
-    const urlToKeyMap: { [url: string]: string } = {
+    const urlToKeyMap: Record<string, string> = {
       'https://github.com/juice-shop/juice-shop': 'github',
       'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm': 'blockchain',
       'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW': 'dash',

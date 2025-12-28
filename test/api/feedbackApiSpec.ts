@@ -8,6 +8,7 @@ import { expect } from '@jest/globals'
 import { challenges } from '../../data/datacache'
 import * as security from '../../lib/insecurity'
 import * as utils from '../../lib/utils'
+import { testPasswords } from '../testPasswords'
 const Joi = frisby.Joi
 
 const API_URL = 'http://localhost:3000/api'
@@ -117,7 +118,7 @@ describe('/api/Feedbacks', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)
@@ -150,7 +151,7 @@ describe('/api/Feedbacks', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)

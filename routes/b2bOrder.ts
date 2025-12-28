@@ -17,20 +17,20 @@ export function b2bOrder () {
       const orderLinesData = body.orderLinesData || ''
       // Validate input to prevent code injection - only allow simple numeric expressions
       if (!/^[0-9+\-*/()\s.]+$/.test(orderLinesData)) {
-        return next(new Error('Invalid order data format'))
+        next(new Error('Invalid order data format')); return
       }
       // Simulate execution without actually running dynamic code
       // For RCE challenges, check for potential infinite loops or timeouts based on input patterns
       if (orderLinesData.includes('while') || orderLinesData.includes('for') || orderLinesData.length > 50) {
         // Simulate infinite loop detection
         challengeUtils.solveIf(challenges.rceChallenge, () => { return true })
-        return next(new Error('Infinite loop detected - reached max iterations'))
+        next(new Error('Infinite loop detected - reached max iterations')); return
       }
       // For timeout challenge, randomly simulate timeout
       if (crypto.randomInt(0, 10) < 3) { // ~30% chance to simulate timeout
         challengeUtils.solveIf(challenges.rceOccupyChallenge, () => { return true })
         res.status(503)
-        return next(new Error('Sorry, we are temporarily not available! Please try again later.'))
+        next(new Error('Sorry, we are temporarily not available! Please try again later.')); return
       }
       res.json({ cid: body.cid, orderNo: uniqueOrderNumber(), paymentDue: dateTwoWeeksFromNow() })
     } else {

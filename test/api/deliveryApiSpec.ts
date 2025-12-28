@@ -6,6 +6,7 @@
 import * as frisby from 'frisby'
 import { expect } from '@jest/globals'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 
 const API_URL = 'http://localhost:3000/api'
 const REST_URL = 'http://localhost:3000/rest'
@@ -20,7 +21,7 @@ describe('/api/Deliverys', () => {
         headers: jsonHeader,
         body: {
           email: 'jim@' + config.get<string>('application.domain'),
-          password: 'ncc-1701'
+          password: testPasswords.jim
         }
       })
         .expect('status', 200)
@@ -49,7 +50,7 @@ describe('/api/Deliverys', () => {
         headers: jsonHeader,
         body: {
           email: 'ciso@' + config.get<string>('application.domain'),
-          password: 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb'
+          password: testPasswords.ciso
         }
       })
         .expect('status', 200)
@@ -80,7 +81,7 @@ describe('/api/Deliverys/:id', () => {
         headers: jsonHeader,
         body: {
           email: 'jim@' + config.get<string>('application.domain'),
-          password: 'ncc-1701'
+          password: testPasswords.jim
         }
       })
         .expect('status', 200)
@@ -108,7 +109,7 @@ describe('/api/Deliverys/:id', () => {
         headers: jsonHeader,
         body: {
           email: 'ciso@' + config.get<string>('application.domain'),
-          password: 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb'
+          password: testPasswords.ciso
         }
       })
         .expect('status', 200)

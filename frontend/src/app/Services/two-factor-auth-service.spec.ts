@@ -8,6 +8,7 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing'
 
 import { TwoFactorAuthService } from './two-factor-auth-service'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import { testPasswords } from '../../../test/testPasswords'
 
 describe('TwoFactorAuthServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -62,7 +63,7 @@ describe('TwoFactorAuthServiceService', () => {
       tick()
 
       expect(req.request.method).toBe('POST')
-      expect(req.request.body).toEqual({ password: 's3cr3t!', initialToken: 'initialToken', setupToken: 'setupToken' })
+      expect(req.request.body).toEqual({ password: testPasswords.twoFaSecret, initialToken: 'initialToken', setupToken: 'setupToken' })
       expect(res).toBe(undefined)
       httpMock.verify()
     })
@@ -78,7 +79,7 @@ describe('TwoFactorAuthServiceService', () => {
       tick()
 
       expect(req.request.method).toBe('POST')
-      expect(req.request.body).toEqual({ password: 's3cr3t!' })
+      expect(req.request.body).toEqual({ password: testPasswords.twoFaSecret })
       expect(res).toBe(undefined)
       httpMock.verify()
     })

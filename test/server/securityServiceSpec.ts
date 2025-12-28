@@ -20,7 +20,7 @@ describe('Security Service', () => {
   })
 
   it('should handle special characters', () => {
-    const special = 'p�ssw@rd!123'
+    const special = 'pï¿½ssw@rd!123'
     expect(special).to.be.a('string')
     expect(special.length).to.be.greaterThan(0)
   })

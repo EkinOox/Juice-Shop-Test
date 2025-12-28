@@ -25,17 +25,6 @@ import cookieParser from 'cookie-parser'
 import * as Prometheus from 'prom-client'
 import swaggerUi from 'swagger-ui-express'
 import featurePolicy from 'feature-policy'
-// Custom IP filter middleware to replace vulnerable express-ipfilter
-const ipFilter = (allowedIps: string[], options: { mode: string }) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const clientIp = req.ip || req.connection.remoteAddress || (req as any).socket?.remoteAddress || 'unknown'
-    const isAllowed = allowedIps.includes(clientIp)
-    if (options.mode === 'allow' && !isAllowed) {
-      return res.status(403).json({ error: 'IP address not allowed' })
-    }
-    next()
-  }
-}
 // @ts-expect-error FIXME due to non-existing type definitions for express-security.txt
 import securityTxt from 'express-security.txt'
 import { rateLimit } from 'express-rate-limit'
@@ -135,6 +124,17 @@ import { serveCodeSnippet, checkVulnLines } from './routes/vulnCodeSnippet'
 import { orderHistory, allOrders, toggleDeliveryStatus } from './routes/orderHistory'
 import { continueCode, continueCodeFindIt, continueCodeFixIt } from './routes/continueCode'
 import { ensureFileIsPassed, handleZipFileUpload, checkUploadSize, checkFileType, handleXmlUpload, handleYamlUpload } from './routes/fileUpload'
+// Custom IP filter middleware to replace vulnerable express-ipfilter
+const ipFilter = (allowedIps: string[], options: { mode: string }) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const clientIp = req.ip || req.connection.remoteAddress || (req as any).socket?.remoteAddress || 'unknown'
+    const isAllowed = allowedIps.includes(clientIp)
+    if (options.mode === 'allow' && !isAllowed) {
+      return res.status(403).json({ error: 'IP address not allowed' })
+    }
+    next()
+  }
+}
 
 const app = express()
 const server = new http.Server(app)

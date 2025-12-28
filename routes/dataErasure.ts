@@ -71,12 +71,12 @@ router.post('/', async (req: Request<Record<string, unknown>, Record<string, unk
 
       // Only allow alphanumeric characters, hyphens, and underscores for layout names
       if (!/^[a-zA-Z0-9_-]+$/.test(layoutName)) {
-        return next(new Error('Invalid layout name'))
+        next(new Error('Invalid layout name')); return
       }
 
       // Limit layout name length to prevent buffer overflow attacks
       if (layoutName.length > 50) {
-        return next(new Error('Layout name too long'))
+        next(new Error('Layout name too long')); return
       }
 
       // Use path.basename to prevent directory traversal
@@ -86,7 +86,7 @@ router.post('/', async (req: Request<Record<string, unknown>, Record<string, unk
       const allowedLayouts = ['default', 'minimal', 'compact', 'detailed']
 
       if (!allowedLayouts.includes(safeLayoutName)) {
-        return next(new Error('Layout not allowed'))
+        next(new Error('Layout not allowed')); return
       }
 
       // Construct safe path within views directory only
@@ -96,7 +96,7 @@ router.post('/', async (req: Request<Record<string, unknown>, Record<string, unk
       // Verify the template file exists
       const fs = require('fs')
       if (!fs.existsSync(templatePath + '.hbs') && !fs.existsSync(templatePath + '.ejs')) {
-        return next(new Error('Template not found'))
+        next(new Error('Template not found')); return
       }
 
       res.render('dataErasureResult', {

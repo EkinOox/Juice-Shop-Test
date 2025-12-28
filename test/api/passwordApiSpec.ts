@@ -5,6 +5,7 @@
 
 import * as frisby from 'frisby'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 
 const API_URL = 'http://localhost:3000/api'
 const REST_URL = 'http://localhost:3000/rest'
@@ -17,7 +18,7 @@ describe('/rest/user/change-password', () => {
       headers: jsonHeader,
       body: {
         email: 'kuni@be.rt',
-        password: 'kunigunde'
+        password: testPasswords.kunigunde
       }
     })
       .expect('status', 201)
@@ -26,7 +27,7 @@ describe('/rest/user/change-password', () => {
           headers: jsonHeader,
           body: {
             email: 'kuni@be.rt',
-            password: 'kunigunde'
+            password: testPasswords.kunigunde
           }
         })
           .expect('status', 200)
@@ -44,7 +45,7 @@ describe('/rest/user/change-password', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern@' + config.get<string>('application.domain'),
-        password: 'monkey summer birthday are all bad passwords but work just fine in a long passphrase'
+        password: testPasswords.passphrase
       }
     })
       .expect('status', 200)
@@ -90,7 +91,7 @@ describe('/rest/user/change-password', () => {
       headers: jsonHeader,
       body: {
         email: 'bender@' + config.get<string>('application.domain'),
-        password: 'OhG0dPlease1nsertLiquor!'
+        password: testPasswords.benderDeluxe
       }
     })
       .expect('status', 200)

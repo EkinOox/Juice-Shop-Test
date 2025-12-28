@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 
 const URL = 'http://localhost:3000'
 

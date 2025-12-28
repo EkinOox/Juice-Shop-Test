@@ -9,6 +9,7 @@ import config from 'config'
 import { initializeChatbot, bot } from '../../routes/chatbot'
 import fs from 'node:fs/promises'
 import * as utils from '../../lib/utils'
+import { testPasswords } from '../testPasswords'
 
 const URL = 'http://localhost:3000'
 const REST_URL = `${URL}/rest/`
@@ -53,7 +54,7 @@ describe('/chatbot', () => {
     it('GET bot state for authenticated users contains request for username', async () => {
       const { token } = await login({
         email: `J12934@${config.get<string>('application.domain')}`,
-        password: '0Y8rMnww$*9VFYE§59-!Fg1L6t&6lB'
+        password: testPasswords.wurstbrot
       })
 
       await frisby.setup({
@@ -74,7 +75,7 @@ describe('/chatbot', () => {
     it('Asks for username if not defined', async () => {
       const { token } = await login({
         email: `J12934@${config.get<string>('application.domain')}`,
-        password: '0Y8rMnww$*9VFYE§59-!Fg1L6t&6lB'
+        password: testPasswords.wurstbrot
       })
 
       const testCommand = trainingData.data[0].utterances[0]
@@ -105,7 +106,7 @@ describe('/chatbot', () => {
       }
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       })
 
       bot.addUser('1337', 'bkimminich')
@@ -137,7 +138,7 @@ describe('/chatbot', () => {
       }
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       })
       bot.addUser('12345', 'bkimminich')
       const testCommand = trainingData.data[0].utterances[0]
@@ -171,7 +172,7 @@ describe('/chatbot', () => {
     it('Responds with product price when asked question with product name', async () => {
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       })
       const { json } = await frisby.get(API_URL + '/Products/1')
         .expect('status', 200)
@@ -202,7 +203,7 @@ describe('/chatbot', () => {
     it('Greets back registered user after being told username', async () => {
       const { token } = await login({
         email: `stan@${config.get<string>('application.domain')}`,
-        password: 'ship coffin krypt cross estate supply insurance asbestos souvenir'
+        password: testPasswords.chatbotMnemonic
       })
       await frisby.setup({
         request: {
@@ -247,7 +248,7 @@ describe('/chatbot', () => {
       const functionTest = trainingData.data.filter(data => data.intent === 'queries.functionTest')
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       })
       const testCommand = functionTest[0].utterances[0]
       const testResponse = '3be2e438b7f3d04c89d7749f727bb3bd'
@@ -284,7 +285,7 @@ describe('/chatbot', () => {
         },
         body: {
           email: `chatbot-testuser@${config.get<string>('application.domain')}`,
-          password: 'testtesttest',
+          password: testPasswords.chatbotTest,
           username: '"',
           role: 'admin'
         }
@@ -292,7 +293,7 @@ describe('/chatbot', () => {
 
       const { token } = await login({
         email: `chatbot-testuser@${config.get<string>('application.domain')}`,
-        password: 'testtesttest'
+        password: testPasswords.chatbotTest
       })
 
       const functionTest = trainingData.data.filter(data => data.intent === 'queries.functionTest')

@@ -13,7 +13,7 @@ describe('Data Layer', () => {
         password: process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH',
         role: 'admin'
       }
-      
+
       expect(testUser.email).to.include('@')
       expect(testUser.password).to.be.a('string')
       expect(testUser.role).to.equal('admin')
@@ -25,7 +25,7 @@ describe('Data Layer', () => {
         price: 9.99,
         description: 'A test product'
       }
-      
+
       expect(testProduct.name).to.be.a('string')
       expect(testProduct.price).to.be.a('number')
       expect(testProduct.price).to.be.greaterThan(0)
@@ -37,7 +37,7 @@ describe('Data Layer', () => {
         key: 'testChallenge',
         difficulty: 3
       }
-      
+
       expect(testChallenge.name).to.be.a('string')
       expect(testChallenge.key).to.be.a('string')
       expect(testChallenge.difficulty).to.be.at.least(1)
@@ -58,9 +58,9 @@ describe('Data Layer', () => {
         email: 'valid@email.com',
         password: process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       }
-      
+
       expect(testData.name.trim()).to.not.be.empty
-      expect(testData.email.trim()).to.not.be.empty  
+      expect(testData.email.trim()).to.not.be.empty
       expect(testData.password.trim()).to.not.be.empty
     })
 
@@ -68,7 +68,7 @@ describe('Data Layer', () => {
       const emptyString = ''
       const nullValue = null
       const undefinedValue = undefined
-      
+
       expect(emptyString).to.equal('')
       expect(nullValue).to.be.null
       expect(undefinedValue).to.be.undefined

@@ -14,6 +14,7 @@ import { UserModel } from '../../models/user'
 import * as security from '../../lib/insecurity'
 import * as utils from '../../lib/utils'
 import logger from '../../lib/logger'
+import { testPasswords } from '../testPasswords'
 
 chai.use(sinonChai)
 const expect = chai.expect
@@ -37,7 +38,7 @@ describe('profileImageFileUpload', () => {
         path: '',
         stream: null as any
       } as any,
-      cookies: { token: 'valid-token' },
+      cookies: { token: testPasswords.tokenValid },
       socket: { remoteAddress: '127.0.0.1' } as any
     }
     res = {

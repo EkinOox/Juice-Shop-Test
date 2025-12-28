@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 import config from 'config'
 
 const URL = 'http://localhost:3000'
@@ -16,7 +17,7 @@ beforeAll(() => {
     headers: jsonHeader,
     body: {
       email: 'jim@juice-sh.op',
-      password: 'ncc-1701'
+      password: testPasswords.jim
     }
   })
     .expect('status', 200)

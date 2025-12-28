@@ -4,6 +4,7 @@
  */
 
 import { expect } from '@jest/globals'
+import { testPasswords } from '../testPasswords'
 import * as frisby from 'frisby'
 
 import { challenges } from '../../data/datacache'
@@ -42,7 +43,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: 'horst@horstma.nn',
-        password: 'hooooorst'
+        password: testPasswords.horst
       }
     })
       .expect('status', 201)
@@ -60,7 +61,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: 'horst2@horstma.nn',
-        password: 'hooooorst',
+        password: testPasswords.horst,
         role: 'admin'
       }
     })
@@ -82,7 +83,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: ' ',
-        password: ' '
+        password: testPasswords.space
       }
     })
       .expect('status', 201)
@@ -100,13 +101,13 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: ' ',
-        password: ' '
+        password: testPasswords.space
       }
     }).post(`${API_URL}/Users`, {
       headers: jsonHeader,
       body: {
         email: ' ',
-        password: ' '
+        password: testPasswords.space
       }
     })
       .expect('status', 400)
@@ -118,7 +119,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: ' test@gmail.com',
-        password: ' test'
+        password: testPasswords.spacePrefix
       }
     })
       .expect('status', 201)
@@ -136,7 +137,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: 'horst3@horstma.nn',
-        password: 'hooooorst',
+        password: testPasswords.horst,
         role: 'deluxe'
       }
     })
@@ -158,7 +159,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: 'horst4@horstma.nn',
-        password: 'hooooorst',
+        password: testPasswords.horst,
         role: 'accounting'
       }
     })
@@ -180,7 +181,7 @@ describe('/api/Users', () => {
       headers: jsonHeader,
       body: {
         email: 'horst5@horstma.nn',
-        password: 'hooooorst',
+        password: testPasswords.horst,
         role: 'accountinguser'
       }
     })
@@ -199,7 +200,7 @@ describe('/api/Users', () => {
         headers: jsonHeader,
         body: {
           email: '<iframe src="javascript:alert(`xss`)">',
-          password: 'does.not.matter'
+          password: testPasswords.generic
         }
       })
         .expect('status', 201)
@@ -253,7 +254,7 @@ describe('/rest/user/whoami', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)

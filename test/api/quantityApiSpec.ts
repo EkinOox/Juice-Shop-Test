@@ -6,6 +6,7 @@
 import * as frisby from 'frisby'
 import { expect } from '@jest/globals'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 
 const REST_URL = 'http://localhost:3000/rest'
 const API_URL = 'http://localhost:3000/api'
@@ -18,7 +19,7 @@ describe('/api/Quantitys', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -35,7 +36,7 @@ describe('/api/Quantitys', () => {
       headers: jsonHeader,
       body: {
         email: `admin@${config.get<string>('application.domain')}`,
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -52,7 +53,7 @@ describe('/api/Quantitys', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -69,7 +70,7 @@ describe('/api/Quantitys', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -90,7 +91,7 @@ describe('/api/Quantitys', () => {
       headers: jsonHeader,
       body: {
         email: `admin@${config.get<string>('application.domain')}`,
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -111,7 +112,7 @@ describe('/api/Quantitys', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -134,7 +135,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -152,7 +153,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `admin@${config.get<string>('application.domain')}`,
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -170,7 +171,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -187,7 +188,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -204,7 +205,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -225,7 +226,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -246,7 +247,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -266,7 +267,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -289,7 +290,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `accountant@${config.get<string>('application.domain')}`,
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -306,7 +307,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `admin@${config.get<string>('application.domain')}`,
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -323,7 +324,7 @@ describe('/api/Quantitys/:ids', () => {
       headers: jsonHeader,
       body: {
         email: `jim@${config.get<string>('application.domain')}`,
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)

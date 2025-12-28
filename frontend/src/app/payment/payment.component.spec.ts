@@ -318,7 +318,7 @@ describe('PaymentComponent', () => {
 
   it('should add token to local storage and cookie on calling choosePayment in deluxe mode', () => {
     component.mode = 'deluxe'
-    userService.upgradeToDeluxe.and.returnValue(of({ token: 'tokenValue' }))
+    userService.upgradeToDeluxe.and.returnValue(of({ token: testPasswords.tokenValue }))
     spyOn(localStorage, 'setItem')
     component.choosePayment()
     expect(localStorage.setItem).toHaveBeenCalledWith('token', 'tokenValue')

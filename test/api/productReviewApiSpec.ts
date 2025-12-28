@@ -4,6 +4,7 @@
  */
 
 import { type IncomingMessage } from 'node:http'
+import { testPasswords } from '../testPasswords'
 import * as frisby from 'frisby'
 import http from 'node:http'
 import config from 'config'
@@ -109,7 +110,7 @@ describe('/rest/products/reviews', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)
@@ -129,7 +130,7 @@ describe('/rest/products/reviews', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)

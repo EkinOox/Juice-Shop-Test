@@ -2,7 +2,7 @@ describe('/#/complain', () => {
   beforeEach(() => {
     cy.login({
       email: 'admin',
-      password: 'admin123'
+      password: 'admin'
     })
 
     cy.visit('/#/complain')

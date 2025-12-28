@@ -4,6 +4,9 @@ import config from 'config'
 import type { Memory as MemoryConfig, Product as ProductConfig } from './lib/config.types'
 import * as utils from './lib/utils'
 import * as otplib from 'otplib'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 export default defineConfig({
   projectId: '3hrkhu',
@@ -71,7 +74,32 @@ export default defineConfig({
           }
         },
         GenerateAuthenticator (inputString: string) {
+          // Use environment variable if inputString matches known test secret
+          if (inputString === 'TOTP_SECRET_VALID') {
+            inputString = process.env.TEST_TOTP_SECRET_VALID ?? 'IFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH'
+          }
           return otplib.authenticator.generate(inputString)
+        },
+        GetTestPassword (key: string) {
+          // Map de tous les passwords de test
+          const passwords: Record<string, string> = {
+            admin: process.env.TEST_PASSWORD_ADMIN ?? 'admin123',
+            jim: process.env.TEST_PASSWORD_JIM ?? 'ncc-1701',
+            bender: process.env.TEST_PASSWORD_BENDER ?? 'EinBelegtesBrotMitSchinkenSCHINKEN!',
+            amy: process.env.TEST_PASSWORD_AMY ?? 'K1f.....................',
+            accountant: process.env.TEST_PASSWORD_ACCOUNTANT ?? 'i am an awesome accountant',
+            wurstbrot: process.env.TEST_PASSWORD_WURSTBROT ?? '0Y8rMnww$*9VFYE§59-!Fg1L6t&6lB',
+            benderDeluxe: process.env.TEST_PASSWORD_BENDER_DELUXE ?? 'OhG0dPlease1nsertLiquor!',
+            support: process.env.TEST_PASSWORD_SUPPORT ?? 'J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P',
+            ciso: process.env.TEST_PASSWORD_CISO ?? 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb',
+            slurmClassic: 'slurmCl4ssic',
+            xssed: 'XSSed',
+            pwned: 'pwned',
+            thereCanBeOnlyOne: 'ThereCanBeOnlyOne',
+            focusOnScience: 'focusOnScienceMorty!focusOnScience',
+            admun: 'admun123'
+          }
+          return passwords[key] || key
         },
         toISO8601 () {
           const date = new Date()

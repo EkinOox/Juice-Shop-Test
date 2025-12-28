@@ -8,6 +8,7 @@ import { expect } from '@jest/globals'
 import config from 'config'
 import path from 'node:path'
 import fs from 'node:fs'
+import { testPasswords } from '../testPasswords'
 
 const jsonHeader = { 'content-type': 'application/json' }
 const REST_URL = 'http://localhost:3000/rest'
@@ -23,7 +24,7 @@ describe('/rest/memories', () => {
       headers: jsonHeader,
       body: {
         email: 'jim@' + config.get<string>('application.domain'),
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -61,7 +62,7 @@ describe('/rest/memories', () => {
       headers: jsonHeader,
       body: {
         email: 'jim@' + config.get<string>('application.domain'),
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -83,7 +84,7 @@ describe('/rest/memories', () => {
       headers: jsonHeader,
       body: {
         email: 'jim@' + config.get<string>('application.domain'),
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -109,7 +110,7 @@ describe('/rest/memories', () => {
       headers: jsonHeader,
       body: {
         email: 'jim@' + config.get<string>('application.domain'),
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)
@@ -139,7 +140,7 @@ describe('/rest/memories', () => {
       headers: jsonHeader,
       body: {
         email: 'jim@' + config.get<string>('application.domain'),
-        password: 'ncc-1701'
+        password: testPasswords.jim
       }
     })
       .expect('status', 200)

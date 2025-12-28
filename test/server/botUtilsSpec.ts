@@ -6,6 +6,7 @@
 import chai from 'chai'
 import * as botUtils from '../../lib/botUtils'
 import * as security from '../../lib/insecurity'
+import { testPasswords } from '../testPasswords'
 
 const expect = chai.expect
 
@@ -14,7 +15,7 @@ describe('botUtils', () => {
     it('returns static test response', () => {
       expect(botUtils.testFunction('foo', 'bar')).to.deep.equal({
         action: 'response',
-        body: '3be2e438b7f3d04c89d7749f727bb3bd'
+        body: testPasswords.botBodyMd5
       })
     })
   })

@@ -14,7 +14,7 @@ describe('Data Models', () => {
         username: 'testuser',
         role: 'customer'
       }
-      
+
       expect(userData.email).to.equal('test@example.com')
       expect(userData.password).to.equal(process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH')
       expect(userData.username).to.equal('testuser')
@@ -48,7 +48,7 @@ describe('Data Models', () => {
         UserId: 1,
         coupon: null
       }
-      
+
       expect(basketData.UserId).to.equal(1)
       expect(basketData.coupon).to.equal(null)
     })

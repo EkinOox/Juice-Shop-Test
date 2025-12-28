@@ -8,6 +8,7 @@ import config from 'config'
 
 import type { Product as ProductConfig } from '../../lib/config.types'
 import * as utils from '../../lib/utils'
+import { testPasswords } from '../testPasswords'
 
 const URL = 'http://localhost:3000'
 

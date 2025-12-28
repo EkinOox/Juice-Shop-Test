@@ -13,6 +13,7 @@ import { WalletModel } from '../../models/wallet'
 import { CardModel } from '../../models/card'
 import * as challengeUtils from '../../lib/challengeUtils'
 import { challenges } from '../../data/datacache'
+import { testPasswords } from '../testPasswords'
 import * as security from '../../lib/insecurity'
 import * as utils from '../../lib/utils'
 
@@ -120,7 +121,7 @@ describe('deluxe', () => {
         status: 'success',
         data: {
           confirmation: 'Congratulations! You are now a deluxe member!',
-          token: 'newToken123'
+          token: testPasswords.tokenNew
         }
       })
     })
@@ -190,7 +191,7 @@ describe('deluxe', () => {
         status: 'success',
         data: {
           confirmation: 'Congratulations! You are now a deluxe member!',
-          token: 'newToken123'
+          token: testPasswords.tokenNew
         }
       })
     })

@@ -27,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import { testPasswords } from '../../../test/testPasswords'
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent
@@ -130,8 +131,8 @@ describe('RegisterComponent', () => {
   })
 
   it('password and repeat password should be the same', () => {
-    const password = 'aaaaa'
-    const passwordRepeat = 'aaaaa'
+    const password = testPasswords.weak
+    const passwordRepeat = testPasswords.weak
     component.passwordControl.setValue(password)
     component.repeatPasswordControl.setValue('bbbbb')
     expect(component.repeatPasswordControl.valid).toBeFalsy()
@@ -148,7 +149,7 @@ describe('RegisterComponent', () => {
     component.repeatPasswordControl.setValue('password')
     component.securityQuestionControl.setValue(1)
     component.securityAnswerControl.setValue('Answer')
-    const user = { email: 'x@x.xx', password: 'password', passwordRepeat: 'password', securityQuestion: { id: 1, question: 'Wat is?' }, securityAnswer: 'Answer' }
+    const user = { email: 'x@x.xx', password: testPasswords.password, passwordRepeat: 'password', securityQuestion: { id: 1, question: 'Wat is?' }, securityAnswer: 'Answer' }
     const securityAnswerObject = { UserId: 1, answer: 'Answer', SecurityQuestionId: 1 }
     component.save()
     tick()

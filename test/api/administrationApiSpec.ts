@@ -5,6 +5,7 @@
 
 import * as frisby from 'frisby'
 import * as utils from '../../lib/utils'
+import { testPasswords } from '../testPasswords'
 
 const Joi = frisby.Joi
 

@@ -7,7 +7,7 @@ describe('/#/register', () => {
     beforeEach(() => {
       cy.login({
         email: 'admin',
-        password: 'admin123'
+        password: 'admin'
       })
     })
 
@@ -25,7 +25,7 @@ describe('/#/register', () => {
                 },
                 body: JSON.stringify({
                   email: '<iframe src="javascript:alert(`xss`)">',
-                  password: 'XSSed',
+                  password: 'xssed',
                   passwordRepeat: 'XSSed',
                   role: 'admin'
                 })
@@ -81,7 +81,7 @@ describe('/#/register', () => {
           },
           body: JSON.stringify({
             email: 'uncle@bob.com',
-            password: 'ThereCanBeOnlyOne'
+            password: 'thereCanBeOnlyOne'
           })
         })
         if (response.status === 201) {

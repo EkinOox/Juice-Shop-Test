@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 
 const API_URL = 'http://localhost:3000/api'
 const REST_URL = 'http://localhost:3000/rest'
@@ -17,7 +18,7 @@ beforeAll(() => {
     headers: jsonHeader,
     body: {
       email: 'jim@juice-sh.op',
-      password: 'ncc-1701'
+      password: testPasswords.jim
     }
   })
     .expect('status', 200)

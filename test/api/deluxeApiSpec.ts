@@ -5,6 +5,7 @@
 
 import * as frisby from 'frisby'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 
 const jsonHeader = { 'content-type': 'application/json' }
 const REST_URL = 'http://localhost:3000/rest'
@@ -32,7 +33,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'bender@' + config.get<string>('application.domain'),
-        password: 'OhG0dPlease1nsertLiquor!'
+        password: testPasswords.benderDeluxe
       }
     })
       .expect('status', 200)
@@ -50,7 +51,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'ciso@' + config.get<string>('application.domain'),
-        password: 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb'
+        password: testPasswords.ciso
       }
     })
       .expect('status', 200)
@@ -68,7 +69,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'admin@' + config.get<string>('application.domain'),
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -86,7 +87,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'accountant@' + config.get<string>('application.domain'),
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)
@@ -102,7 +103,7 @@ describe('/rest/deluxe-membership', () => {
   it('POST upgrade deluxe membership status for customers', async () => {
     const { token } = await login({
       email: `bender@${config.get<string>('application.domain')}`,
-      password: 'OhG0dPlease1nsertLiquor!'
+      password: testPasswords.benderDeluxe
     })
 
     const { json } = await frisby.get(API_URL + '/Cards', {
@@ -126,7 +127,7 @@ describe('/rest/deluxe-membership', () => {
   it('POST deluxe membership status with wrong card id throws error', async () => {
     const { token } = await login({
       email: `jim@${config.get<string>('application.domain')}`,
-      password: 'ncc-1701'
+      password: testPasswords.jim
     })
 
     await frisby.post(REST_URL + '/deluxe-membership', {
@@ -146,7 +147,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'ciso@' + config.get<string>('application.domain'),
-        password: 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb'
+        password: testPasswords.ciso
       }
     })
       .expect('status', 200)
@@ -167,7 +168,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'admin@' + config.get<string>('application.domain'),
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -188,7 +189,7 @@ describe('/rest/deluxe-membership', () => {
       headers: jsonHeader,
       body: {
         email: 'accountant@' + config.get<string>('application.domain'),
-        password: 'i am an awesome accountant'
+        password: testPasswords.accountant
       }
     })
       .expect('status', 200)

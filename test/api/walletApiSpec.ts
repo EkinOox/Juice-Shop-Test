@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 
 const REST_URL = 'http://localhost:3000/rest'
 
@@ -15,7 +16,7 @@ beforeAll(() => {
     headers: jsonHeader,
     body: {
       email: 'demo',
-      password: 'demo'
+      password: testPasswords.demo
     }
   })
     .expect('status', 200)

@@ -25,8 +25,8 @@ export { default as isWindows } from './is-windows'
 // import isGitpod from 'is-gitpod') // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolve
 
 // Custom download function to replace vulnerable 'download' package
-export const download = (url: string): Promise<Buffer> => {
-  return new Promise((resolve, reject) => {
+export const download = async (url: string): Promise<Buffer> => {
+  return await new Promise((resolve, reject) => {
     const urlObj = new URL(url)
     const client = urlObj.protocol === 'https:' ? https : http
 
@@ -38,7 +38,7 @@ export const download = (url: string): Promise<Buffer> => {
 
       const chunks: Buffer[] = []
       res.on('data', (chunk) => chunks.push(chunk))
-      res.on('end', () => resolve(Buffer.concat(chunks)))
+      res.on('end', () => { resolve(Buffer.concat(chunks)) })
     })
 
     req.on('error', reject)

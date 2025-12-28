@@ -11,7 +11,7 @@ import { challenges } from '../data/datacache'
 export function performRedirect () {
   return ({ query }: Request, res: Response, next: NextFunction) => {
     const target: string = query.to as string
-    const urlMap: { [key: string]: string } = {
+    const urlMap: Record<string, string> = {
       github: 'https://github.com/juice-shop/juice-shop',
       blockchain: 'https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm',
       dash: 'https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW',

@@ -5,6 +5,7 @@
 
 import * as frisby from 'frisby'
 import * as security from '../../lib/insecurity'
+import { testPasswords } from '../testPasswords'
 const Joi = frisby.Joi
 
 const API_URL = 'http://localhost:3000/api'

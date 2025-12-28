@@ -5,17 +5,17 @@
 
 // Simple in-memory database replacement for MarsDB
 class InMemoryCollection {
-  private data: Map<string, any> = new Map()
+  private readonly data = new Map<string, any>()
   private nextId = 1
 
-  async insert(doc: any): Promise<any> {
+  async insert (doc: any): Promise<any> {
     const id = this.nextId++
     const document = { ...doc, _id: id }
     this.data.set(id.toString(), document)
     return document
   }
 
-  async find(query: any = {}): Promise<any[]> {
+  async find (query: any = {}): Promise<any[]> {
     const results = Array.from(this.data.values())
     if (Object.keys(query).length === 0) {
       return results
@@ -29,12 +29,12 @@ class InMemoryCollection {
     })
   }
 
-  async findOne(query: any): Promise<any | null> {
+  async findOne (query: any): Promise<any | null> {
     const results = await this.find(query)
     return results.length > 0 ? results[0] : null
   }
 
-  async update(query: any, update: any, options?: any): Promise<any> {
+  async update (query: any, update: any, options?: any): Promise<any> {
     const results = await this.find(query)
     for (const item of results) {
       if (update.$set) {
@@ -46,7 +46,7 @@ class InMemoryCollection {
     return { modified: results.length, original: results }
   }
 
-  async count(query: any = {}): Promise<number> {
+  async count (query: any = {}): Promise<number> {
     const results = await this.find(query)
     return results.length
   }

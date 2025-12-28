@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 import * as security from '../../lib/insecurity'
 const Joi = frisby.Joi
 
@@ -41,7 +42,7 @@ describe('/api/SecurityAnswers/:id', () => {
   it('POST security answer for a newly registered user', () => {
     return frisby.post(`${API_URL}/Users`, {
       email: 'new.user@te.st',
-      password: '12345'
+      password: testPasswords.simple
     }, { json: true })
       .expect('status', 201)
       .then(({ json }) => {

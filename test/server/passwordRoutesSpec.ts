@@ -11,7 +11,7 @@ describe('Password Routes', () => {
       const validPassword = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       const emptyPassword = ''
       const undefinedPassword = undefined
-      
+
       expect(validPassword).to.be.a('string')
       expect(validPassword.length).to.be.greaterThan(0)
       expect(emptyPassword).to.equal('')
@@ -22,7 +22,7 @@ describe('Password Routes', () => {
       const password = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       const confirmation = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       const mismatch = process.env.TEST_HASHED_PASSWORD_DIFFERENT ?? '$2b$10$DifferentHashExampleForTesting'
-      
+
       expect(password).to.equal(confirmation)
       expect(password).to.not.equal(mismatch)
     })
@@ -42,7 +42,7 @@ describe('Password Routes', () => {
         new: process.env.TEST_HASHED_PASSWORD_NEW ?? '$2b$10$NewHashExample',
         repeat: process.env.TEST_HASHED_PASSWORD_NEW ?? '$2b$10$NewHashExample'
       }
-      
+
       expect(validRequest).to.have.property('current')
       expect(validRequest).to.have.property('new')
       expect(validRequest).to.have.property('repeat')
@@ -53,7 +53,7 @@ describe('Password Routes', () => {
         current: process.env.TEST_HASHED_PASSWORD_OLD ?? '$2b$10$OldHashExample'
         // missing new and repeat
       }
-      
+
       expect(incompleteRequest).to.have.property('current')
       expect(incompleteRequest).to.not.have.property('new')
       expect(incompleteRequest).to.not.have.property('repeat')

@@ -5,6 +5,7 @@
 
 import * as frisby from 'frisby'
 import config from 'config'
+import { testPasswords } from '../testPasswords'
 const Joi = frisby.Joi
 
 const API_URL = 'http://localhost:3000/api'
@@ -18,7 +19,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'kalli@kasper.le',
-        password: 'kallliiii'
+        password: testPasswords.kalli
       }
     })
       .expect('status', 201)
@@ -27,7 +28,7 @@ describe('/rest/user/login', () => {
           headers: jsonHeader,
           body: {
             email: 'kalli@kasper.le',
-            password: 'kallliiii'
+            password: testPasswords.kalli
           }
         })
           .expect('status', 200)
@@ -43,7 +44,7 @@ describe('/rest/user/login', () => {
   it('POST login non-existing user', () => {
     return frisby.post(REST_URL + '/user/login', {
       email: 'otto@mei.er',
-      password: 'ooootto'
+      password: testPasswords.otto
     }, { json: true })
       .expect('status', 401)
   })
@@ -61,7 +62,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'admin@' + config.get<string>('application.domain'),
-        password: 'admin123'
+        password: testPasswords.admin
       }
     })
       .expect('status', 200)
@@ -76,7 +77,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'support@' + config.get<string>('application.domain'),
-        password: 'J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P'
+        password: testPasswords.support
       }
     })
       .expect('status', 200)
@@ -91,7 +92,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'mc.safesearch@' + config.get<string>('application.domain'),
-        password: 'Mr. N00dles'
+        password: testPasswords.mcSafesearch
       }
     })
       .expect('status', 200)
@@ -106,7 +107,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'amy@' + config.get<string>('application.domain'),
-        password: 'K1f.....................'
+        password: testPasswords.amy
       }
     })
       .expect('status', 200)
@@ -121,7 +122,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'wurstbrot@' + config.get<string>('application.domain'),
-        password: 'EinBelegtesBrotMitSchinkenSCHINKEN!'
+        password: testPasswords.bender
       }
     })
       .expect('status', 401)
@@ -139,7 +140,7 @@ describe('/rest/user/login', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)
@@ -242,7 +243,7 @@ describe('/rest/saveLoginIp', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)
@@ -263,7 +264,7 @@ describe('/rest/saveLoginIp', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPasswords.bjoernOAuth
       }
     })
       .expect('status', 200)

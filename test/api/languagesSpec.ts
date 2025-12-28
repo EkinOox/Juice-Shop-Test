@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { testPasswords } from '../testPasswords'
 const Joi = frisby.Joi
 
 const REST_URL = 'http://localhost:3000/rest'

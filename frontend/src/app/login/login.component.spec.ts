@@ -125,7 +125,7 @@ describe('LoginComponent', () => {
   }))
 
   it('stores the returned authentication token in localStorage', () => {
-    userService.login.and.returnValue(of({ token: 'token' }))
+    userService.login.and.returnValue(of({ token: testPasswords.tokenGeneric }))
     component.login()
     expect(localStorage.getItem('token')).toBe('token')
   })
