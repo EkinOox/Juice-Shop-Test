@@ -10,7 +10,7 @@ describe('Data Layer', () => {
     it('should validate basic data structures', () => {
       const testUser = {
         email: 'admin@test.com',
-        password: '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH',
+        password: process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH',
         role: 'admin'
       }
       
@@ -56,7 +56,7 @@ describe('Data Layer', () => {
       const testData = {
         name: 'Valid Name',
         email: 'valid@email.com',
-        password: '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
+        password: process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       }
       
       expect(testData.name.trim()).to.not.be.empty

@@ -10,13 +10,13 @@ describe('Data Models', () => {
     it('should validate basic data structures', () => {
       const userData = {
         email: 'test@example.com',
-        password: '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH',
+        password: process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH',
         username: 'testuser',
         role: 'customer'
       }
       
       expect(userData.email).to.equal('test@example.com')
-      expect(userData.password).to.equal('$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH')
+      expect(userData.password).to.equal(process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH')
       expect(userData.username).to.equal('testuser')
       expect(userData.role).to.equal('customer')
     })

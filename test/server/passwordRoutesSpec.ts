@@ -8,7 +8,7 @@ import { expect } from 'chai'
 describe('Password Routes', () => {
   describe('Password Validation', () => {
     it('should validate password requirements', () => {
-      const validPassword = '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
+      const validPassword = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       const emptyPassword = ''
       const undefinedPassword = undefined
       
@@ -19,16 +19,16 @@ describe('Password Routes', () => {
     })
 
     it('should handle password confirmation', () => {
-      const password = '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
-      const confirmation = '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
-      const mismatch = '$2b$10$DifferentHashExampleForTesting'
+      const password = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
+      const confirmation = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
+      const mismatch = process.env.TEST_HASHED_PASSWORD_DIFFERENT ?? '$2b$10$DifferentHashExampleForTesting'
       
       expect(password).to.equal(confirmation)
       expect(password).to.not.equal(mismatch)
     })
 
     it('should handle special characters in passwords', () => {
-      const specialPassword = '$2b$10$Special.Ch@rs.H@sh.Example'
+      const specialPassword = process.env.TEST_HASHED_PASSWORD_SPECIAL ?? '$2b$10$Special.Ch@rs.H@sh.Example'
       expect(specialPassword).to.be.a('string')
       expect(specialPassword.includes('@')).to.be.true
       expect(specialPassword.includes('.')).to.be.true
@@ -38,9 +38,9 @@ describe('Password Routes', () => {
   describe('Request Validation', () => {
     it('should validate request body structure', () => {
       const validRequest = {
-        current: '$2b$10$OldHashExample',
-        new: '$2b$10$NewHashExample',
-        repeat: '$2b$10$NewHashExample'
+        current: process.env.TEST_HASHED_PASSWORD_OLD ?? '$2b$10$OldHashExample',
+        new: process.env.TEST_HASHED_PASSWORD_NEW ?? '$2b$10$NewHashExample',
+        repeat: process.env.TEST_HASHED_PASSWORD_NEW ?? '$2b$10$NewHashExample'
       }
       
       expect(validRequest).to.have.property('current')
@@ -50,7 +50,7 @@ describe('Password Routes', () => {
 
     it('should handle missing fields', () => {
       const incompleteRequest = {
-        current: '$2b$10$OldHashExample'
+        current: process.env.TEST_HASHED_PASSWORD_OLD ?? '$2b$10$OldHashExample'
         // missing new and repeat
       }
       
