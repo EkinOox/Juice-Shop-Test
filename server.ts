@@ -127,7 +127,7 @@ import { ensureFileIsPassed, handleZipFileUpload, checkUploadSize, checkFileType
 // Custom IP filter middleware to replace vulnerable express-ipfilter
 const ipFilter = (allowedIps: string[], options: { mode: string }) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const clientIp = req.ip || req.connection.remoteAddress || (req as any).socket?.remoteAddress || 'unknown'
+    const clientIp = req.ip ?? req.connection.remoteAddress ?? (req as any).socket?.remoteAddress ?? 'unknown'
     const isAllowed = allowedIps.includes(clientIp)
     if (options.mode === 'allow' && !isAllowed) {
       return res.status(403).json({ error: 'IP address not allowed' })
@@ -296,7 +296,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
   app.use(express.static(path.resolve('frontend/dist/frontend')))
-  app.use(cookieParser(process.env.COOKIE_SECRET || 'kekse'))
+  app.use(cookieParser(process.env.COOKIE_SECRET ?? 'kekse'))
   // vuln-code-snippet end directoryListingChallenge accessLogDisclosureChallenge
 
   /* Configure and enable backend-side i18n */

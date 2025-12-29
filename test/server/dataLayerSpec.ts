@@ -59,9 +59,9 @@ describe('Data Layer', () => {
         password: process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       }
 
-      expect(testData.name.trim()).to.not.be.empty
-      expect(testData.email.trim()).to.not.be.empty
-      expect(testData.password.trim()).to.not.be.empty
+      void expect(testData.name.trim()).to.not.be.empty
+      void expect(testData.email.trim()).to.not.be.empty
+      void expect(testData.password.trim()).to.not.be.empty
     })
 
     it('should handle edge cases', () => {
@@ -69,9 +69,9 @@ describe('Data Layer', () => {
       const nullValue = null
       const undefinedValue = undefined
 
-      expect(emptyString).to.equal('')
-      expect(nullValue).to.be.null
-      expect(undefinedValue).to.be.undefined
+      void expect(emptyString).to.equal('')
+      void expect(nullValue).to.be.null
+      void expect(undefinedValue).to.be.undefined
     })
   })
 })

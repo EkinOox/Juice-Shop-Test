@@ -12,10 +12,10 @@ describe('Password Routes', () => {
       const emptyPassword = ''
       const undefinedPassword = undefined
 
-      expect(validPassword).to.be.a('string')
-      expect(validPassword.length).to.be.greaterThan(0)
-      expect(emptyPassword).to.equal('')
-      expect(undefinedPassword).to.be.undefined
+      void expect(validPassword).to.be.a('string')
+      void expect(validPassword.length).to.be.greaterThan(0)
+      void expect(emptyPassword).to.equal('')
+      void expect(undefinedPassword).to.be.undefined
     })
 
     it('should handle password confirmation', () => {
@@ -23,15 +23,15 @@ describe('Password Routes', () => {
       const confirmation = process.env.TEST_HASHED_PASSWORD ?? '$2b$10$HBKKqhQKheLhQfxKv.EXAMPLE.HASH'
       const mismatch = process.env.TEST_HASHED_PASSWORD_DIFFERENT ?? '$2b$10$DifferentHashExampleForTesting'
 
-      expect(password).to.equal(confirmation)
-      expect(password).to.not.equal(mismatch)
+      void expect(password).to.equal(confirmation)
+      void expect(password).to.not.equal(mismatch)
     })
 
     it('should handle special characters in passwords', () => {
       const specialPassword = process.env.TEST_HASHED_PASSWORD_SPECIAL ?? '$2b$10$Special.Ch@rs.H@sh.Example'
-      expect(specialPassword).to.be.a('string')
-      expect(specialPassword.includes('@')).to.be.true
-      expect(specialPassword.includes('.')).to.be.true
+      void expect(specialPassword).to.be.a('string')
+      void expect(specialPassword.includes('@')).to.be.true
+      void expect(specialPassword.includes('.')).to.be.true
     })
   })
 

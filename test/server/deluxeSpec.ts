@@ -100,7 +100,7 @@ describe('deluxe', () => {
 
       sinon.stub(UserModel, 'findOne').resolves(user as any)
       sinon.stub(WalletModel, 'findOne').resolves(wallet as any)
-      sinon.stub(WalletModel, 'decrement').resolves()
+      const decrementStub = sinon.stub(WalletModel, 'decrement').resolves()
       sinon.stub(security, 'verify').returns(false)
       sinon.stub(utils, 'jwtFrom').returns('')
       sinon.stub(challengeUtils, 'solveIf')
@@ -111,7 +111,7 @@ describe('deluxe', () => {
       const middleware = upgradeToDeluxe()
       await middleware(req as Request, res as Response, next)
 
-      expect(WalletModel.decrement).to.have.been.calledWith({ balance: 49 }, { where: { UserId: 1 } })
+      void expect(decrementStub).to.have.been.calledWith({ balance: 49 }, { where: { UserId: 1 } })
       expect(user.update).to.have.been.calledWith({
         role: security.roles.deluxe,
         deluxeToken: security.deluxeToken(user.email)

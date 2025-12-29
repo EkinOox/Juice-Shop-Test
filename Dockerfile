@@ -36,9 +36,8 @@ LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
     org.opencontainers.image.source="https://github.com/juice-shop/juice-shop" \
     org.opencontainers.image.revision=$VCS_REF \
     org.opencontainers.image.created=$BUILD_DATE
-WORKDIR /juice-shop
-# Fix: Remove write permissions to prevent security issues
-COPY --from=installer --chown=65532:65532 /juice-shop .
+WORKDIR /app
+COPY --from=installer --chown=root:root --chmod=755 /juice-shop .
 USER 65532
 EXPOSE 3000
-CMD ["/juice-shop/build/app.js"]
+CMD ["/app/build/app.js"]

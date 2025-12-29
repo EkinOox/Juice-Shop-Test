@@ -27,7 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
-import { testPasswords } from '../../../test/testPasswords'
+import { testPasswords } from '../../test/testPasswords'
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent
@@ -149,7 +149,7 @@ describe('RegisterComponent', () => {
     component.repeatPasswordControl.setValue('password')
     component.securityQuestionControl.setValue(1)
     component.securityAnswerControl.setValue('Answer')
-    const user = { email: 'x@x.xx', password: testPasswords.password, passwordRepeat: 'password', securityQuestion: { id: 1, question: 'Wat is?' }, securityAnswer: 'Answer' }
+    const user = { email: 'x@x.xx', password: testPasswords.passwordGeneric, passwordRepeat: testPasswords.passwordGeneric, securityQuestion: { id: 1, question: 'Wat is?' }, securityAnswer: 'Answer' }
     const securityAnswerObject = { UserId: 1, answer: 'Answer', SecurityQuestionId: 1 }
     component.save()
     tick()

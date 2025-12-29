@@ -56,7 +56,7 @@ export default class Bot {
         const match = code.match(/currentUser\('([^']+)'\)/)
         if (match) {
           const userId = match[1]
-          return this.users.get(userId)?.name || false
+          return this.users.get(userId)?.name ?? false
         }
         return false
       }

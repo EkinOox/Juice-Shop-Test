@@ -28,13 +28,17 @@ describe('/#/basket', () => {
         .should('have.attr', 'data-test-totp-secret')
         .then(($val) => {
           // console.log($val);
-          cy.get('#currentPasswordSetup').type('K1f.....................')
+          cy.task<string>('GetTestPassword', 'amy').then((password: string) => {
+            cy.get('#currentPasswordSetup').type(password)
+          })
 
           cy.task<string>('GenerateAuthenticator', $val).then((secret: string) => {
             cy.get('#initialToken').type(secret)
             cy.get('#setupTwoFactorAuth').click()
 
-            cy.get('#currentPasswordDisable').type('K1f.....................')
+            cy.task<string>('GetTestPassword', 'amy').then((password: string) => {
+              cy.get('#currentPasswordDisable').type(password)
+            })
             cy.get('#disableTwoFactorAuth').click()
           })
         })

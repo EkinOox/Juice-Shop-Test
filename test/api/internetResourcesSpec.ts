@@ -4,7 +4,6 @@
  */
 
 import * as frisby from 'frisby'
-import { testPasswords } from '../testPasswords'
 
 xdescribe('Required Internet resource', () => { // FIXME Tests fail regularly (but not always) from ECONNRESET
   describe('PasteBin paste for "Leaked Unsafe Product" challenge available', () => {

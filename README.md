@@ -11,8 +11,8 @@ ou pour le cloud :
 
 ```bash
 
-sonar \
-  -Dsonar.token=c2acceada47cdd01e82aa2d42cc8393e003e9357 \
+cd /Users/ekinoox/Documents/GitHub/Juice-Shop && NODE_OPTIONS="--max-old-space-size=4096" sonar \
+  -Dsonar.token=4aea338af4016d4371f479c140c1c3ad6cc386d9 \
   -Dsonar.projectKey=EkinOox_Juice-Shop-Test \
   -Dsonar.organization=ekinoox
 

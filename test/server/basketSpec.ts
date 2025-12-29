@@ -11,7 +11,6 @@ import { BasketModel } from '../../models/basket'
 import { ProductModel } from '../../models/product'
 import * as challengeUtils from '../../lib/challengeUtils'
 import * as security from '../../lib/insecurity'
-import { challenges } from '../../data/datacache'
 import type { UserModel } from '../../models/user'
 
 const expect = chai.expect
@@ -47,7 +46,7 @@ describe('basket', () => {
 
       const basketFindOneStub = sinon.stub(BasketModel, 'findOne').resolves(mockBasket)
       const solveIfStub = sinon.stub(challengeUtils, 'solveIf')
-      const authenticatedUsersStub = sinon.stub(security.authenticatedUsers, 'from').returns({
+      sinon.stub(security.authenticatedUsers, 'from').returns({
         data: { id: 2, bid: 2 } as unknown as UserModel
       })
 
@@ -61,22 +60,22 @@ describe('basket', () => {
         include: [{ model: ProductModel, paranoid: false, as: 'Products' }]
       })
 
-      expect(solveIfStub).to.have.been.calledOnce
-      expect(req.__).to.have.been.calledWith('Apple Juice')
-      expect(req.__).to.have.been.calledWith('Orange Juice')
-      expect(res.json).to.have.been.calledOnce
+      void expect(solveIfStub).to.have.been.calledOnce
+      void expect(req.__).to.have.been.calledWith('Apple Juice')
+      void expect(req.__).to.have.been.calledWith('Orange Juice')
+      void expect(res.json).to.have.been.calledOnce
     })
 
     it('should handle basket not found', async () => {
-      const basketFindOneStub = sinon.stub(BasketModel, 'findOne').resolves(null)
+      sinon.stub(BasketModel, 'findOne').resolves(null)
       const solveIfStub = sinon.stub(challengeUtils, 'solveIf')
 
       retrieveBasket()(req, res, next)
 
       await new Promise(resolve => setTimeout(resolve, 0))
 
-      expect(solveIfStub).to.have.been.calledOnce
-      expect(res.json).to.have.been.calledOnce
+      void expect(solveIfStub).to.have.been.calledOnce
+      void expect(res.json).to.have.been.calledOnce
     })
 
     it('should handle basket with no products', async () => {
@@ -85,27 +84,27 @@ describe('basket', () => {
         Products: []
       } as any
 
-      const basketFindOneStub = sinon.stub(BasketModel, 'findOne').resolves(mockBasket)
+      sinon.stub(BasketModel, 'findOne').resolves(mockBasket)
       const solveIfStub = sinon.stub(challengeUtils, 'solveIf')
 
       retrieveBasket()(req, res, next)
 
       await new Promise(resolve => setTimeout(resolve, 0))
 
-      expect(solveIfStub).to.have.been.calledOnce
-      expect(req.__).not.to.have.been.called
-      expect(res.json).to.have.been.calledOnce
+      void expect(solveIfStub).to.have.been.calledOnce
+      void expect(req.__).not.to.have.been.called
+      void expect(res.json).to.have.been.calledOnce
     })
 
     it('should handle database errors', async () => {
       const error = new Error('Database error')
-      const basketFindOneStub = sinon.stub(BasketModel, 'findOne').rejects(error)
+      sinon.stub(BasketModel, 'findOne').rejects(error)
 
       retrieveBasket()(req, res, next)
 
       await new Promise(resolve => setTimeout(resolve, 0))
 
-      expect(next).to.have.been.calledWith(error)
+      void expect(next).to.have.been.calledWith(error)
     })
   })
 })

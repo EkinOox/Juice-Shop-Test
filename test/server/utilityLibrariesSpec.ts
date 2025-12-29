@@ -43,9 +43,9 @@ describe('Utility Libraries', () => {
       const validNumber = 123
       const invalidNumber = NaN
 
-      expect(validNumber).to.be.a('number')
-      expect(validNumber).to.not.be.NaN
-      expect(invalidNumber).to.be.NaN
+      void expect(validNumber).to.be.a('number')
+      void expect(validNumber).to.not.be.NaN
+      void expect(invalidNumber).to.be.NaN
     })
   })
 })

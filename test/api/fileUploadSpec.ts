@@ -9,7 +9,6 @@ import { expect } from '@jest/globals'
 import * as frisby from 'frisby'
 import path from 'node:path'
 import fs from 'node:fs'
-import { testPasswords } from '../testPasswords'
 
 const URL = 'http://localhost:3000'
 

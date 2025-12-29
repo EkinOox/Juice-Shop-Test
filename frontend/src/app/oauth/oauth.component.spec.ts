@@ -23,7 +23,7 @@ import { of, throwError } from 'rxjs'
 import { UserService } from '../Services/user.service'
 import { CookieModule } from 'ngy-cookie'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
-import { testPasswords } from '../../../test/testPasswords'
+import { testPasswords } from '../../test/testPasswords'
 
 describe('OAuthComponent', () => {
   let component: OAuthComponent

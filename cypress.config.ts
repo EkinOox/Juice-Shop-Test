@@ -92,12 +92,17 @@ export default defineConfig({
             benderDeluxe: process.env.TEST_PASSWORD_BENDER_DELUXE ?? 'OhG0dPlease1nsertLiquor!',
             support: process.env.TEST_PASSWORD_SUPPORT ?? 'J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P',
             ciso: process.env.TEST_PASSWORD_CISO ?? 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb',
-            slurmClassic: 'slurmCl4ssic',
-            xssed: 'XSSed',
-            pwned: 'pwned',
-            thereCanBeOnlyOne: 'ThereCanBeOnlyOne',
-            focusOnScience: 'focusOnScienceMorty!focusOnScience',
-            admun: 'admun123'
+            mcSafesearch: process.env.TEST_PASSWORD_MC_SAFESEARCH ?? 'Mr. N00dles',
+            morty: process.env.TEST_PASSWORD_MORTY ?? 'focusOnScience',
+            uvogin: process.env.TEST_PASSWORD_UVOGIN ?? 'Never mind...',
+            oauth: process.env.TEST_PASSWORD_OAUTH ?? 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=',
+            admun: process.env.TEST_PASSWORD_ADMUN ?? 'admun123',
+            benderSlurm: process.env.TEST_PASSWORD_BENDER_SLURM ?? 'slurmClassic',
+            jimDeluxe: process.env.TEST_PASSWORD_JIM_DELUXE ?? 'jim',
+            adminDeluxe: process.env.TEST_PASSWORD_ADMIN_DELUXE ?? 'admin',
+            mcSafesearchDeluxe: process.env.TEST_PASSWORD_MC_SAFESEARCH_DELUXE ?? 'Mr. N00dles',
+            mortyNew1: process.env.TEST_PASSWORD_MORTY_NEW1 ?? 'focusOnScienceMorty!focusOnScience',
+            mortyNew2: process.env.TEST_PASSWORD_MORTY_NEW2 ?? 'GonorrheaCantSeeUs!'
           }
           return passwords[key] || key
         },

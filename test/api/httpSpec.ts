@@ -5,7 +5,6 @@
 
 import * as frisby from 'frisby'
 import config from 'config'
-import { testPasswords } from '../testPasswords'
 
 const URL = 'http://localhost:3000'
 

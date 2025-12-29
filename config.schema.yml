@@ -6,6 +6,8 @@ server:
   baseUrl:
     type: string
 application:
+  id:
+    type: string
   domain:
     type: string
   name:

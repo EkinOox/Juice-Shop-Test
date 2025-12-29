@@ -8,7 +8,7 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing'
 
 import { TwoFactorAuthService } from './two-factor-auth-service'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
-import { testPasswords } from '../../../test/testPasswords'
+import { testPasswords } from '../../test/testPasswords'
 
 describe('TwoFactorAuthServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({

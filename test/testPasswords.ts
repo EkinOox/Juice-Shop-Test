@@ -22,7 +22,7 @@ export const testPasswords = {
   simple: process.env.TEST_PASSWORD_SIMPLE ?? '12345',
   horst: process.env.TEST_PASSWORD_HORST ?? 'hooooorst',
   generic: process.env.TEST_PASSWORD_GENERIC ?? 'does.not.matter',
-  wurstbrot: process.env.TEST_PASSWORD_WURSTBROT ?? '0Y8rMnww$*9VFYEÂ§59-!Fg1L6t&6lB',
+  wurstbrot: process.env.TEST_PASSWORD_WURSTBROT ?? '0Y8rMnww$*9VFYE§59-!Fg1L6t&6lB',
   twoFa: process.env.TEST_PASSWORD_2FA ?? '123456',
   benderDeluxe: process.env.TEST_PASSWORD_BENDER_DELUXE ?? 'OhG0dPlease1nsertLiquor!',
   ciso: process.env.TEST_PASSWORD_CISO ?? 'mDLx?94T~1CfVfZMzw@sJ9f?s3L6lbMqE70FfI8^54jbNikY5fymx7c!YbJb',
@@ -38,6 +38,7 @@ export const testPasswords = {
   kunigunde: process.env.TEST_PASSWORD_KUNIGUNDE ?? 'kunigunde',
   passphrase: process.env.TEST_PASSWORD_PASSPHRASE ?? 'monkey summer birthday are all bad passwords but work just fine in a long passphrase',
   demo: process.env.TEST_PASSWORD_DEMO ?? 'demo',
+  slurmCl4ssic: process.env.TEST_PASSWORD_SLURM_CL4SSIC ?? 'slurmCl4ssic',
   
   // TOTP/2FA secrets
   totpSecretValid: process.env.TEST_TOTP_SECRET_VALID ?? 'IFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH',
@@ -54,5 +55,6 @@ export const testPasswords = {
   tokenValid: process.env.TEST_TOKEN_VALID ?? 'valid-token',
   tokenNew: process.env.TEST_TOKEN_NEW ?? 'newToken123',
   tokenGeneric: process.env.TEST_TOKEN_GENERIC ?? 'TOKEN',
-  tokenValue: process.env.TEST_TOKEN_VALUE ?? 'tokenValue'
+  tokenValue: process.env.TEST_TOKEN_VALUE ?? 'tokenValue',
+  passwordGeneric: process.env.TEST_PASSWORD_GENERIC ?? 'password'
 }

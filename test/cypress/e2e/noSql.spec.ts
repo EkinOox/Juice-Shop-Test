@@ -73,7 +73,7 @@ describe('/rest/products/reviews', () => {
 
   describe('challenge "Forged Review"', () => {
     beforeEach(() => {
-      cy.login({ email: 'mc.safesearch', password: 'Mr. N00dles' })
+      cy.login({ email: 'mc.safesearch', password: 'mcSafesearch' })
     })
 
     it('should be possible to edit any existing review', () => {
@@ -117,7 +117,7 @@ describe('/rest/products/reviews', () => {
 
   describe('challenge "Multiple Likes"', () => {
     beforeEach(() => {
-      cy.login({ email: 'mc.safesearch', password: 'Mr. N00dles' })
+      cy.login({ email: 'mc.safesearch', password: 'mcSafesearch' })
     })
 
     it('should be possible to like reviews multiple times', () => {

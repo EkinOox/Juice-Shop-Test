@@ -32,7 +32,7 @@ describe('/rest/user/change-password', () => {
         })
           .expect('status', 200)
           .then(({ json }) => {
-            return frisby.get(REST_URL + '/user/change-password?current=kunigunde&new=foo&repeat=foo', {
+            return frisby.get(REST_URL + `/user/change-password?current=${testPasswords.kunigunde}&new=foo&repeat=foo`, {
               headers: { Authorization: 'Bearer ' + json.authentication.token }
             })
               .expect('status', 200)
@@ -96,7 +96,7 @@ describe('/rest/user/change-password', () => {
     })
       .expect('status', 200)
       .then(({ json }) => {
-        return frisby.get(REST_URL + '/user/change-password?new=slurmCl4ssic&repeat=slurmCl4ssic', {
+        return frisby.get(REST_URL + `/user/change-password?new=${testPasswords.slurmCl4ssic}&repeat=${testPasswords.slurmCl4ssic}`, {
           headers: { Authorization: 'Bearer ' + json.authentication.token }
         })
           .expect('status', 200)
