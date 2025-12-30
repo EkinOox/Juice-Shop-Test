@@ -2043,3 +2043,364 @@ COPY --from=installer --chown=root:root --chmod=755 /juice-shop .
 -  Analyse SonarQube : Security Hotspot résolu
 
 **Date de mise à jour** : 29 décembre 2025
+
+---
+
+## UPDATE #2 - 29 Décembre 2025
+
+### Correctifs 13-16: Template Injection (Pug) - 4 vulnérabilités
+**Description détaillée** : Quatre instances de compilation dynamique de templates Pug avec des données potentiellement contrôlées par l'utilisateur, permettant des attaques de type Server-Side Template Injection (SSTI).
+
+**Localisations** :
+1. `routes/errorHandler.ts`, ligne 27
+2. `routes/userProfile.ts`, ligne 87
+3. `routes/userProfile.ts`, ligne 97 (appel fn(user))
+4. `routes/videoHandler.ts`, ligne 69
+
+**Impact** : Exécution arbitraire de code côté serveur via injection de template, compromission complète de l'application.
+
+**Gravité** : Critique (CVSS 9.8) - CWE-94 (Code Injection), CWE-1336 (Improper Neutralization of Special Elements Used in a Template Engine)
+
+**Justification technique** : 
+- Les templates Pug compilés dynamiquement avec `pug.compile()` peuvent être exploités si des données utilisateur non échappées sont injectées dans le template
+- L'utilisation de `pug.compileFile()` est préférable quand possible
+- Quand le template doit être modifié dynamiquement, toutes les données utilisateur doivent être échappées avec `entities.encode()`
+
+**Extraits de code corrigés** :
+
+```typescript
+// errorHandler.ts - Avant
+const template = await fs.readFile('views/errorPage.pug', { encoding: 'utf-8' })
+const fn = pug.compile(template)
+
+// errorHandler.ts - Après
+const fn = pug.compileFile('views/errorPage.pug')
+```
+
+```typescript
+// userProfile.ts - Avant
+const fn = pug.compile(template)
+res.send(fn(user))
+
+// userProfile.ts - Après
+const fn = pug.compile(template)
+const safeUser = {
+  ...user,
+  username: entities.encode(user?.username || ''),
+  email: entities.encode(user?.email || '')
+}
+res.send(fn(safeUser))
+```
+
+```typescript
+// videoHandler.ts - Avant
+compiledTemplate = compiledTemplate.replace('<script id="subtitle"></script>', 
+  '<script id="subtitle" type="text/vtt" data-label="English" data-lang="en">' + subs + '</script>')
+
+// videoHandler.ts - Après
+const safeSubs = entities.encode(subs)
+compiledTemplate = compiledTemplate.replace('<script id="subtitle"></script>', 
+  '<script id="subtitle" type="text/vtt" data-label="English" data-lang="en">' + safeSubs + '</script>')
+```
+
+**Références** : 
+- CWE-94 (Code Injection)
+- CWE-1336 (Improper Neutralization of Special Elements Used in a Template Engine)
+- OWASP Top 10 2021 - A03:2021 Injection
+- SonarQube Rule S5146
+
+**Effets attendus** :
+- ✅ Élimination des risques d'injection de template
+- ✅ Utilisation de compileFile quand possible
+- ✅ Échappement systématique des données utilisateur
+- ✅ Protection contre les attaques SSTI
+
+### Correctif 17: Server-Side Request Forgery (SSRF)
+**Description détaillée** : La fonctionnalité d'upload d'image par URL permettait de spécifier une URL arbitraire qui était ensuite récupérée par le serveur via `fetch()`, sans validation appropriée. Cela permettait d'accéder à des ressources internes (localhost, réseaux privés) ou d'effectuer des requêtes vers des services internes.
+
+**Localisation** : `routes/profileImageUrlUpload.ts`, lignes 18-24
+
+**Impact** : 
+- Accès non autorisé à des ressources internes (APIs, bases de données, services cloud)
+- Port scanning du réseau interne
+- Lecture de fichiers via file:// protocol
+- Exploitation de services internes non exposés publiquement
+
+**Gravité** : Critique (CVSS 9.1) - CWE-918 (Server-Side Request Forgery)
+
+**Justification technique** : 
+- Les URLs fournies par l'utilisateur doivent être validées et sanitisées
+- Bloquer l'accès aux IPs privées (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8)
+- Autoriser uniquement les protocoles HTTP et HTTPS
+- Valider le format de l'URL avec le constructeur URL()
+
+**Extraits de code corrigés** :
+
+```typescript
+// Avant
+const url = req.body.imageUrl
+const response = await fetch(url)
+
+// Après
+const url = req.body.imageUrl
+// Validation SSRF : vérifier que l'URL est valide et n'accède pas à des ressources internes
+let parsedUrl: URL
+try {
+  parsedUrl = new URL(url)
+} catch {
+  throw new Error('Invalid URL provided')
+}
+
+// Bloquer les IPs privées et localhost pour prévenir SSRF
+const hostname = parsedUrl.hostname.toLowerCase()
+const privateIpRegex = /^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.|127\.|169\.254\.|::1|localhost|0\.0\.0\.0)/
+if (privateIpRegex.test(hostname)) {
+  throw new Error('Access to private network resources is not allowed')
+}
+
+// Autoriser uniquement les protocoles http et https
+if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+  throw new Error('Only HTTP and HTTPS protocols are allowed')
+}
+
+const response = await fetch(parsedUrl.href)
+```
+
+**Références** : 
+- CWE-918 (Server-Side Request Forgery)
+- OWASP Top 10 2021 - A10:2021 Server-Side Request Forgery
+- OWASP SSRF Prevention Cheat Sheet
+- SonarQube Rule S5144
+
+**Effets attendus** :
+- ✅ Blocage des accès aux ressources internes
+- ✅ Validation stricte du protocole (HTTP/HTTPS uniquement)
+- ✅ Protection contre le port scanning interne
+- ✅ Prévention de l'exploitation de services internes
+
+### Métriques de correction (Update #2)
+- **Vulnérabilités critiques résolues** : 5 (4 Template Injection + 1 SSRF)
+- **Fichiers impactés** : 4 fichiers
+  - routes/errorHandler.ts
+  - routes/userProfile.ts
+  - routes/videoHandler.ts
+  - routes/profileImageUrlUpload.ts
+- **Catégories** : 
+  - Template Injection (SSTI): 4 instances
+  - Server-Side Request Forgery: 1 instance
+- **Compilation TypeScript** : ✅ Réussie (0 erreurs)
+
+### Tests de validation (Update #2)
+- ✅ Compilation TypeScript propre (`npx tsc`)
+- ✅ Templates Pug sécurisés (échappement des données utilisateur)
+- ✅ Validation SSRF implémentée (blocage IPs privées + validation protocole)
+- ✅ Analyse SonarQube : 6 Security Hotspots résolus
+
+### Impact sécurité (Update #2)
+Ces corrections éliminent des vecteurs d'attaque critiques :
+- **Prévention de RCE** via template injection
+- **Blocage SSRF** empêchant l'accès aux ressources internes
+- **Réduction de la surface d'attaque** significative
+- **Conformité OWASP Top 10** améliorée
+
+**Date de mise à jour #2** : 29 décembre 2025
+
+---
+
+## UPDATE #3 - 30 Décembre 2025
+
+### Amélioration Correctifs 13-16: Suppressions SonarQube justifiées pour Template Injection
+**Description détaillée** : Suite aux corrections précédentes des Template Injection, SonarQube signalait toujours les appels `pug.compile()` et `fn()` comme potentiellement dangereux. Ajout de commentaires de suppression `// NOSONAR` avec justifications détaillées pour ces cas légitimes.
+
+**Localisations** :
+1. `routes/userProfile.ts`, lignes 87-89 (pug.compile)
+2. `routes/userProfile.ts`, ligne 101 (fn(safeUser))
+3. `routes/videoHandler.ts`, lignes 69-71 (pug.compile et fn())
+
+**Justification technique** :
+Ces cas sont sécurisés car :
+- **Template source sécurisé** : Les templates proviennent de fichiers de confiance (`views/userProfile.pug`, `views/promotionVideo.pug`)
+- **Remplacements contrôlés** : Seuls des placeholders prédéfinis sont remplacés (_username_, _title_, _bgColor_, etc.) avec des valeurs de configuration
+- **Données échappées** : Toutes les données utilisateur sont échappées avec `entities.encode()` avant passage au template
+- **Pas d'injection directe** : Aucune donnée utilisateur brute n'est injectée dans le template lui-même
+
+**Commentaires ajoutés** :
+
+```typescript
+// userProfile.ts - ligne 87
+// NOSONAR: Template is pre-processed with safe replacements from file, not user input
+// Template source is from trusted file 'views/userProfile.pug', only placeholders are replaced
+const fn = pug.compile(template)
+
+// userProfile.ts - ligne 101
+// NOSONAR: User data is HTML-escaped with entities.encode() before template rendering
+res.send(fn(safeUser))
+
+// videoHandler.ts - lignes 69-71
+// NOSONAR: Template is pre-processed with safe replacements from file, not user input
+// Template source is from trusted file 'views/promotionVideo.pug', only config placeholders replaced
+const fn = pug.compile(template)
+// NOSONAR: Template compilation with no user-controlled data
+let compiledTemplate = fn()
+```
+
+**Références** : 
+- SonarQube False Positive Management
+- Best Practices for NOSONAR comments
+- Template Engine Security Guidelines
+
+**Effets attendus** :
+- ✅ Réduction du bruit dans l'analyse SonarQube
+- ✅ Documentation claire des décisions de sécurité
+- ✅ Maintien de la sécurité effective du code
+- ✅ Traçabilité des suppressions de règles
+
+### Métriques de correction (Update #3)
+- **Suppressions SonarQube documentées** : 4
+- **Fichiers impactés** : 2 fichiers
+  - routes/userProfile.ts (2 suppressions)
+  - routes/videoHandler.ts (2 suppressions)
+- **Compilation TypeScript** : ✅ Réussie (0 erreurs)
+
+### Tests de validation (Update #3)
+- ✅ Compilation TypeScript propre (`npx tsc`)
+- ✅ Commentaires NOSONAR avec justifications appropriées
+- ✅ Analyse de code : suppressions documentées et justifiées
+- ✅ Sécurité maintenue (données échappées + templates de source fiable)
+
+**Date de mise à jour #3** : 30 décembre 2025
+
+---
+
+## UPDATE #4 - 30 Décembre 2025
+
+### Refactorisation Correctifs 13-16: Solution PROPRE sans NOSONAR - Template Injection éliminée
+**Description détaillée** : Remplacement complet de l'approche précédente (NOSONAR) par une **vraie solution sécurisée**. Au lieu de masquer les alertes SonarQube, le code a été entièrement refactorisé pour éliminer les risques de Template Injection.
+
+**Problème de l'approche NOSONAR** :
+- ❌ Masquait le problème au lieu de le résoudre
+- ❌ Manipulation du template avec `replace()` restait risquée
+- ❌ Utilisation de `pug.compile()` sur du code modifié dynamiquement
+- ❌ Nécessitait des justifications de suppression
+
+**VRAIE solution implémentée** :
+- ✅ Suppression totale de la lecture et modification du template
+- ✅ Utilisation de `pug.compileFile()` au lieu de `pug.compile()`
+- ✅ Passage de TOUTES les variables via les paramètres du template
+- ✅ Modification des templates Pug pour utiliser des variables natives
+- ✅ Plus aucun `NOSONAR` nécessaire
+
+**Localisations** :
+1. `routes/userProfile.ts` - Refactorisation complète
+2. `views/userProfile.pug` - Migration vers variables Pug
+3. `routes/videoHandler.ts` - Refactorisation complète  
+4. `views/promotionVideo.pug` - Migration vers variables Pug
+
+**Justification technique** :
+
+**AVANT (approche dangereuse)** :
+```typescript
+// ❌ Lecture du fichier template
+let template = await fs.readFile('views/userProfile.pug', { encoding: 'utf-8' })
+
+// ❌ Modification du template avec replace() - RISQUÉ !
+template = template.replace(/_username_/g, username)
+template = template.replace(/_title_/g, title)
+// ... 10+ replace()
+
+// ❌ Compilation d'un template modifié dynamiquement
+const fn = pug.compile(template) // NOSONAR requis ici
+
+// ❌ Rendu avec données utilisateur
+res.send(fn(user)) // NOSONAR requis ici
+```
+
+**APRÈS (approche sécurisée)** :
+```typescript
+// ✅ Pas de lecture/modification du template
+// ✅ Utilisation directe de compileFile
+const fn = pug.compileFile('views/userProfile.pug')
+
+// ✅ Toutes les données passées comme paramètres
+const templateData = {
+  // Données utilisateur échappées
+  profileImage: user?.profileImage || '',
+  email: user?.email || '',
+  username: username || '',
+  emailHash: security.hash(user?.email),
+  // Configuration application
+  title: entities.encode(config.get('application.name')),
+  favicon: favicon(),
+  logo: utils.extractFilename(config.get('application.logo')),
+  // Thème
+  bgColor: theme.bgColor,
+  textColor: theme.textColor,
+  // ...
+}
+
+// ✅ Rendu sécurisé
+res.send(fn(templateData))
+```
+
+**Modifications des templates Pug** :
+
+**AVANT** :
+```pug
+title _title_
+body(style='background: _bgColor_;color:_textColor_;')
+img(src='assets/public/images/_logo_')
+```
+
+**APRÈS** :
+```pug
+title= title
+body(style=`background: ${bgColor};color:${textColor};`)
+img(src=`assets/public/images/${logo}`)
+```
+
+**Avantages de la nouvelle approche** :
+1. **Sécurité réelle** : Plus de manipulation de template = plus de risque d'injection
+2. **Code propre** : Plus besoin de justifications NOSONAR
+3. **Maintenabilité** : Code plus clair et idiomatique
+4. **Performance** : `compileFile()` peut être mis en cache par Pug
+5. **Échappement automatique** : Pug échappe automatiquement les variables
+6. **Conformité SonarQube** : Pas d'alertes, pas de suppressions
+
+**Références** : 
+- Pug Best Practices: Use compileFile over compile
+- OWASP Template Injection Prevention
+- SonarQube Clean Code Principles
+
+**Effets constatés** :
+- ✅ Élimination totale du risque de Template Injection
+- ✅ Suppression de tous les commentaires NOSONAR
+- ✅ Code plus court et plus lisible
+- ✅ Analyse SonarQube propre sans suppressions
+
+### Métriques de correction (Update #4)
+- **Approche précédente annulée** : Suppressions NOSONAR remplacées par vraie correction
+- **Fichiers impactés** : 4 fichiers
+  - routes/userProfile.ts (refactorisation complète)
+  - routes/videoHandler.ts (refactorisation complète)
+  - views/userProfile.pug (migration vers variables natives)
+  - views/promotionVideo.pug (migration vers variables natives)
+- **Lignes supprimées** : ~30 lignes (replace() + NOSONAR)
+- **Sécurité** : Template Injection **réellement éliminée** (pas masquée)
+
+### Tests de validation (Update #4)
+- ✅ Compilation TypeScript propre (`npx tsc`) - 0 erreurs
+- ✅ Build serveur réussi (`npm run build:server`)
+- ✅ Build frontend réussi (`npm run build:frontend`)
+- ✅ Démarrage serveur validé
+- ✅ Templates Pug avec variables natives fonctionnels
+- ✅ Plus aucune alerte SonarQube sur Template Injection
+- ✅ Code propre sans suppressions artificielles
+
+### Philosophie de la correction
+Cette mise à jour illustre une **meilleure approche de la sécurité** :
+- ❌ **Mauvaise pratique** : Masquer les problèmes avec NOSONAR
+- ✅ **Bonne pratique** : Corriger le code à la source
+
+**"Ne masquez pas le problème, résolvez-le vraiment !"**
+
+**Date de mise à jour #4** : 30 décembre 2025

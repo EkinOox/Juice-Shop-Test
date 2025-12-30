@@ -22,9 +22,8 @@ export function errorHandler () {
       return
     }
 
-    const template = await fs.readFile('views/errorPage.pug', { encoding: 'utf-8' })
     const title = `${config.get<string>('application.name')} (Express ${utils.version('express')})`
-    const fn = pug.compile(template)
+    const fn = pug.compileFile('views/errorPage.pug')
     res.status(500).send(fn({ title, error }))
   }
 }
