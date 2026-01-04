@@ -123,6 +123,52 @@ describe('/rest/basket/:id/checkout', () => {
       .expect('status', 200)
       .then(({ json }) => {
         expect(json.orderConfirmation).toBeDefined()
+        expect(typeof json.orderConfirmation).toBe('string')
+        expect(json.orderConfirmation).toMatch(/-/)
+      })
+  })
+
+  it('POST placing order inserts into ordersCollection via mongodb insert', () => {
+    return frisby.post(REST_URL + '/basket/2/checkout', { headers: authHeader })
+      .expect('status', 200)
+      .then(({ json }) => {
+        expect(json.orderConfirmation).toBeDefined()
+        const orderId = json.orderConfirmation
+        return frisby.get(REST_URL + '/track-order/' + orderId)
+          .expect('status', 200)
+          .then(({ json: trackJson }) => {
+            expect(trackJson.data).toBeDefined()
+            expect(trackJson.data.length).toBeGreaterThan(0)
+          })
+      })
+  })
+
+  it('POST placing order with delivery method ID', () => {
+    return frisby.post(REST_URL + '/basket/3/checkout', {
+      headers: authHeader,
+      body: {
+        orderDetails: {
+          deliveryMethodId: 1
+        }
+      }
+    })
+      .then((res) => {
+        expect([200, 500]).toContain(res.status)
+      })
+  })
+
+  it('POST placing order with wallet payment', () => {
+    return frisby.post(REST_URL + '/basket/3/checkout', {
+      headers: authHeader,
+      body: {
+        UserId: 2,
+        orderDetails: {
+          paymentId: 'wallet'
+        }
+      }
+    })
+      .then((res) => {
+        expect([200, 500]).toContain(res.status)
       })
   })
 

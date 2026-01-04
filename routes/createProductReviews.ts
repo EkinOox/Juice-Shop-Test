@@ -20,8 +20,8 @@ export function createProductReviews () {
     )
 
     // Validate input parameters
-    const productId = parseInt(req.params.id)
-    if (isNaN(productId) || productId <= 0) {
+    const productId = Number.parseInt(req.params.id)
+    if (Number.isNaN(productId) || productId <= 0) {
       return res.status(400).json({ error: 'Invalid product ID' })
     }
 

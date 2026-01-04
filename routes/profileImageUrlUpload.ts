@@ -28,19 +28,19 @@ export function profileImageUrlUpload () {
           } catch {
             throw new Error('Invalid URL provided')
           }
-          
+
           // Bloquer les IPs privées et localhost pour prévenir SSRF
           const hostname = parsedUrl.hostname.toLowerCase()
-          const privateIpRegex = /^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.|127\.|169\.254\.|::1|localhost|0\.0\.0\.0)/
+          const privateIpRegex = /^(10\.|172\.(1[6-9]|2\d|3[0-1])\.|192\.168\.|127\.|169\.254\.|::1|localhost|0\.0\.0\.0)/
           if (privateIpRegex.test(hostname)) {
             throw new Error('Access to private network resources is not allowed')
           }
-          
+
           // Autoriser uniquement les protocoles http et https
           if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
             throw new Error('Only HTTP and HTTPS protocols are allowed')
           }
-          
+
           const response = await fetch(parsedUrl.href)
           if (!response.ok || !response.body) {
             throw new Error('url returned a non-OK status code or an empty body')

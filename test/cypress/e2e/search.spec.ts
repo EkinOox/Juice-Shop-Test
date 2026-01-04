@@ -76,6 +76,7 @@ describe('/rest/products/search', () => {
     })
   })
 
+  // Test suite skipped: Christmas special challenge may require specific date/configuration
   xdescribe('challenge "christmasSpecial"', () => {
     beforeEach(() => {
       cy.login({

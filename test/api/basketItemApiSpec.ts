@@ -60,6 +60,26 @@ describe('/api/BasketItems', () => {
       .expect('status', 200)
   })
 
+  it('POST basket item with JSON payload using utils.parseJsonCustom', () => {
+    const rawPayload = '{"ProductId":1,"BasketId":2,"quantity":1}'
+    return frisby.post(API_URL + '/BasketItems', {
+      headers: { ...authHeader, 'content-type': 'application/json' },
+      body: rawPayload
+    })
+      .expect('status', 200)
+  })
+
+  it('POST basket item with malformed JSON triggers parseJsonCustom', () => {
+    const rawPayload = '{"ProductId":1,"BasketId":2,"quantity":1'
+    return frisby.post(API_URL + '/BasketItems', {
+      headers: { ...authHeader, 'content-type': 'application/json' },
+      body: rawPayload
+    })
+      .then((res) => {
+        expect([400, 500]).toContain(res.status)
+      })
+  })
+
   it('POST new basket item with more than available quantity is forbidden', () => {
     return frisby.post(API_URL + '/BasketItems', {
       headers: authHeader,

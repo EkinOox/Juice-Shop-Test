@@ -102,6 +102,24 @@ describe('/rest/user/change-password', () => {
           .expect('status', 200)
       })
   })
+
+  it('GET password change with new password as "undefined" string is rejected', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'bjoern@' + config.get<string>('application.domain'),
+        password: testPasswords.passphrase
+      }
+    })
+      .expect('status', 200)
+      .then(({ json }) => {
+        return frisby.get(REST_URL + '/user/change-password?current=' + testPasswords.passphrase + '&new=undefined&repeat=undefined', {
+          headers: { Authorization: 'Bearer ' + json.authentication.token }
+        })
+          .expect('status', 401)
+          .expect('bodyContains', 'Password cannot be empty')
+      })
+  })
 })
 
 describe('/rest/user/reset-password', () => {

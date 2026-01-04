@@ -7,7 +7,6 @@ import { type Request, type Response, type NextFunction } from 'express'
 import { AllHtmlEntities as Entities } from 'html-entities'
 import config from 'config'
 import pug from 'pug'
-import fs from 'node:fs/promises'
 
 import * as challengeUtils from '../lib/challengeUtils'
 import { themes } from '../views/themes/themes'
@@ -78,9 +77,9 @@ export function getUserProfile () {
       // Passer toutes les variables au template de manière sécurisée
       const templateData = {
         // Données utilisateur
-        profileImage: user?.profileImage || '',
-        email: user?.email || '',
-        username: username || '',
+        profileImage: user?.profileImage ?? '',
+        email: user?.email ?? '',
+        username: username ?? '',
         emailHash: security.hash(user?.email),
         // Configuration de l'application
         title: entities.encode(config.get<string>('application.name')),

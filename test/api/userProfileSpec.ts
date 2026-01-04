@@ -71,4 +71,67 @@ describe('/profile', () => {
       .expect('bodyContains', `<h1>${config.get<string>('application.name')} (Express`)
       .expect('bodyContains', 'Error: Blocked illegal activity')
   })
+
+  it('GET user profile with SSTI pattern in username triggers eval', () => {
+    // First, update the username to include SSTI pattern
+    const form = frisby.formData()
+    form.append('username', '#{7*7}')
+
+    return frisby.post(`${URL}/profile`, {
+      // @ts-expect-error FIXME form.getHeaders() is not found
+      headers: { 'Content-Type': form.getHeaders()['content-type'], Cookie: authHeader.Cookie },
+      body: form,
+      redirect: 'manual'
+    })
+      .expect('status', 302)
+      .then(() => {
+        // Then try to retrieve the profile
+        return frisby.get(`${URL}/profile`, {
+          headers: authHeader
+        })
+          .expect('status', 200)
+      })
+  })
+
+  it('GET user profile with invalid SSTI code triggers error path', () => {
+    // First, update the username to include invalid SSTI pattern
+    const form = frisby.formData()
+    form.append('username', '#{throw new Error("test")}')
+
+    return frisby.post(`${URL}/profile`, {
+      // @ts-expect-error FIXME form.getHeaders() is not found
+      headers: { 'Content-Type': form.getHeaders()['content-type'], Cookie: authHeader.Cookie },
+      body: form,
+      redirect: 'manual'
+    })
+      .expect('status', 302)
+      .then(() => {
+        // Then try to retrieve the profile
+        return frisby.get(`${URL}/profile`, {
+          headers: authHeader
+        })
+          .expect('status', 200)
+          .expect('bodyContains', '\\#{throw new Error("test")}')
+      })
+  })
+
+  it('GET user profile with null username triggers error path', () => {
+    // First update username to null pattern
+    const form = frisby.formData()
+    form.append('username', '')
+
+    return frisby.post(`${URL}/profile`, {
+      // @ts-expect-error FIXME form.getHeaders() is not found
+      headers: { 'Content-Type': form.getHeaders()['content-type'], Cookie: authHeader.Cookie },
+      body: form,
+      redirect: 'manual'
+    })
+      .expect('status', 302)
+      .then(() => {
+        return frisby.get(`${URL}/profile`, {
+          headers: authHeader
+        })
+          .expect('status', 200)
+      })
+  })
 })

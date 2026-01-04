@@ -47,6 +47,7 @@ describe('webhook', () => {
 
       try {
         await webhook.notify(challenge, 0, 0, 0, url)
+        expect(port).to.be.a('number')
       } finally {
         server.close()
       }

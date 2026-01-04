@@ -50,6 +50,35 @@ interface DataErasureRequestParams {
   securityAnswer: string
 }
 
+function validateLayout (layoutName: string): { valid: boolean, error?: string, safeName?: string } {
+  // Only allow alphanumeric characters, hyphens, and underscores for layout names
+  if (!/^[a-zA-Z0-9_-]+$/.test(layoutName)) {
+    return { valid: false, error: 'Invalid layout name' }
+  }
+
+  // Limit layout name length to prevent buffer overflow attacks
+  if (layoutName.length > 50) {
+    return { valid: false, error: 'Layout name too long' }
+  }
+
+  // Use path.basename to prevent directory traversal
+  const safeLayoutName = path.basename(layoutName)
+
+  // Define allowed layouts (whitelist approach)
+  const allowedLayouts = ['default', 'minimal', 'compact', 'detailed']
+  if (!allowedLayouts.includes(safeLayoutName)) {
+    return { valid: false, error: 'Layout not allowed' }
+  }
+
+  return { valid: true, safeName: safeLayoutName }
+}
+
+function verifyTemplateExists (safeLayoutName: string, viewsDir: string): boolean {
+  const fs = require('node:fs')
+  const templatePath = path.join(viewsDir, `dataErasureResult-${safeLayoutName}`)
+  return fs.existsSync(templatePath + '.hbs') || fs.existsSync(templatePath + '.ejs')
+}
+
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 router.post('/', async (req: Request<Record<string, unknown>, Record<string, unknown>, DataErasureRequestParams>, res: Response, next: NextFunction): Promise<void> => {
   const loggedInUser = security.authenticatedUsers.get(req.cookies.token)
@@ -68,35 +97,19 @@ router.post('/', async (req: Request<Record<string, unknown>, Record<string, unk
     if (req.body.layout) {
       // Validate and sanitize the layout parameter
       const layoutName = req.body.layout.trim()
-
-      // Only allow alphanumeric characters, hyphens, and underscores for layout names
-      if (!/^[a-zA-Z0-9_-]+$/.test(layoutName)) {
-        next(new Error('Invalid layout name')); return
+      const validation = validateLayout(layoutName)
+      
+      if (!validation.valid) {
+        next(new Error(validation.error))
+        return
       }
 
-      // Limit layout name length to prevent buffer overflow attacks
-      if (layoutName.length > 50) {
-        next(new Error('Layout name too long')); return
-      }
-
-      // Use path.basename to prevent directory traversal
-      const safeLayoutName = path.basename(layoutName)
-
-      // Define allowed layouts (whitelist approach)
-      const allowedLayouts = ['default', 'minimal', 'compact', 'detailed']
-
-      if (!allowedLayouts.includes(safeLayoutName)) {
-        next(new Error('Layout not allowed')); return
-      }
-
-      // Construct safe path within views directory only
+      const safeLayoutName = validation.safeName!
       const viewsDir = path.join(__dirname, '..', 'views')
-      const templatePath = path.join(viewsDir, `dataErasureResult-${safeLayoutName}`)
-
-      // Verify the template file exists
-      const fs = require('fs')
-      if (!fs.existsSync(templatePath + '.hbs') && !fs.existsSync(templatePath + '.ejs')) {
-        next(new Error('Template not found')); return
+      
+      if (!verifyTemplateExists(safeLayoutName, viewsDir)) {
+        next(new Error('Template not found'))
+        return
       }
 
       res.render('dataErasureResult', {

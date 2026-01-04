@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 /*
  * Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
@@ -20,5 +21,19 @@ describe('/api', () => {
     return frisby.get(URL + '/main.js')
       .expect('status', 200)
       .expect('bodyContains', 'Parola echipei de asisten\\u021b\\u0103 nu respect\\u0103 politica corporativ\\u0103 pentru conturile privilegiate! V\\u0103 rug\\u0103m s\\u0103 schimba\\u021bi parola \\xeen consecin\\u021b\\u0103!')
+  })
+
+  it('GET non-api route returns index for angular routing', () => {
+    return frisby.get(URL + '/profile')
+      .then((res) => {
+        expect([200, 302, 401]).toContain(res.status)
+      })
+  })
+
+  it('GET nested non-api route returns index', () => {
+    return frisby.get(URL + '/basket/1')
+      .then((res) => {
+        expect([200, 302, 401]).toContain(res.status)
+      })
   })
 })

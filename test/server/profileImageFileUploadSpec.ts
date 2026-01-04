@@ -43,6 +43,7 @@ describe('profileImageFileUpload', () => {
     }
     res = {
       status: sinon.stub().returnsThis(),
+      json: sinon.stub().returnsThis(),
       location: sinon.stub().returnsThis(),
       redirect: sinon.stub() as any
     }
@@ -70,8 +71,11 @@ describe('profileImageFileUpload', () => {
     const middleware = profileImageFileUpload()
     await middleware(req as Request, res as Response, next)
 
-    expect(res.status).to.have.been.calledWith(500)
-    expect(next).to.have.been.calledWith(sinon.match.instanceOf(Error).and(sinon.match.has('message', 'Illegal file type')))
+    expect(res.status).to.have.been.calledWith(400)
+    expect(res.json).to.have.been.calledWith({
+      error: 'Invalid file. Please provide a valid image file.',
+      status: 'error'
+    })
   })
 
   it('should return error when file type cannot be determined', async () => {
@@ -80,8 +84,11 @@ describe('profileImageFileUpload', () => {
     const middleware = profileImageFileUpload()
     await middleware(req as Request, res as Response, next)
 
-    expect(res.status).to.have.been.calledWith(500)
-    expect(next).to.have.been.calledWith(sinon.match.instanceOf(Error).and(sinon.match.has('message', 'Illegal file type')))
+    expect(res.status).to.have.been.calledWith(400)
+    expect(res.json).to.have.been.calledWith({
+      error: 'Unable to determine file type. Please provide a valid image file.',
+      status: 'error'
+    })
   })
 
   it('should return error when file is not an image', async () => {
@@ -93,7 +100,10 @@ describe('profileImageFileUpload', () => {
     await middleware(req as Request, res as Response, next)
 
     expect(res.status).to.have.been.calledWith(415)
-    expect(next).to.have.been.calledWith(sinon.match.instanceOf(Error).and(sinon.match.has('message', 'Profile image upload does not accept this file type: application/pdf')))
+    expect(res.json).to.have.been.calledWith({
+      error: 'Profile image upload does not accept this file type: application/pdf',
+      status: 'error'
+    })
   })
 
   it('should return error when user is not authenticated', async () => {
@@ -120,10 +130,20 @@ describe('profileImageFileUpload', () => {
     sinon.stub(security.authenticatedUsers, 'get').returns(loggedInUser)
     sinon.stub(fs, 'writeFile').resolves()
     sinon.stub(UserModel, 'findByPk').resolves(user as any)
-    sinon.stub(process.env, 'BASE_PATH').value('/juice-shop')
+    
+    // Setup process.env.BASE_PATH properly
+    const originalBasePath = process.env.BASE_PATH
+    process.env.BASE_PATH = '/juice-shop'
 
     const middleware = profileImageFileUpload()
     await middleware(req as Request, res as Response, next)
+
+    // Restore original value
+    if (originalBasePath) {
+      process.env.BASE_PATH = originalBasePath
+    } else {
+      delete process.env.BASE_PATH
+    }
 
     expect(fs.writeFile).to.have.been.calledWith(
       'frontend/dist/frontend/assets/public/images/uploads/1.png',
@@ -149,10 +169,20 @@ describe('profileImageFileUpload', () => {
     sinon.stub(fs, 'writeFile').rejects(new Error('Write failed'))
     sinon.stub(logger, 'warn')
     sinon.stub(UserModel, 'findByPk').resolves(user as any)
-    sinon.stub(process.env, 'BASE_PATH').value('/juice-shop')
+    
+    // Setup process.env.BASE_PATH properly
+    const originalBasePath = process.env.BASE_PATH
+    process.env.BASE_PATH = '/juice-shop'
 
     const middleware = profileImageFileUpload()
     await middleware(req as Request, res as Response, next)
+
+    // Restore original value
+    if (originalBasePath) {
+      process.env.BASE_PATH = originalBasePath
+    } else {
+      delete process.env.BASE_PATH
+    }
 
     expect(logger.warn).to.have.been.calledWith('Error writing file: Write failed')
     expect(user.update).to.have.been.calledWith({
@@ -190,10 +220,20 @@ describe('profileImageFileUpload', () => {
     sinon.stub(security.authenticatedUsers, 'get').returns(loggedInUser)
     sinon.stub(fs, 'writeFile').resolves()
     sinon.stub(UserModel, 'findByPk').resolves(null)
-    sinon.stub(process.env, 'BASE_PATH').value('/juice-shop')
+    
+    // Setup process.env.BASE_PATH properly
+    const originalBasePath = process.env.BASE_PATH
+    process.env.BASE_PATH = '/juice-shop'
 
     const middleware = profileImageFileUpload()
     await middleware(req as Request, res as Response, next)
+
+    // Restore original value
+    if (originalBasePath) {
+      process.env.BASE_PATH = originalBasePath
+    } else {
+      delete process.env.BASE_PATH
+    }
 
     expect(res.location).to.have.been.calledWith('/juice-shop/profile')
     expect(res.redirect).to.have.been.calledWith('/juice-shop/profile')

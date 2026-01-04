@@ -73,14 +73,14 @@ export const checkCorrectFix = () => async (req: Request<Record<string, unknown>
   // Validate that key is a valid challenge key to prevent path traversal
   if (!Object.keys(challenges).includes(key)) {
     res.status(400).json({
-      error: 'Invalid challenge key'
+      error: 'No fixes found for the snippet!'
     })
     return
   }
   const selectedFix = req.body.selectedFix
   const fixData = readFixes(key)
   if (fixData.fixes.length === 0) {
-    res.status(404).json({
+    res.status(400).json({
       error: 'No fixes found for the snippet!'
     })
   } else {

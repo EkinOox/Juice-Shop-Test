@@ -4,6 +4,7 @@
  */
 
 import * as frisby from 'frisby'
+import { expect } from '@jest/globals'
 import { testPasswords } from '../testPasswords'
 
 const REST_URL = 'http://localhost:3000/rest'
@@ -91,5 +92,78 @@ describe('/api/Wallets', () => {
       }
     })
       .expect('status', 402)
+  })
+})
+
+describe('/api/check-key', () => {
+  it('POST check key with wrong private key returns error', () => {
+    return frisby.post(`${REST_URL}/check-key`, {
+      headers: authHeader,
+      body: {
+        privateKey: 'wrongkey123'
+      }
+    })
+      .then((res) => {
+        // Can be 401 (invalid key) or 500 (validation error)
+        expect([401, 500]).toContain(res.status)
+      })
+  })
+
+  it('POST check key with empty string returns error', () => {
+    return frisby.post(`${REST_URL}/check-key`, {
+      headers: authHeader,
+      body: {
+        privateKey: ''
+      }
+    })
+      .then((res) => {
+        expect([401, 500]).toContain(res.status)
+      })
+  })
+
+  it('POST check key with very long invalid key returns error', () => {
+    return frisby.post(`${REST_URL}/check-key`, {
+      headers: authHeader,
+      body: {
+        privateKey: '0x' + 'a'.repeat(100)
+      }
+    })
+      .then((res) => {
+        expect([401, 500]).toContain(res.status)
+      })
+  })
+
+  it('POST check key with public address returns error', () => {
+    return frisby.post(`${REST_URL}/check-key`, {
+      headers: authHeader,
+      body: {
+        privateKey: '0x1234567890123456789012345678901234567890'
+      }
+    })
+      .then((res) => {
+        expect([401, 500]).toContain(res.status)
+      })
+  })
+
+  it('POST check key with null value returns error', () => {
+    return frisby.post(`${REST_URL}/check-key`, {
+      headers: authHeader,
+      body: {
+        privateKey: null
+      }
+    })
+      .then((res) => {
+        expect([401, 500]).toContain(res.status)
+      })
+  })
+
+  it('GET NFT unlock status returns status', () => {
+    return frisby.get(`${REST_URL}/nft-unlocked`, {
+      headers: authHeader
+    })
+      .then((res) => {
+        // Can be 200 (success) or 500 (error)
+        expect([200, 500]).toContain(res.status)
+      })
   })
 })

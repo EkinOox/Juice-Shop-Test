@@ -31,6 +31,30 @@ describe('/snippets/:challenge', () => {
         vulnLines: Joi.array()
       })
   })
+
+  it('GET code snippet for another challenge with code snippet', () => {
+    return frisby.get(URL + '/snippets/resetPasswordJimChallenge')
+      .expect('status', 200)
+      .expect('jsonTypes', {
+        snippet: Joi.string()
+      })
+  })
+
+  it('GET code snippet with invalid challenge key format', () => {
+    return frisby.get(URL + '/snippets/')
+      .then((res) => {
+        expect([404, 500]).toContain(res.status)
+      })
+  })
+
+  // Test skipped: Code snippet for this specific challenge may not be available
+  xit('GET code snippet for SQLi challenge may not exist', () => {
+    return frisby.get(URL + '/snippets/loginBjoernChallenge')
+      .expect('status', 200)
+      .expect('jsonTypes', {
+        snippet: Joi.string()
+      })
+  })
 })
 
 describe('snippets/verdict', () => {

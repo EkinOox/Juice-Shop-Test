@@ -17,19 +17,25 @@ export function profileImageFileUpload () {
     const file = req.file
     const buffer = file?.buffer
     if (buffer === undefined) {
-      res.status(500)
-      next(new Error('Illegal file type'))
+      res.status(400).json({
+        error: 'Invalid file. Please provide a valid image file.',
+        status: 'error'
+      })
       return
     }
     const uploadedFileType = await fileType.fromBuffer(buffer)
     if (uploadedFileType === undefined) {
-      res.status(500)
-      next(new Error('Illegal file type'))
+      res.status(400).json({
+        error: 'Unable to determine file type. Please provide a valid image file.',
+        status: 'error'
+      })
       return
     }
     if (uploadedFileType === null || !utils.startsWith(uploadedFileType.mime, 'image')) {
-      res.status(415)
-      next(new Error(`Profile image upload does not accept this file type${uploadedFileType ? (': ' + uploadedFileType.mime) : '.'}`))
+      res.status(415).json({
+        error: `Profile image upload does not accept this file type${uploadedFileType ? (': ' + uploadedFileType.mime) : '.'}`,
+        status: 'error'
+      })
       return
     }
     const loggedInUser = security.authenticatedUsers.get(req.cookies.token)

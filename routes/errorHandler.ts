@@ -4,7 +4,6 @@
  */
 
 import { type Request, type Response, type NextFunction } from 'express'
-import fs from 'node:fs/promises'
 import config from 'config'
 import pug from 'pug'
 

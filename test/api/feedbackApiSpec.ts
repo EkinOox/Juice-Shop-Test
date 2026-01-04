@@ -61,7 +61,7 @@ describe('/api/Feedbacks', () => {
           })
             .expect('status', 201)
             .expect('json', 'data', {
-              comment: 'The sanitize-html module up to at least version 1.4.2 has this issue: <iframe src="javascript:alert(`xss`)">'
+              comment: 'The sanitize-html module up to at least version 1.4.2 has this issue: &lt;iframe src="javascript:alert(`xss`)"&gt;'
             })
         })
     })
@@ -219,7 +219,7 @@ describe('/api/Feedbacks', () => {
             message: Joi.string()
           })
           .then(({ json }) => {
-            expect(json.message.match(/notNull Violation: (Feedback\.)?rating cannot be null/))
+            expect(json.message.match(/notNull Violation: (Feedback\.)?rating cannot be null/)).not.toBeNull()
           })
       })
   })

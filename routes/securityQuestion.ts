@@ -10,11 +10,11 @@ import { SecurityQuestionModel } from '../models/securityQuestion'
 
 export function securityQuestion () {
   return ({ query }: Request, res: Response, next: NextFunction) => {
-    const email = query.email
+    const email = typeof query.email === 'string' ? query.email : ''
     SecurityAnswerModel.findOne({
       include: [{
         model: UserModel,
-        where: { email: email?.toString() }
+        where: { email }
       }]
     }).then((answer: SecurityAnswerModel | null) => {
       if (answer != null) {

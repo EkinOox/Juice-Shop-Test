@@ -145,6 +145,32 @@ describe('/rest/user/data-export', () => {
       })
   })
 
+  it('Export data with empty orders array', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'mc.safesearch@' + config.get<string>('application.domain'),
+        password: testPasswords.mcSafesearch
+      }
+    })
+      .expect('status', 200)
+      .then(({ json: jsonLogin }) => {
+        return frisby.post(REST_URL + '/user/data-export', {
+          headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+          body: {
+            format: '1'
+          }
+        })
+          .then((res) => {
+            expect([200, 401]).toContain(res.status)
+            if (res.status === 200 && res.json && res.json.userData) {
+              const parsedData = JSON.parse(res.json.userData)
+              expect(parsedData.email).toBeDefined()
+            }
+          })
+      })
+  })
+
   it('Export data including reviews without use of CAPTCHA', () => {
     return frisby.post(REST_URL + '/user/login', {
       headers: jsonHeader,

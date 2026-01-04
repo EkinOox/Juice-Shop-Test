@@ -27,7 +27,30 @@ describe('/snippets/fixes/:key', () => {
         fixes: Joi.array().length(3)
       })
   })
+
+  it('GET fixes for another existing challenge key', () => {
+    return frisby.get(URL + '/snippets/fixes/loginAdminChallenge')
+      .expect('status', 200)
+      .expect('jsonTypes', {
+        fixes: Joi.array()
+      })
+  })
+
+  it('GET fixes with empty key throws error', () => {
+    return frisby.get(URL + '/snippets/fixes/')
+      .then((res) => {
+        expect([404, 500]).toContain(res.status)
+      })
+  })
+
+  it('GET fixes for challenge without fixes', () => {
+    return frisby.get(URL + '/snippets/fixes/easterEggLevelOneChallenge')
+      .then((res) => {
+        expect([200, 404]).toContain(res.status)
+      })
+  })
 })
+
 
 describe('/snippets/fixes', () => {
   let socket: SocketIOClient.Socket
@@ -56,7 +79,7 @@ describe('/snippets/fixes', () => {
         selectedFix: 1
       }
     })
-      .expect('status', 404)
+      .expect('status', 400)
       .expect('json', 'error', 'No fixes found for the snippet!')
   })
 

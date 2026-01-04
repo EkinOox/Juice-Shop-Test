@@ -4,7 +4,7 @@
  */
 
 import fuzz from 'fuzzball'
-import crypto from 'crypto'
+import crypto from 'node:crypto'
 
 interface TrainingData {
   lang: string
@@ -53,7 +53,8 @@ export default class Bot {
     return {
       run: (code: string): any => {
         // Simple evaluation without vm2 - only handle currentUser() calls
-        const match = code.match(/currentUser\('([^']+)'\)/)
+        const pattern = /currentUser\('([^']+)'\)/
+        const match = pattern.exec(code)
         if (match) {
           const userId = match[1]
           return this.users.get(userId)?.name ?? false

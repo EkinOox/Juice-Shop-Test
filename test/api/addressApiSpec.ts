@@ -177,4 +177,16 @@ describe('/api/Addresss/:id', () => {
     return frisby.del(API_URL + '/Addresss/' + addressId, { headers: authHeader })
       .expect('status', 200)
   })
+
+  it('GET address by invalid id returns error', () => {
+    return frisby.get(API_URL + '/Addresss/999999', { headers: authHeader })
+      .expect('status', 400)
+      .expect('json', { status: 'error', data: 'Malicious activity detected.' })
+  })
+
+  it('DELETE address by invalid id returns error', () => {
+    return frisby.del(API_URL + '/Addresss/999999', { headers: authHeader })
+      .expect('status', 400)
+      .expect('json', { status: 'error', data: 'Malicious activity detected.' })
+  })
 })

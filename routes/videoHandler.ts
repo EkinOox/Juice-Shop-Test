@@ -56,10 +56,10 @@ export const promotionVideo = () => {
 
     const themeKey = config.get<string>('application.theme') as keyof typeof themes
     const theme = themes[themeKey] || themes['bluegrey-lightgreen']
-    
+
     // Utilisation de compileFile pour éviter la manipulation du template
     const fn = pug.compileFile('views/promotionVideo.pug')
-    
+
     // Passer toutes les variables de manière sécurisée au template
     const templateData = {
       title: entities.encode(config.get<string>('application.name')),

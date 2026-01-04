@@ -92,6 +92,7 @@ describe('/profile', () => {
       // cy.expectChallengeSolved({ challenge: 'CSRF' })
     })
 
+    // Test skipped: CSRF protection mechanisms prevent this attack vector
     xit('should be possible to fake a CSRF attack against the user profile page', () => {
       cy.visit('/')
       cy.window().then(async () => {

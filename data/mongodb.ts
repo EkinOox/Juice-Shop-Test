@@ -29,7 +29,7 @@ class InMemoryCollection {
     })
   }
 
-  async findOne (query: any): Promise<any | null> {
+  async findOne (query: any): Promise<any> {
     const results = await this.find(query)
     return results.length > 0 ? results[0] : null
   }

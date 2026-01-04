@@ -24,7 +24,11 @@ import { challenges } from '../data/datacache'
 
 let trainingFile = config.get<string>('application.chatBot.trainingData')
 let testCommand: string
-export let bot: Bot | null = null
+let _bot: Bot | null = null
+export const bot = {
+  get: () => _bot,
+  set: (value: Bot | null) => { _bot = value }
+}
 
 export async function initializeChatbot () {
   if (utils.isUrl(trainingFile)) {
@@ -43,14 +47,16 @@ export async function initializeChatbot () {
   validateChatBot(JSON.parse(trainingSet))
 
   testCommand = JSON.parse(trainingSet).data[0].utterances[0]
-  bot = new Bot(config.get('application.chatBot.name'), config.get('application.chatBot.greeting'), trainingSet, config.get('application.chatBot.defaultResponse'))
-  await bot.train()
+  const newBot = new Bot(config.get('application.chatBot.name'), config.get('application.chatBot.greeting'), trainingSet, config.get('application.chatBot.defaultResponse'))
+  await newBot.train()
+  bot.set(newBot)
 }
 
 void initializeChatbot()
 
 async function processQuery (user: User, req: Request, res: Response, next: NextFunction) {
-  if (bot == null) {
+  const currentBot = bot.get()
+  if (currentBot == null) {
     res.status(503).send()
     return
   }
@@ -63,12 +69,12 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
     return
   }
 
-  if (!bot.factory.run(`currentUser('${user.id}')`)) {
+  if (!currentBot.factory.run(`currentUser('${user.id}')`)) {
     try {
-      bot.addUser(`${user.id}`, username)
+      currentBot.addUser(`${user.id}`, username)
       res.status(200).json({
         action: 'response',
-        body: bot.greet(`${user.id}`)
+        body: currentBot.greet(`${user.id}`)
       })
     } catch (err) {
       next(new Error('Blocked illegal activity by ' + req.socket.remoteAddress))
@@ -76,10 +82,10 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
     return
   }
 
-  if (bot.factory.run(`currentUser('${user.id}')`) !== username) {
-    bot.addUser(`${user.id}`, username)
+  if (currentBot.factory.run(`currentUser('${user.id}')`) !== username) {
+    currentBot.addUser(`${user.id}`, username)
     try {
-      bot.addUser(`${user.id}`, username)
+      currentBot.addUser(`${user.id}`, username)
     } catch (err) {
       next(new Error('Blocked illegal activity by ' + req.socket.remoteAddress))
       return
@@ -89,13 +95,13 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
   if (!req.body.query) {
     res.status(200).json({
       action: 'response',
-      body: bot.greet(`${user.id}`)
+      body: currentBot.greet(`${user.id}`)
     })
     return
   }
 
   try {
-    const response = await bot.respond(req.body.query, `${user.id}`)
+    const response = await currentBot.respond(req.body.query, `${user.id}`)
     if (response.action === 'function') {
       // @ts-expect-error FIXME unclean usage of any type as index
       if (response.handler && botUtils[response.handler]) {
@@ -112,7 +118,7 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
     }
   } catch (err) {
     try {
-      await bot.respond(testCommand, `${user.id}`)
+      await currentBot.respond(testCommand, `${user.id}`)
       res.status(200).json({
         action: 'response',
         body: config.get('application.chatBot.defaultResponse')
@@ -128,7 +134,8 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
 }
 
 async function setUserName (user: User, req: Request, res: Response) {
-  if (bot == null) {
+  const currentBot = bot.get()
+  if (currentBot == null) {
     return
   }
   try {
@@ -144,10 +151,10 @@ async function setUserName (user: User, req: Request, res: Response) {
     const updatedUserResponse = utils.queryResultToJson(updatedUser)
     const updatedToken = security.authorize(updatedUserResponse)
     security.authenticatedUsers.put(updatedToken, updatedUserResponse)
-    bot.addUser(`${updatedUser.id}`, req.body.query)
+    currentBot.addUser(`${updatedUser.id}`, req.body.query)
     res.status(200).json({
       action: 'response',
-      body: bot.greet(`${updatedUser.id}`),
+      body: currentBot.greet(`${updatedUser.id}`),
       token: updatedToken
     })
   } catch (err) {
@@ -158,7 +165,8 @@ async function setUserName (user: User, req: Request, res: Response) {
 
 export const status = function status () {
   return async (req: Request, res: Response, next: NextFunction) => {
-    if (bot == null) {
+    const currentBot = bot.get()
+    if (currentBot == null) {
       res.status(200).json({
         status: false,
         body: `${config.get<string>('application.chatBot.name')} isn't ready at the moment, please wait while I set things up`
@@ -168,7 +176,7 @@ export const status = function status () {
     const token = req.cookies.token || utils.jwtFrom(req)
     if (!token) {
       res.status(200).json({
-        status: bot.training.state,
+        status: currentBot.training.state,
         body: `Hi, I can't recognize you. Sign in to talk to ${config.get<string>('application.chatBot.name')}`
       })
       return
@@ -193,10 +201,10 @@ export const status = function status () {
     }
 
     try {
-      bot.addUser(`${user.id}`, username)
+      currentBot.addUser(`${user.id}`, username)
       res.status(200).json({
-        status: bot.training.state,
-        body: bot.training.state ? bot.greet(`${user.id}`) : `${config.get<string>('application.chatBot.name')} isn't ready at the moment, please wait while I set things up`
+        status: currentBot.training.state,
+        body: currentBot.training.state ? currentBot.greet(`${user.id}`) : `${config.get<string>('application.chatBot.name')} isn't ready at the moment, please wait while I set things up`
       })
     } catch (err) {
       next(new Error('Blocked illegal activity by ' + req.socket.remoteAddress))

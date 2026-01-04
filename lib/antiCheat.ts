@@ -133,7 +133,7 @@ function isTrivial (challenge: Challenge) {
 }
 
 function previous () {
-  return solves[solves.length - 1]
+  return solves.at(-1) ?? { challenge: {} as Challenge, timestamp: new Date(), cheatScore: 0 }
 }
 
 const checkForIdenticalSolvedChallenge = async (challenge: Challenge): Promise<boolean> => {

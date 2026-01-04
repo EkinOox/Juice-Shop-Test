@@ -10,7 +10,7 @@ import { UserModel } from '../models/user'
 import * as security from '../lib/insecurity'
 
 export function changePassword () {
-  return async ({ query, headers, connection }: Request, res: Response, next: NextFunction) => {
+  return async ({ query, headers, socket }: Request, res: Response, next: NextFunction) => {
     const currentPassword = query.current as string
     const newPassword = query.new as string
     const newPasswordInString = newPassword?.toString()
@@ -24,15 +24,15 @@ export function changePassword () {
       return
     }
 
-    const token = headers.authorization ? headers.authorization.substr('Bearer='.length) : null
+    const token = headers.authorization ? headers.authorization.substring('Bearer='.length) : null
     if (token === null) {
-      next(new Error('Blocked illegal activity by ' + connection.remoteAddress))
+      next(new Error('Blocked illegal activity by ' + socket.remoteAddress))
       return
     }
 
     const loggedInUser = security.authenticatedUsers.get(token)
     if (!loggedInUser) {
-      next(new Error('Blocked illegal activity by ' + connection.remoteAddress))
+      next(new Error('Blocked illegal activity by ' + socket.remoteAddress))
       return
     }
 

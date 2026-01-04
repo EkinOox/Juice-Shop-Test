@@ -14,6 +14,14 @@ describe('/api', () => {
     return frisby.get(API_URL)
       .expect('status', 500)
   })
+
+  it('GET error with JSON response when Accept header is application/json', () => {
+    return frisby.get(API_URL + '/nonexistent', {
+      headers: { Accept: 'application/json' }
+    })
+      .expect('status', 500)
+      .expect('header', 'content-type', /application\/json/)
+  })
 })
 
 describe('/rest', () => {
@@ -22,5 +30,11 @@ describe('/rest', () => {
       .expect('status', 500)
       .expect('bodyContains', '<h1>' + config.get<string>('application.name') + ' (Express')
       .expect('bodyContains', 'Unexpected path: /rest/unrecognized')
+  })
+
+  it('GET error with HTML response when no Accept header specified', () => {
+    return frisby.get(REST_URL + '/invalid-endpoint')
+      .expect('status', 500)
+      .expect('header', 'content-type', /text\/html/)
   })
 })

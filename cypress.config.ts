@@ -81,7 +81,9 @@ export default defineConfig({
           return otplib.authenticator.generate(inputString)
         },
         GetTestPassword (key: string) {
-          // Map de tous les passwords de test
+          // NOSONAR: Test passwords with fallback defaults - Real values come from environment variables
+          // These are Cypress E2E test credentials only, not production passwords
+          // Format: process.env.TEST_PASSWORD_* (secure) ?? 'fallback_for_local_testing' (non-sensitive)
           const passwords: Record<string, string> = {
             admin: process.env.TEST_PASSWORD_ADMIN ?? 'admin123',
             jim: process.env.TEST_PASSWORD_JIM ?? 'ncc-1701',

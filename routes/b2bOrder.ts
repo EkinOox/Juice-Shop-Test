@@ -4,7 +4,7 @@
  */
 
 import { type Request, type Response, type NextFunction } from 'express'
-import crypto from 'crypto'
+import crypto from 'node:crypto'
 
 import * as challengeUtils from '../lib/challengeUtils'
 import { challenges } from '../data/datacache'

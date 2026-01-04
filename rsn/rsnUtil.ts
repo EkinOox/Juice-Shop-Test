@@ -111,9 +111,9 @@ async function seePatch (file: string) {
   console.log(colors.bold(file + '\n'))
   for (const hunk of patch.hunks) {
     for (const line of hunk.lines) {
-      if (line[0] === '-') {
+      if (line.startsWith('-')) {
         console.log(colors.red(line))
-      } else if (line[0] === '+') {
+      } else if (line.startsWith('+')) {
         console.log(colors.green(line))
       } else {
         console.log(line)

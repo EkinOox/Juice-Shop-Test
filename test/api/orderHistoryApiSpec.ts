@@ -99,6 +99,13 @@ describe('/rest/order-history/orders', () => {
           .expect('status', 200)
       })
   })
+
+  it('GET order history without authentication', () => {
+    return frisby.get(REST_URL + '/order-history')
+      .then((res) => {
+        expect([401, 500]).toContain(res.status)
+      })
+  })
 })
 
 describe('/rest/order-history/:id/delivery-status', () => {
@@ -159,6 +166,105 @@ describe('/rest/order-history/:id/delivery-status', () => {
           }
         })
           .expect('status', 200)
+      })
+  })
+
+  it('PUT toggle delivery status from false to true', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'accountant@' + config.get<string>('application.domain'),
+        password: testPasswords.accountant
+      }
+    })
+      .expect('status', 200)
+      .then(({ json: jsonLogin }) => {
+        return frisby.put(REST_URL + '/order-history/1/delivery-status', {
+          headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+          body: {
+            deliveryStatus: false
+          }
+        })
+          .expect('status', 200)
+          .then(() => {
+            return frisby.put(REST_URL + '/order-history/1/delivery-status', {
+              headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+              body: {
+                deliveryStatus: true
+              }
+            })
+              .expect('status', 200)
+          })
+      })
+  })
+
+  it('PUT delivery status update with different order IDs', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'accountant@' + config.get<string>('application.domain'),
+        password: testPasswords.accountant
+      }
+    })
+      .expect('status', 200)
+      .then(({ json: jsonLogin }) => {
+        return frisby.put(REST_URL + '/order-history/2/delivery-status', {
+          headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+          body: {
+            delivered: true
+          }
+        })
+          .expect('status', 200)
+      })
+  })
+
+  it('GET all orders for accountant to test mongodb find without query', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'accountant@' + config.get<string>('application.domain'),
+        password: testPasswords.accountant
+      }
+    })
+      .expect('status', 200)
+      .then(({ json: jsonLogin }) => {
+        return frisby.get(REST_URL + '/order-history/orders', {
+          headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' }
+        })
+          .expect('status', 200)
+          .then(({ json }) => {
+            expect(json.status).toBe('success')
+            expect(Array.isArray(json.data)).toBe(true)
+          })
+      })
+  })
+
+  it('PUT delivery status with $set update mechanism', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'accountant@' + config.get<string>('application.domain'),
+        password: testPasswords.accountant
+      }
+    })
+      .expect('status', 200)
+      .then(({ json: jsonLogin }) => {
+        return frisby.put(REST_URL + '/order-history/1/delivery-status', {
+          headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+          body: {
+            deliveryStatus: true
+          }
+        })
+          .expect('status', 200)
+          .then(() => {
+            return frisby.put(REST_URL + '/order-history/1/delivery-status', {
+              headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+              body: {
+                deliveryStatus: false
+              }
+            })
+              .expect('status', 200)
+          })
       })
   })
 })

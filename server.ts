@@ -127,7 +127,7 @@ import { ensureFileIsPassed, handleZipFileUpload, checkUploadSize, checkFileType
 // Custom IP filter middleware to replace vulnerable express-ipfilter
 const ipFilter = (allowedIps: string[], options: { mode: string }) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const clientIp = req.ip ?? req.connection.remoteAddress ?? (req as any).socket?.remoteAddress ?? 'unknown'
+    const clientIp = req.ip ?? req.socket?.remoteAddress ?? 'unknown'
     const isAllowed = allowedIps.includes(clientIp)
     if (options.mode === 'allow' && !isAllowed) {
       return res.status(403).json({ error: 'IP address not allowed' })
@@ -312,7 +312,23 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.use(bodyParser.urlencoded({ extended: true }))
   /* File Upload */
   app.post('/file-upload', uploadToMemory.single('file'), ensureFileIsPassed, metrics.observeFileUploadMetricsMiddleware(), checkUploadSize, checkFileType, handleZipFileUpload, handleXmlUpload, handleYamlUpload)
-  app.post('/profile/image/file', uploadToMemory.single('file'), ensureFileIsPassed, metrics.observeFileUploadMetricsMiddleware(), profileImageFileUpload())
+  app.post('/profile/image/file',
+    (req: Request, res: Response, next: NextFunction) => {
+      uploadToMemory.single('file')(req, res, (err: any) => {
+        if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
+          res.status(400).json({
+            error: 'File size exceeds the maximum limit of 150KB. Please choose a smaller image.',
+            status: 'error'
+          })
+          return
+        }
+        next(err)
+      })
+    },
+    ensureFileIsPassed,
+    metrics.observeFileUploadMetricsMiddleware(),
+    profileImageFileUpload()
+  )
   app.post('/profile/image/url', uploadToMemory.single('file'), profileImageUrlUpload())
   app.post('/rest/memories', uploadToDisk.single('image'), ensureFileIsPassed, security.appendUserId(), metrics.observeFileUploadMetricsMiddleware(), addMemory())
 

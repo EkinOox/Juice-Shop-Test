@@ -25,7 +25,8 @@ export function orderHistory () {
 export function allOrders () {
   return async (req: Request, res: Response, next: NextFunction) => {
     const order = await ordersCollection.find()
-    res.status(200).json({ status: 'success', data: order.reverse() })
+    const reversedOrder = [...order].reverse()
+    res.status(200).json({ status: 'success', data: reversedOrder })
   }
 }
 
