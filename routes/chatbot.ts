@@ -54,12 +54,56 @@ export async function initializeChatbot () {
 
 void initializeChatbot()
 
+function addUserIfNeeded (currentBot: Bot, userId: string, username: string, remoteAddress: string | undefined): void {
+  try {
+    currentBot.addUser(userId, username)
+  } catch (err) {
+    throw new Error('Blocked illegal activity by ' + remoteAddress)
+  }
+}
+
+async function handleBotResponse (response: any, query: string, user: User, res: Response) {
+  if (response.action !== 'function') {
+    res.status(200).json(response)
+    return
+  }
+
+  // @ts-expect-error FIXME unclean usage of any type as index
+  const handler = response.handler && botUtils[response.handler]
+  if (handler) {
+    // @ts-expect-error FIXME unclean usage of any type as index
+    res.status(200).json(await botUtils[response.handler](query, user))
+  } else {
+    res.status(200).json({
+      action: 'response',
+      body: config.get('application.chatBot.defaultResponse')
+    })
+  }
+}
+
+async function handleBotError (currentBot: Bot, userId: string, res: Response) {
+  try {
+    await currentBot.respond(testCommand, userId)
+    res.status(200).json({
+      action: 'response',
+      body: config.get('application.chatBot.defaultResponse')
+    })
+  } catch (err) {
+    challengeUtils.solveIf(challenges.killChatbotChallenge, () => { return true })
+    res.status(200).json({
+      action: 'response',
+      body: `Remember to stay hydrated while I try to recover from "${utils.getErrorMessage(err)}"...`
+    })
+  }
+}
+
 async function processQuery (user: User, req: Request, res: Response, next: NextFunction) {
   const currentBot = bot.get()
   if (currentBot == null) {
     res.status(503).send()
     return
   }
+
   const username = user.username
   if (!username) {
     res.status(200).json({
@@ -69,25 +113,27 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
     return
   }
 
-  if (!currentBot.factory.run(`currentUser('${user.id}')`)) {
+  const userId = `${user.id}`
+  const userExists = currentBot.factory.run(`currentUser('${user.id}')`)
+
+  if (!userExists) {
     try {
-      currentBot.addUser(`${user.id}`, username)
+      addUserIfNeeded(currentBot, userId, username, req.socket.remoteAddress)
       res.status(200).json({
         action: 'response',
-        body: currentBot.greet(`${user.id}`)
+        body: currentBot.greet(userId)
       })
     } catch (err) {
-      next(new Error('Blocked illegal activity by ' + req.socket.remoteAddress))
+      next(err)
     }
     return
   }
 
-  if (currentBot.factory.run(`currentUser('${user.id}')`) !== username) {
-    currentBot.addUser(`${user.id}`, username)
+  if (userExists !== username) {
     try {
-      currentBot.addUser(`${user.id}`, username)
+      addUserIfNeeded(currentBot, userId, username, req.socket.remoteAddress)
     } catch (err) {
-      next(new Error('Blocked illegal activity by ' + req.socket.remoteAddress))
+      next(err)
       return
     }
   }
@@ -95,41 +141,16 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
   if (!req.body.query) {
     res.status(200).json({
       action: 'response',
-      body: currentBot.greet(`${user.id}`)
+      body: currentBot.greet(userId)
     })
     return
   }
 
   try {
-    const response = await currentBot.respond(req.body.query, `${user.id}`)
-    if (response.action === 'function') {
-      // @ts-expect-error FIXME unclean usage of any type as index
-      if (response.handler && botUtils[response.handler]) {
-        // @ts-expect-error FIXME unclean usage of any type as index
-        res.status(200).json(await botUtils[response.handler](req.body.query, user))
-      } else {
-        res.status(200).json({
-          action: 'response',
-          body: config.get('application.chatBot.defaultResponse')
-        })
-      }
-    } else {
-      res.status(200).json(response)
-    }
+    const response = await currentBot.respond(req.body.query, userId)
+    await handleBotResponse(response, req.body.query, user, res)
   } catch (err) {
-    try {
-      await currentBot.respond(testCommand, `${user.id}`)
-      res.status(200).json({
-        action: 'response',
-        body: config.get('application.chatBot.defaultResponse')
-      })
-    } catch (err) {
-      challengeUtils.solveIf(challenges.killChatbotChallenge, () => { return true })
-      res.status(200).json({
-        action: 'response',
-        body: `Remember to stay hydrated while I try to recover from "${utils.getErrorMessage(err)}"...`
-      })
-    }
+    await handleBotError(currentBot, userId, res)
   }
 }
 

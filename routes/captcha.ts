@@ -14,21 +14,24 @@ function safeEvalMath (expression: string): number {
   if (!tokens) throw new Error('Invalid expression')
 
   // Evaluate * and / first
-  for (let i = 1; i < tokens.length; i += 2) {
+  let i = 1
+  while (i < tokens.length) {
     if (tokens[i] === '*' || tokens[i] === '/') {
       const left = Number.parseFloat(tokens[i - 1])
       const right = Number.parseFloat(tokens[i + 1])
       const result = tokens[i] === '*' ? left * right : left / right
       tokens.splice(i - 1, 3, result.toString())
-      i -= 4 // adjust index after splice
+      i -= 2 // adjust index after splice
+    } else {
+      i += 2
     }
   }
 
   // Now evaluate + and -
   let result = Number.parseFloat(tokens[0])
-  for (let i = 1; i < tokens.length; i += 2) {
-    const op = tokens[i]
-    const num = Number.parseFloat(tokens[i + 1])
+  for (let j = 1; j < tokens.length; j += 2) {
+    const op = tokens[j]
+    const num = Number.parseFloat(tokens[j + 1])
     if (op === '+') result += num
     else if (op === '-') result -= num
   }

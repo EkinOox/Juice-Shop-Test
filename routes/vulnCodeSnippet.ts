@@ -68,13 +68,43 @@ export const getVerdict = (vulnLines: number[], neutralLines: number[], selected
   return notOkLines.length === 0
 }
 
+function getHintForChallenge (key: ChallengeKey, vulnLines: number[], res: Response): string | undefined {
+  const infoPath = './data/static/codefixes/' + key + '.info.yml'
+
+  if (!fs.existsSync(infoPath)) {
+    return undefined
+  }
+
+  const codingChallengeInfos = yaml.load(fs.readFileSync(infoPath, 'utf8'))
+
+  if (!codingChallengeInfos?.hints) {
+    return undefined
+  }
+
+  const attempts = accuracy.getFindItAttempts(key)
+
+  if (attempts > codingChallengeInfos.hints.length) {
+    return vulnLines.length === 1
+      ? res.__('Line {{vulnLine}} is responsible for this vulnerability or security flaw. Select it and submit to proceed.', {
+        vulnLine: vulnLines[0].toString()
+      })
+      : res.__('Lines {{vulnLines}} are responsible for this vulnerability or security flaw. Select them and submit to proceed.', {
+        vulnLines: vulnLines.toString()
+      })
+  }
+
+  const nextHint = codingChallengeInfos.hints[attempts - 1]
+  return nextHint ? res.__(nextHint) : undefined
+}
+
 export const checkVulnLines = () => async (req: Request<Record<string, unknown>, Record<string, unknown>, VerdictRequestBody>, res: Response, next: NextFunction) => {
   const key = req.body.key
-  // Validate that key is a valid challenge key to prevent path traversal
+
   if (!Object.keys(challenges).includes(key)) {
     res.status(400).json({ status: 'error', error: 'Invalid challenge key' })
     return
   }
+
   let snippetData
   try {
     snippetData = await retrieveCodeSnippet(key)
@@ -87,36 +117,19 @@ export const checkVulnLines = () => async (req: Request<Record<string, unknown>,
     res.status(statusCode).json({ status: 'error', error: utils.getErrorMessage(error) })
     return
   }
+
   const vulnLines: number[] = snippetData.vulnLines
   const neutralLines: number[] = snippetData.neutralLines
   const selectedLines: number[] = req.body.selectedLines
   const verdict = getVerdict(vulnLines, neutralLines, selectedLines)
-  let hint
-  if (fs.existsSync('./data/static/codefixes/' + key + '.info.yml')) {
-    const codingChallengeInfos = yaml.load(fs.readFileSync('./data/static/codefixes/' + key + '.info.yml', 'utf8'))
-    if (codingChallengeInfos?.hints) {
-      if (accuracy.getFindItAttempts(key) > codingChallengeInfos.hints.length) {
-        if (vulnLines.length === 1) {
-          hint = res.__('Line {{vulnLine}} is responsible for this vulnerability or security flaw. Select it and submit to proceed.', { vulnLine: vulnLines[0].toString() })
-        } else {
-          hint = res.__('Lines {{vulnLines}} are responsible for this vulnerability or security flaw. Select them and submit to proceed.', { vulnLines: vulnLines.toString() })
-        }
-      } else {
-        const nextHint = codingChallengeInfos.hints[accuracy.getFindItAttempts(key) - 1] // -1 prevents after first attempt
-        if (nextHint) hint = res.__(nextHint)
-      }
-    }
-  }
+
   if (verdict) {
     await challengeUtils.solveFindIt(key)
-    res.status(200).json({
-      verdict: true
-    })
-  } else {
-    accuracy.storeFindItVerdict(key, false)
-    res.status(200).json({
-      verdict: false,
-      hint
-    })
+    res.status(200).json({ verdict: true })
+    return
   }
+
+  accuracy.storeFindItVerdict(key, false)
+  const hint = getHintForChallenge(key, vulnLines, res)
+  res.status(200).json({ verdict: false, hint })
 }

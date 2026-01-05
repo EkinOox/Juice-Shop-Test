@@ -56,17 +56,17 @@ function getCodeChallengesFromFile (file: FileMatch) {
 }
 
 function getCodingChallengeFromFileContent (source: string, challengeKey: string) {
-  const escapedKey = challengeKey.replace(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`)
+  const escapedKey = challengeKey.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`)
   const snippetRegex = new RegExp(String.raw`[/#]{0,2} vuln-code-snippet start[^\r\n]{0,200}?${escapedKey}([\s\S]*?)[/#]{0,2} vuln-code-snippet end[^\r\n]{0,200}?${escapedKey}`, 'g')
   const match = snippetRegex.exec(source)
   if (match == null) {
     throw new BrokenBoundary('Broken code snippet boundaries for: ' + challengeKey)
   }
   let snippet = match[0]
-  snippet = snippet.replaceAll(/^[^\r\n]{0,200}?vuln-code-snippet start[^\r\n]{0,200}?$/gm, '')
-  snippet = snippet.replaceAll(/^[^\r\n]{0,200}?vuln-code-snippet end[^\r\n]{0,200}?$/gm, '')
-  snippet = snippet.replaceAll(/^[^\r\n]{0,200}?vuln-code-snippet hide-line[^\r\n]{0,200}?$/gm, '')
-  snippet = snippet.replaceAll(/^[^\r\n]{0,200}?vuln-code-snippet hide-start[\s\S]{0,5000}?[^\r\n]{0,200}?vuln-code-snippet hide-end[^\r\n]{0,200}?$/gm, '')
+  snippet = snippet.replaceAll(/^[^\r\n]{0,200}vuln-code-snippet start[^\r\n]{0,200}$/gm, '')
+  snippet = snippet.replaceAll(/^[^\r\n]{0,200}vuln-code-snippet end[^\r\n]{0,200}$/gm, '')
+  snippet = snippet.replaceAll(/^[^\r\n]{0,200}vuln-code-snippet hide-line[^\r\n]{0,200}$/gm, '')
+  snippet = snippet.replaceAll(/^[^\r\n]{0,200}vuln-code-snippet hide-start[\s\S]{0,5000}[^\r\n]{0,200}vuln-code-snippet hide-end[^\r\n]{0,200}$/gm, '')
   snippet = snippet.trim()
 
   let lines = snippet.split('\r\n')
@@ -81,8 +81,8 @@ function getCodingChallengeFromFileContent (source: string, challengeKey: string
       neutralLines.push(i + 1)
     }
   }
-  snippet = snippet.replaceAll(/\s?[/#]{0,2} vuln-code-snippet vuln-line[^\r\n]{0,200}?/g, '')
-  snippet = snippet.replaceAll(/\s?[/#]{0,2} vuln-code-snippet neutral-line[^\r\n]{0,200}?/g, '')
+  snippet = snippet.replaceAll(/\s?[/#]{0,2} vuln-code-snippet vuln-line[^\r\n]{0,200}/g, '')
+  snippet = snippet.replaceAll(/\s?[/#]{0,2} vuln-code-snippet neutral-line[^\r\n]{0,200}/g, '')
   return { challengeKey, snippet, vulnLines, neutralLines }
 }
 
