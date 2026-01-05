@@ -36,7 +36,7 @@ Cypress.Commands.add(
     
     // Récupérer le password depuis l'environnement via GetTestPassword si c'est une clé connue
     cy.task<string>('GetTestPassword', context.password).then((resolvedPassword: string) => {
-      if (context.email.match(/\S+@\S+\.\S+/) != null) {
+      if (context.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) != null) {
         cy.get('#email').type(context.email)
       } else {
         cy.task<string>('GetFromConfig', 'application.domain').then(

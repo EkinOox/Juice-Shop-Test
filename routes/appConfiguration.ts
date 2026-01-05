@@ -8,6 +8,10 @@ import { type Request, type Response } from 'express'
 
 export function retrieveAppConfiguration () {
   return (_req: Request, res: Response) => {
-    res.json({ config })
+    if (process.env.NODE_ENV === 'production') {
+      res.status(403).json({ error: 'Configuration not available in production' })
+    } else {
+      res.json({ config })
+    }
   }
 }

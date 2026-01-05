@@ -48,5 +48,51 @@ describe('/rest/web3', () => {
     return frisby.get(REST_URL + '/web3/nftUnlocked')
       .expect('status', 200)
       .expect('header', 'content-type', /application\/json/)
+      .then((res) => {
+        expect(res.json.status).toBeDefined()
+        expect(typeof res.json.status).toBe('boolean')
+      })
+  })
+
+  it('POST check NFT with valid ethereum private key format', () => {
+    return frisby.post(REST_URL + '/web3/checkKeys', {
+      headers: jsonHeader,
+      body: {
+        privateKey: '0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'
+      }
+    })
+      .then((res) => {
+        expect([200, 401]).toContain(res.status)
+        if (res.json) {
+          expect(res.json.success).toBeDefined()
+        }
+      })
+  })
+
+  it('POST check NFT with public key instead of private', () => {
+    return frisby.post(REST_URL + '/web3/checkKeys', {
+      headers: jsonHeader,
+      body: {
+        privateKey: '0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'
+      }
+    })
+      .then((res) => {
+        expect([200, 401]).toContain(res.status)
+        if (res.status === 401 && res.json) {
+          expect(res.json.message).toContain('public')
+        }
+      })
+  })
+
+  it('POST check NFT handles error gracefully', () => {
+    return frisby.post(REST_URL + '/web3/checkKeys', {
+      headers: jsonHeader,
+      body: {
+        privateKey: null
+      }
+    })
+      .then((res) => {
+        expect([401, 500]).toContain(res.status)
+      })
   })
 })

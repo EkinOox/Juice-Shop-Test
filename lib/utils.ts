@@ -260,6 +260,6 @@ export const matchesSystemIniFile = (text: string) => {
 }
 
 export const matchesEtcPasswdFile = (text: string) => {
-  const match = text.match(/(\w*:\w*:\d*:\d*:\w*:.*)|(Note that this file is consulted directly)/gi)
+  const match = text.match(/(\w{1,32}:\w{1,32}:\d{1,5}:\d{1,5}:\w{1,32}:.*)|(Note that this file is consulted directly)/gi)
   return match !== null && match.length >= 1
 }

@@ -40,7 +40,7 @@ interface IAuthenticatedUsers {
   updateFrom: (req: Request, user: ResponseWithUser) => any
 }
 
-export const hash = (data: string) => crypto.createHash('md5').update(data).digest('hex')
+export const hash = (data: string) => crypto.createHash('sha256').update(data).digest('hex')
 export const hmac = (data: string) => crypto.createHmac('sha256', process.env.HMAC_SECRET ?? 'default-secret').update(data).digest('hex')
 
 export const cutOffPoisonNullByte = (str: string) => {
@@ -52,7 +52,7 @@ export const cutOffPoisonNullByte = (str: string) => {
 }
 
 export const isAuthorized = () => expressjwt({ secret: publicKey, algorithms: ['RS256'] } as any)
-export const denyAll = () => expressjwt({ secret: '' + Math.random(), algorithms: ['HS256'] } as any)
+export const denyAll = () => expressjwt({ secret: crypto.randomBytes(32).toString('hex'), algorithms: ['HS256'] } as any)
 export const authorize = (user = {}) => jwt.sign(user, privateKey, { expiresIn: '6h', algorithm: 'RS256' })
 export const verify = (token: string) => {
   try {

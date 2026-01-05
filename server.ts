@@ -187,9 +187,13 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   /* Compression for all requests */
   app.use(compression())
 
-  /* Bludgeon solution for possible CORS problems: Allow everything! */
-  app.options('*', cors())
-  app.use(cors())
+  /* Secure CORS configuration: Allow only trusted origins */
+  const corsOptions = {
+    origin: ['http://localhost:3000', 'https://juice-sh.op'],
+    credentials: true
+  }
+  app.options('*', cors(corsOptions))
+  app.use(cors(corsOptions))
 
   /* Security middleware */
   app.use(helmet.noSniff())
@@ -309,7 +313,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   })
   app.use(i18n.init)
 
-  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }))
   /* File Upload */
   app.post('/file-upload', uploadToMemory.single('file'), ensureFileIsPassed, metrics.observeFileUploadMetricsMiddleware(), checkUploadSize, checkFileType, handleZipFileUpload, handleXmlUpload, handleYamlUpload)
   app.post('/profile/image/file',
@@ -332,7 +336,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.post('/profile/image/url', uploadToMemory.single('file'), profileImageUrlUpload())
   app.post('/rest/memories', uploadToDisk.single('image'), ensureFileIsPassed, security.appendUserId(), metrics.observeFileUploadMetricsMiddleware(), addMemory())
 
-  app.use(bodyParser.text({ type: '*/*' }))
+  app.use(bodyParser.text({ type: '*/*', limit: '10mb' }))
   app.use(function jsonParser (req: Request, res: Response, next: NextFunction) {
     // @ts-expect-error FIXME intentionally saving original request in this property
     req.rawBody = req.body
@@ -694,7 +698,9 @@ restoreOverwrittenFilesWithOriginals().then(() => {
 
   /* Error Handling */
   app.use(verify.errorHandlingChallenge())
-  app.use(errorhandler())
+  if (process.env.NODE_ENV !== 'production') {
+    app.use(errorhandler())
+  }
 }).catch((err) => {
   console.error(err)
 })

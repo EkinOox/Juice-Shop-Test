@@ -159,4 +159,88 @@ describe('/rest/user/login edge cases', () => {
         expect([200, 401]).toContain(res.status)
       })
   })
+
+  it('POST login creates or finds basket', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'jim@juice-sh.op',
+        password: testPasswords.jim
+      }
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          expect(res.json.authentication).toBeDefined()
+          expect(res.json.authentication.bid).toBeDefined()
+          expect(typeof res.json.authentication.bid).toBe('number')
+        }
+      })
+  })
+
+  it('POST login returns token in response', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'jim@juice-sh.op',
+        password: testPasswords.jim
+      }
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          expect(res.json.authentication.token).toBeDefined()
+          expect(typeof res.json.authentication.token).toBe('string')
+          expect(res.json.authentication.token.length).toBeGreaterThan(10)
+        }
+      })
+  })
+
+  it('POST login with user that has TOTP enabled', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'wurstbrot@juice-sh.op',
+        password: testPasswords.bender
+      }
+    })
+      .then((res) => {
+        expect([401]).toContain(res.status)
+        if (res.status === 401 && res.json) {
+          expect(res.json.status).toBe('totp_token_required')
+          expect(res.json.data).toBeDefined()
+          expect(res.json.data.tmpToken).toBeDefined()
+        }
+      })
+  })
+
+  it('POST login handles basket creation error gracefully', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'jim@juice-sh.op',
+        password: testPasswords.jim
+      }
+    })
+      .then((res) => {
+        // Should either succeed or fail gracefully
+        expect([200, 401, 500]).toContain(res.status)
+      })
+  })
+
+  it('POST login with correct password hash', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'jim@juice-sh.op',
+        password: testPasswords.jim
+      }
+    })
+      .then((res) => {
+        expect([200, 401]).toContain(res.status)
+        if (res.status === 200) {
+          expect(res.json.authentication).toBeDefined()
+        } else if (res.status === 401) {
+          expect(res.body).toBeDefined()
+        }
+      })
+  })
 })

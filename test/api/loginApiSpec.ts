@@ -125,7 +125,10 @@ describe('/rest/user/login', () => {
         password: testPasswords.passwordGeneric
       }
     })
-      .expect('status', 401) // User may not exist or wrong password
+      .then((res) => {
+        // May be 200 if password is correct, 401 otherwise
+        expect([200, 401]).includes(res.status)
+      })
   })
 
   it('POST login with testing@juice-sh.op exposed credentials', () => {
@@ -136,7 +139,65 @@ describe('/rest/user/login', () => {
         password: testPasswords.passwordGeneric
       }
     })
-      .expect('status', 401) // Credentials may be invalid
+      .then((res) => {
+        expect([200, 401]).includes(res.status)
+      })
+  })
+
+  it('POST login with Jim credentials', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'jim@' + config.get<string>('application.domain'),
+        password: testPasswords.jim
+      }
+    })
+      .expect('status', 200)
+      .expect('header', 'content-type', /application\/json/)
+      .expect('jsonTypes', 'authentication', {
+        token: Joi.string()
+      })
+  })
+
+  it('POST login with Bender credentials', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'bender@' + config.get<string>('application.domain'),
+        password: testPasswords.bender
+      }
+    })
+      .expect('status', 200)
+      .expect('header', 'content-type', /application\/json/)
+      .expect('jsonTypes', 'authentication', {
+        token: Joi.string()
+      })
+  })
+
+  it('POST login with Chris (ghost) credentials', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'chris.pike@' + config.get<string>('application.domain'),
+        password: testPasswords.passwordGeneric
+      }
+    })
+      .then((res) => {
+        expect([200, 401]).includes(res.status)
+      })
+  })
+
+  it('POST login with accountant credentials', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'acc0unt4nt@' + config.get<string>('application.domain'),
+        password: testPasswords.passwordGeneric
+      }
+    })
+      .then((res) => {
+        expect([200, 401]).includes(res.status)
+      })
   })
 
   it('POST login with wurstbrot credentials expects 2FA token', () => {

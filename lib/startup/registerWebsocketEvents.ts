@@ -22,7 +22,7 @@ const registerWebsocketEvents = (server: any) => {
   globalWithSocketIO.io = io
 
   io.on('connection', (socket: any) => {
-    if (firstConnectedSocket === null) {
+    if (firstConnectedSocket === null && process.env.NODE_ENV !== 'production') {
       socket.emit('server started')
       firstConnectedSocket = socket.id
     }
@@ -44,7 +44,7 @@ const registerWebsocketEvents = (server: any) => {
     })
 
     socket.on('verifySvgInjectionChallenge', (data: any) => {
-      challengeUtils.solveIf(challenges.svgInjectionChallenge, () => { return data?.match(/.*\.\.\/\.\.\/\.\.[\w/-]*?\/redirect\?to=https?:\/\/placecats.com\/(g\/)?[\d]+\/[\d]+.*/) && security.isRedirectAllowed(data) })
+      challengeUtils.solveIf(challenges.svgInjectionChallenge, () => { return /^.*\.\.\/\.\.\/\.\.[\/\w-]*\/redirect\?to=https?:\/\/placecats.com\/(g\/)?\d+\/\d+.*$/.test(data) && security.isRedirectAllowed(data) })
     })
 
     socket.on('verifyCloseNotificationsChallenge', (data: any) => {
