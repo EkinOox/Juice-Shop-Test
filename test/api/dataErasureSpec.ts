@@ -10,7 +10,6 @@ const URL = 'http://localhost:3000'
 
 describe('/dataerasure', () => {
   let authToken: string
-  let authCookie: string
 
   beforeAll(() => {
     return frisby.post(`${URL}/rest/user/login`, {
@@ -20,10 +19,6 @@ describe('/dataerasure', () => {
       .expect('status', 200)
       .then((res: any) => {
         authToken = res.json.authentication.token
-        // Extract cookie for dataerasure page
-        if (res.headers && res.headers['set-cookie']) {
-          authCookie = res.headers['set-cookie'][0]
-        }
       })
   })
 

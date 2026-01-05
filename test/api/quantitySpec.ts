@@ -7,6 +7,7 @@ const REST_URL = 'http://localhost:3000/rest'
 const jsonHeader = { 'content-type': 'application/json' }
 
 describe('/api/Quantitys', () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let authToken: string = ''
 
   beforeAll(() => {

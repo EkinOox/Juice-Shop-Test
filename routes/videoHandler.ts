@@ -72,7 +72,7 @@ export const promotionVideo = () => {
       // Échapper les sous-titres pour éviter XSS
       subtitles: entities.encode(subs)
     }
-    
+
     res.send(fn(templateData))
   }
   function favicon () {

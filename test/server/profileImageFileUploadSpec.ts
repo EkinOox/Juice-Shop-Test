@@ -130,7 +130,7 @@ describe('profileImageFileUpload', () => {
     sinon.stub(security.authenticatedUsers, 'get').returns(loggedInUser)
     sinon.stub(fs, 'writeFile').resolves()
     sinon.stub(UserModel, 'findByPk').resolves(user as any)
-    
+
     // Setup process.env.BASE_PATH properly
     const originalBasePath = process.env.BASE_PATH
     process.env.BASE_PATH = '/juice-shop'
@@ -169,7 +169,7 @@ describe('profileImageFileUpload', () => {
     sinon.stub(fs, 'writeFile').rejects(new Error('Write failed'))
     sinon.stub(logger, 'warn')
     sinon.stub(UserModel, 'findByPk').resolves(user as any)
-    
+
     // Setup process.env.BASE_PATH properly
     const originalBasePath = process.env.BASE_PATH
     process.env.BASE_PATH = '/juice-shop'
@@ -220,7 +220,7 @@ describe('profileImageFileUpload', () => {
     sinon.stub(security.authenticatedUsers, 'get').returns(loggedInUser)
     sinon.stub(fs, 'writeFile').resolves()
     sinon.stub(UserModel, 'findByPk').resolves(null)
-    
+
     // Setup process.env.BASE_PATH properly
     const originalBasePath = process.env.BASE_PATH
     process.env.BASE_PATH = '/juice-shop'

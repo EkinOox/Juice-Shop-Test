@@ -74,4 +74,3 @@ describe('/rest/user/security-question', () => {
       })
   })
 })
-

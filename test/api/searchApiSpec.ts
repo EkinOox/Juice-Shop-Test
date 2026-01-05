@@ -5,7 +5,6 @@
 
 import * as frisby from 'frisby'
 import { expect } from '@jest/globals'
-import * as security from '../../lib/insecurity'
 import type { Product as ProductConfig } from '../../lib/config.types'
 import config from 'config'
 

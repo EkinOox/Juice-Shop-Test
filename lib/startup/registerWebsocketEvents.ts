@@ -44,7 +44,7 @@ const registerWebsocketEvents = (server: any) => {
     })
 
     socket.on('verifySvgInjectionChallenge', (data: any) => {
-      challengeUtils.solveIf(challenges.svgInjectionChallenge, () => { return /^.*\.\.\/\.\.\/\.\.[\/\w-]*\/redirect\?to=https?:\/\/placecats.com\/(g\/)?\d+\/\d+.*$/.test(data) && security.isRedirectAllowed(data) })
+      challengeUtils.solveIf(challenges.svgInjectionChallenge, () => { return /^\.\.\/\.\.\/\.\.[/\w-]*\/redirect\?to=https?:\/\/placecats\.com\/(g\/)?\d+\/\d+$/.test(data) && security.isRedirectAllowed(data) })
     })
 
     socket.on('verifyCloseNotificationsChallenge', (data: any) => {

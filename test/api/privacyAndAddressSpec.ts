@@ -73,6 +73,7 @@ describe('/api/PrivacyRequests', () => {
 
 describe('/api/Addresss', () => {
   let authToken: string
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let addressId: number
 
   beforeAll(() => {

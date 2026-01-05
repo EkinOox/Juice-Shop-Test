@@ -257,7 +257,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
     // @ts-expect-error FIXME assignment broken due to seemingly void return value
     res.end = function () {
       if (arguments.length) {
-        const reqPath = req.originalUrl.replace(/\?.*$/, '')
+        const reqPath = req.originalUrl.split('?')[0]
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const currentFolder = reqPath.split('/').pop()!
         arguments[0] = arguments[0].replace(/a href="([^"]+?)"/gi, function (matchString: string, matchedUrl: string) {
@@ -312,6 +312,8 @@ restoreOverwrittenFilesWithOriginals().then(() => {
     autoReload: true
   })
   app.use(i18n.init)
+
+  app.use(express.json({ limit: '10mb' }))
 
   app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }))
   /* File Upload */
@@ -729,7 +731,8 @@ const uploadToDisk = multer({
       const ext = mimeTypeMap[file.mimetype]
       cb(null, name + '-' + Date.now() + '.' + ext)
     }
-  })
+  }),
+  limits: { fileSize: 200000 }
 })
 
 const expectedModels = ['Address', 'Basket', 'BasketItem', 'Captcha', 'Card', 'Challenge', 'Complaint', 'Delivery', 'Feedback', 'ImageCaptcha', 'Memory', 'PrivacyRequestModel', 'Product', 'Quantity', 'Recycle', 'SecurityAnswer', 'SecurityQuestion', 'User', 'Wallet', 'Hint']

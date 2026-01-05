@@ -43,8 +43,8 @@ describe('/rest/saveLoginIp', () => {
 
   it('POST save login IP with custom IP header', () => {
     return frisby.post(REST_URL + '/saveLoginIp', {
-      headers: { 
-        ...jsonHeader, 
+      headers: {
+        ...jsonHeader,
         Authorization: 'Bearer ' + authToken,
         'X-Forwarded-For': '192.168.1.100'
       }
@@ -56,8 +56,8 @@ describe('/rest/saveLoginIp', () => {
 
   it('POST save login IP with true-client-ip header', () => {
     return frisby.post(REST_URL + '/saveLoginIp', {
-      headers: { 
-        ...jsonHeader, 
+      headers: {
+        ...jsonHeader,
         Authorization: 'Bearer ' + authToken,
         'True-Client-IP': '10.0.0.1'
       }
@@ -69,8 +69,8 @@ describe('/rest/saveLoginIp', () => {
 
   it('POST save login IP with array of IPs in true-client-ip header', () => {
     return frisby.post(REST_URL + '/saveLoginIp', {
-      headers: { 
-        ...jsonHeader, 
+      headers: {
+        ...jsonHeader,
         Authorization: 'Bearer ' + authToken,
         'True-Client-IP': ['10.0.0.1', '192.168.1.1']
       }

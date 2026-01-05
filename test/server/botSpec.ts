@@ -134,14 +134,14 @@ describe('Bot', () => {
   it('should handle multiple users independently', () => {
     bot.addUser('user1', 'Alice')
     bot.addUser('user2', 'Bob')
-    
+
     expect(bot.greet('user1')).to.equal('Hello Alice!')
     expect(bot.greet('user2')).to.equal('Hello Bob!')
   })
 
   it('should select random answer from multiple options', async () => {
     const responses = new Set<string>()
-    
+
     // Run multiple times to potentially get different random responses
     for (let i = 0; i < 20; i++) {
       const response = await bot.respond('how are you', 'user123')
@@ -149,7 +149,7 @@ describe('Bot', () => {
         responses.add(response.body)
       }
     }
-    
+
     // Should have gotten at least one response
     expect(responses.size).to.be.greaterThan(0)
   })
@@ -192,7 +192,7 @@ describe('Bot', () => {
     bot.addUser('session1', 'User One')
     bot.addUser('session2', 'User Two')
     bot.addUser('session3', 'User Three')
-    
+
     expect(bot.factory.run("currentUser('session1')")).to.equal('User One')
     expect(bot.factory.run("currentUser('session2')")).to.equal('User Two')
     expect(bot.factory.run("currentUser('session3')")).to.equal('User Three')
@@ -214,7 +214,7 @@ describe('Bot', () => {
         }
       ]
     })
-    
+
     const testBot = new Bot('TestBot', 'Hi!', singleAnswerData, 'Default')
     await testBot.train()
     const response = await testBot.respond('test query', 'user1')

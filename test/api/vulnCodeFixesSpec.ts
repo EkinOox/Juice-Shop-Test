@@ -51,7 +51,6 @@ describe('/snippets/fixes/:key', () => {
   })
 })
 
-
 describe('/snippets/fixes', () => {
   let socket: SocketIOClient.Socket
 

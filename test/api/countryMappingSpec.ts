@@ -20,7 +20,7 @@ describe('/rest/country-mapping', () => {
     return frisby.get(REST_URL + '/country-mapping')
       .then((res) => {
         expect([200, 401, 500]).toContain(res.status)
-        if (res.status === 200 && res.json && res.json.data) {
+        if (res.status === 200 && res.json?.data) {
           expect(typeof res.json.data).toBe('object')
         }
       })

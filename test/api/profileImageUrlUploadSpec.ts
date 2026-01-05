@@ -4,7 +4,6 @@
  */
 
 import frisby = require('frisby')
-const security = require('../../lib/insecurity')
 
 const API_URL = 'http://localhost:3000/profile/image/url'
 const REST_URL = 'http://localhost:3000/rest'

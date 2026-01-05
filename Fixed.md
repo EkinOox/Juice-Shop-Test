@@ -1563,49 +1563,49 @@ NG_APP_TESTING_PASSWORD= # Valeur de test pour le composant Angular
 - `vulnCodeFixes.ts` (3 lignes)
 - `vulnCodeSnippet.ts` (3 lignes)
 
-**M�triques de couverture initiales** :
+**Métriques de couverture initiales** :
 - Statements: 24.08%
 - Branches: 16.23%
 - Functions: 17.89%
 - Lines: 21.48%
 
-**Tests cr��s** :
-1. ? `test/server/securityServiceSpec.ts` - Tests basiques de validation de s�curit� (conserv�)
-2. ? `test/server/dataModelsSpec.ts` - Tests de structure des mod�les de donn�es (conserv�)
-3. ? `test/server/passwordRoutesSpec.ts` - Tests de validation des routes de mots de passe (conserv�)
-4. ? `test/server/utilityLibrariesSpec.ts` - Tests des fonctions utilitaires (conserv�)
-5. ? `test/server/dataLayerSpec.ts` - Tests de la couche de donn�es (conserv�)
-6. ? `test/server/loginRouteSpec.ts` - Tests des 7 branches de mots de passe (supprim�)
-7. ? `test/server/b2bOrderRouteSpec.ts` - Tests du challenge RCE (supprim�)
-8. ? `test/server/checkKeysSpec.ts` - Tests de validation des cl�s Ethereum (supprim�)
-9. ? `test/server/createProductReviewsSpec.ts` - Tests de validation des reviews (supprim�)
-10. ? `test/server/searchRouteSpec.ts` - Tests de recherche de produits (supprim�)
-11. ? `test/server/fileUploadSpec.ts` - Tests d'upload de fichiers (supprim�)
+**Tests créés** :
+1. ? `test/server/securityServiceSpec.ts` - Tests basiques de validation de sécurité (conservé)
+2. ? `test/server/dataModelsSpec.ts` - Tests de structure des modéles de données (conservé)
+3. ? `test/server/passwordRoutesSpec.ts` - Tests de validation des routes de mots de passe (conservé)
+4. ? `test/server/utilityLibrariesSpec.ts` - Tests des fonctions utilitaires (conservé)
+5. ? `test/server/dataLayerSpec.ts` - Tests de la couche de données (conservé)
+6. ? `test/server/loginRouteSpec.ts` - Tests des 7 branches de mots de passe (supprimé)
+7. ? `test/server/b2bOrderRouteSpec.ts` - Tests du challenge RCE (supprimé)
+8. ? `test/server/checkKeysSpec.ts` - Tests de validation des clés Ethereum (supprimé)
+9. ? `test/server/createProductReviewsSpec.ts` - Tests de validation des reviews (supprimé)
+10. ? `test/server/searchRouteSpec.ts` - Tests de recherche de produits (supprimé)
+11. ? `test/server/fileUploadSpec.ts` - Tests d'upload de fichiers (supprimé)
 
-### Obstacles techniques rencontr�s
+### Obstacles techniques rencontrés
 
-**Probl�me principal** : Incompatibilit� entre les imports ES Modules (ESM) et l'infrastructure de tests Mocha existante.
+**Probléme principal** : Incompatibilité entre les imports ES Modules (ESM) et l'infrastructure de tests Mocha existante.
 
 **Erreur type** :
 ```
 Error: Cannot find module '/Users/.../routes/login' imported from /Users/.../test/server/loginRouteSpec.ts
 ```
 
-**Tentatives de r�solution** :
+**Tentatives de résolution** :
 - Utilisation du pattern des tests existants (`deluxeSpec.ts`, `insecuritySpec.ts`)
 - Ajout explicite de l'extension `.ts` dans les imports
 - Modification des chemins relatifs
-- Configuration tsconfig pour r�solution des modules
+- Configuration tsconfig pour résolution des modules
 
-**R�sultat** : Tous les tests avanc�s avec imports de routes ont �chou� syst�matiquement
+**Résultat** : Tous les tests avancés avec imports de routes ont échoué systématiquement
 
 **Impact sur la couverture** :
-- Couverture apr�s nettoyage: **10.14% statements** (-13.94%)
+- Couverture aprés nettoyage: **10.14% statements** (-13.94%)
 - Branches: 0.22%
 - Functions: 0%
 - Lines: 8.09%
 
-**M�triques finales** :
+**Métriques finales** :
 ```
 =============================== Coverage summary ===============================
 Statements   : 10.14% ( 310/3057 )
@@ -1619,79 +1619,79 @@ Lines        : 8.09% ( 228/2818 )
 
 **Architecture de tests** :
 1. **Migration vers Jest** : Meilleur support natif des ES Modules TypeScript
-2. **Tests d'int�gration avec Supertest** : �viter le mocking complexe des routes
-3. **Refactoring des routes** : Extraction de la logique m�tier pour faciliter les tests unitaires
+2. **Tests d'intégration avec Supertest** : éviter le mocking complexe des routes
+3. **Refactoring des routes** : Extraction de la logique métier pour faciliter les tests unitaires
 
 **Gestion des secrets** :
 1. ? Utiliser un gestionnaire de secrets en production (AWS Secrets Manager, Azure Key Vault)
-2. ? Impl�menter la rotation automatique des mots de passe
-3. ? Auditer r�guli�rement le code pour d�tecter les hardcoded credentials
+2. ? Implémenter la rotation automatique des mots de passe
+3. ? Auditer réguliérement le code pour détecter les hardcoded credentials
 4. ? Configurer des pre-commit hooks pour bloquer les commits avec secrets
 
 **Priorisation de la couverture** :
-- Routes critiques d'authentification (login.ts) : **Priorit� haute** ??
-- Routes avec RCE potentiel (b2bOrder.ts) : **Priorit� critique** ??
-- Validation des entr�es (createProductReviews.ts, checkKeys.ts) : **Priorit� haute** ??
-- Routes d'upload et redirect : **Priorit� moyenne** ??
+- Routes critiques d'authentification (login.ts) : **Priorité haute** ??
+- Routes avec RCE potentiel (b2bOrder.ts) : **Priorité critique** ??
+- Validation des entrées (createProductReviews.ts, checkKeys.ts) : **Priorité haute** ??
+- Routes d'upload et redirect : **Priorité moyenne** ??
 
-### Statut de conformit�
+### Statut de conformité
 
-**S�curit� des secrets** : ? **Conforme**
-- Mots de passe hardcod�s supprim�s du code source
+**Sécurité des secrets** : ? **Conforme**
+- Mots de passe hardcodés supprimés du code source
 - Variables d'environnement obligatoires en production
-- Template de configuration document�
+- Template de configuration documenté
 
 **Couverture de code** : ? **Non conforme** (objectif: 80%, actuel: 10.14%)
-- Blocage technique identifi� (ESM/Mocha)
-- N�cessite refonte de l'architecture de tests
-- Tests critiques non impl�mentables avec stack actuelle
+- Blocage technique identifié (ESM/Mocha)
+- Nécessite refonte de l'architecture de tests
+- Tests critiques non implémentables avec stack actuelle
 
-**Conformit� OWASP** : ?? **Partiellement conforme**
-- CWE-798 corrig� pour les mots de passe administrateurs
-- Autres secrets (JWT, HMAC, seeds Ethereum) d�j� externalis�s
-- Tests de s�curit� insuffisants pour valider les corrections
+**Conformité OWASP** : ?? **Partiellement conforme**
+- CWE-798 corrigé pour les mots de passe administrateurs
+- Autres secrets (JWT, HMAC, seeds Ethereum) déjé externalisés
+- Tests de sécurité insuffisants pour valider les corrections
 
 ### Validation et tests
 
-**Tests manuels effectu�s** :
+**Tests manuels effectués** :
 ```bash
 # Compilation TypeScript
-npm run build  # ? Succ�s
+npm run build  # ? Succés
 
-# Ex�cution des tests serveur
-npm run test:server  # ? 206 tests passent, 2 �checs (non li�s aux modifications)
+# Exécution des tests serveur
+npm run test:server  # ? 206 tests passent, 2 échecs (non liés aux modifications)
 
-# V�rification absence de secrets
-git grep -E "(password|secret|key).*=.*['\"]" routes/ frontend/  # ? Aucun match hardcod�
+# Vérification absence de secrets
+git grep -E "(password|secret|key).*=.*['\"]" routes/ frontend/  # ? Aucun match hardcodé
 ```
 
-**R�sultat des tests** :
+**Résultat des tests** :
 - Suite de tests existante : fonctionnelle
 - Compilation TypeScript : sans erreur
-- Application d�marrable : valid�
-- Authentification : n�cessite configuration des variables d'environnement
+- Application démarrable : validé
+- Authentification : nécessite configuration des variables d'environnement
 
 ### Conclusion
 
-**Correction de s�curit� majeure effectu�e** : �limination de 8 mots de passe hardcod�s dans les composants critiques d'authentification (7 c�t� serveur, 1 c�t� frontend).
+**Correction de sécurité majeure effectuée** : élimination de 8 mots de passe hardcodés dans les composants critiques d'authentification (7 cété serveur, 1 cété frontend).
 
 **Impact positif** :
-- R�duction significative de la surface d'attaque
-- Conformit� aux standards OWASP A02:2021 (Cryptographic Failures)
-- Meilleure posture de s�curit� pour d�ploiements en production
+- Réduction significative de la surface d'attaque
+- Conformité aux standards OWASP A02:2021 (Cryptographic Failures)
+- Meilleure posture de sécurité pour déploiements en production
 
-**Limitations techniques identifi�es** :
+**Limitations techniques identifiées** :
 - Infrastructure de tests incompatible avec architecture moderne (ESM)
-- Couverture de code diminu�e suite au nettoyage des tests non fonctionnels
-- Impossibilit� d'atteindre l'objectif de 80% sans refonte majeure
+- Couverture de code diminuée suite au nettoyage des tests non fonctionnels
+- Impossibilité d'atteindre l'objectif de 80% sans refonte majeure
 
-**Actions futures recommand�es** :
-1. Migrer vers Jest pour r�soudre les probl�mes ESM (estimation: 2-3 jours)
-2. Impl�menter des tests d'int�gration avec Supertest (estimation: 3-5 jours)
+**Actions futures recommandées** :
+1. Migrer vers Jest pour résoudre les problémes ESM (estimation: 2-3 jours)
+2. Implémenter des tests d'intégration avec Supertest (estimation: 3-5 jours)
 3. Configurer un service de gestion de secrets (estimation: 1 jour)
 4. Mettre en place des GitHub Actions pour scan de secrets (estimation: 0.5 jour)
 
-**Date de r�vision** : 28 d�cembre 2025
+**Date de révision** : 28 décembre 2025
 ---
 
 ## 16. Externalisation des secrets TOTP et correction des permissions Docker

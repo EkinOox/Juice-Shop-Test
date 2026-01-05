@@ -163,7 +163,7 @@ describe('/rest/user/data-export', () => {
         })
           .then((res) => {
             expect([200, 401]).toContain(res.status)
-            if (res.status === 200 && res.json && res.json.userData) {
+            if (res.status === 200 && res.json?.userData) {
               const parsedData = JSON.parse(res.json.userData)
               expect(parsedData.email).toBeDefined()
             }

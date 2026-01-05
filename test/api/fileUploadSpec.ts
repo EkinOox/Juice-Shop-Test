@@ -30,6 +30,7 @@ describe('/file-upload', () => {
       .expect('status', 500) // Returns 500 when no file provided
   })
 
+  // eslint-disable-next-line @typescript-eslint/promise-function-async
   it('POST ZIP file to test unzip functionality', () => {
     const file = path.resolve(__dirname, '../files/test.zip')
     if (fs.existsSync(file)) {
@@ -42,7 +43,7 @@ describe('/file-upload', () => {
           expect([204, 410, 500]).toContain(res.status)
         })
     } else {
-      return Promise.resolve() // Skip if test file doesn't exist
+      return Promise.resolve()
     }
   })
 

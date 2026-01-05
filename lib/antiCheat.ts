@@ -133,6 +133,7 @@ function isTrivial (challenge: Challenge) {
 }
 
 function previous () {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return solves.at(-1) ?? { challenge: {} as Challenge, timestamp: new Date(), cheatScore: 0 }
 }
 

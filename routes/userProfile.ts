@@ -7,6 +7,7 @@ import { type Request, type Response, type NextFunction } from 'express'
 import { AllHtmlEntities as Entities } from 'html-entities'
 import config from 'config'
 import pug from 'pug'
+import vm from 'node:vm'
 
 import * as challengeUtils from '../lib/challengeUtils'
 import { themes } from '../views/themes/themes'
@@ -50,7 +51,7 @@ export function getUserProfile () {
         if (!code) {
           throw new Error('Username is null')
         }
-        username = eval(code) // eslint-disable-line no-eval // NOSONAR: Intentional vulnerability for usernameXssChallenge
+        username = vm.runInNewContext(code, { console }, { timeout: 1000 }) // NOSONAR: Intentional vulnerability for usernameXssChallenge - allows SSTI for educational purposes
       } catch (err) {
         username = '\\' + username
       }

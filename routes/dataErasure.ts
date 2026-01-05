@@ -98,15 +98,14 @@ router.post('/', async (req: Request<Record<string, unknown>, Record<string, unk
       // Validate and sanitize the layout parameter
       const layoutName = req.body.layout.trim()
       const validation = validateLayout(layoutName)
-      
+
       if (!validation.valid) {
         next(new Error(validation.error))
         return
       }
 
-      const safeLayoutName = validation.safeName!
+      const safeLayoutName = validation.safeName ?? ''
       const viewsDir = path.join(__dirname, '..', 'views')
-      
       if (!verifyTemplateExists(safeLayoutName, viewsDir)) {
         next(new Error('Template not found'))
         return

@@ -6,7 +6,7 @@
 import { type Request, type Response, type NextFunction } from 'express'
 import { type Captcha } from '../data/types'
 import { CaptchaModel } from '../models/captcha'
-import crypto from 'crypto'
+import crypto from 'node:crypto'
 
 function safeEvalMath (expression: string): number {
   // Simple arithmetic evaluator with operator precedence (* / before + -)
@@ -16,19 +16,19 @@ function safeEvalMath (expression: string): number {
   // Evaluate * and / first
   for (let i = 1; i < tokens.length; i += 2) {
     if (tokens[i] === '*' || tokens[i] === '/') {
-      const left = parseFloat(tokens[i - 1])
-      const right = parseFloat(tokens[i + 1])
+      const left = Number.parseFloat(tokens[i - 1])
+      const right = Number.parseFloat(tokens[i + 1])
       const result = tokens[i] === '*' ? left * right : left / right
       tokens.splice(i - 1, 3, result.toString())
-      i -= 2 // adjust index
+      i -= 4 // adjust index after splice
     }
   }
 
   // Now evaluate + and -
-  let result = parseFloat(tokens[0])
+  let result = Number.parseFloat(tokens[0])
   for (let i = 1; i < tokens.length; i += 2) {
     const op = tokens[i]
-    const num = parseFloat(tokens[i + 1])
+    const num = Number.parseFloat(tokens[i + 1])
     if (op === '+') result += num
     else if (op === '-') result -= num
   }

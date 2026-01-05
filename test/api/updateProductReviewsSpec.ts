@@ -33,7 +33,7 @@ describe('/rest/products/reviews', () => {
       .expect('status', 200)
       .then(({ json: jsonLogin }) => {
         const authHeaders = { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' }
-        
+
         // First create a review
         return frisby.put(`${REST_URL}/products/6/reviews`, {
           headers: authHeaders,
@@ -44,7 +44,7 @@ describe('/rest/products/reviews', () => {
         })
           .expect('status', 201)
           .then(({ json: reviewJson }) => {
-            if (reviewJson.data && reviewJson.data._id) {
+            if (reviewJson.data?._id) {
               // Then update it
               return frisby.patch(`${REST_URL}/products/reviews`, {
                 headers: authHeaders,
@@ -72,7 +72,7 @@ describe('/rest/products/reviews', () => {
       .expect('status', 200)
       .then(({ json: jsonLogin }) => {
         const authHeaders = { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' }
-        
+
         return frisby.patch(`${REST_URL}/products/reviews`, {
           headers: authHeaders,
           body: {
@@ -97,7 +97,7 @@ describe('/rest/products/reviews', () => {
       .expect('status', 200)
       .then(({ json: jsonLogin }) => {
         const authHeaders = { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' }
-        
+
         return frisby.patch(`${REST_URL}/products/reviews`, {
           headers: authHeaders,
           body: {

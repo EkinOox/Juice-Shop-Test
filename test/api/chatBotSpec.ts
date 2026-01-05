@@ -183,9 +183,9 @@ describe('/chatbot', () => {
         .promise()
       const json = productRes.json
       if (!json.data || json.data.length === 0) {
-        return expect(json.data).toBeDefined()
+        expect(json.data).toBeDefined()
+        return
       }
-      const product = json.data[0]
 
       await frisby.setup({
         request: {

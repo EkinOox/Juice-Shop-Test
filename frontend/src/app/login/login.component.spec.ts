@@ -128,7 +128,7 @@ describe('LoginComponent', () => {
   it('stores the returned authentication token in localStorage', () => {
     userService.login.and.returnValue(of({ token: testPasswords.tokenGeneric }))
     component.login()
-    expect(localStorage.getItem('token')).toBe('token')
+    expect(localStorage.getItem('token')).toBe('TOKEN')
   })
 
   it('puts the returned basket id into browser session storage', () => {

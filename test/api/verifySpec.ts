@@ -1,6 +1,5 @@
 import frisby = require('frisby')
 import { expect } from '@jest/globals'
-import { testPasswords } from '../testPasswords'
 
 const REST_URL = 'http://localhost:3000/rest'
 const jsonHeader = { 'content-type': 'application/json' }
