@@ -1563,12 +1563,6 @@ NG_APP_TESTING_PASSWORD= # Valeur de test pour le composant Angular
 - `vulnCodeFixes.ts` (3 lignes)
 - `vulnCodeSnippet.ts` (3 lignes)
 
-**Métriques de couverture initiales** :
-- Statements: 24.08%
-- Branches: 16.23%
-- Functions: 17.89%
-- Lines: 21.48%
-
 **Tests créés** :
 1. ? `test/server/securityServiceSpec.ts` - Tests basiques de validation de sécurité (conservé)
 2. ? `test/server/dataModelsSpec.ts` - Tests de structure des modéles de données (conservé)
