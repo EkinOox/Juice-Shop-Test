@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Logo Université/Formation](https://placehold.co/200x200?text=Logo+Formation)
+<div align="center">![Logo Université/Formation](https://cdn.carrevolutis.com/reborn-production-cdn-bucket/societes/1175/esgi_n_1727696310.png){width=70%}</div>
 
 ## Mesures correctives et durcissement applicatif
 **Projet de Sécurité Web Avancée**
@@ -16,7 +16,7 @@ Diochon Kyllian
 **Contexte académique :**
 5ESGI-IW : Sécurité du Web
 
-![Image de garde](https://placehold.co/600x400?text=OWASP+Juice+Shop+Security)
+<div align="center">![Image de garde](https://juice-shop.github.io/juice-shop/assets/JuiceShopCTF_Logo.png){width=70%}</div>
 
 </div>
 
@@ -50,11 +50,7 @@ J'ai focalisé mes travaux de correction sur la résorption de la dette techniqu
 *   **Implémentation de mécanismes de validation stricte** (Whitelisting/Regex) pour neutraliser les vecteurs d'attaque.
 *   **Revue de code et refactoring** des zones critiques identifiées par l'analyse statique.
 
-Les interventions que j'ai réalisées permettent d'élever significativement le niveau de maturité sécuritaire de l'application, passant d'un état "vulnérable par design" à une infrastructure plus robuste respectant les standards OWASP.
-
-![Graphique Résumé](https://placehold.co/800x200?text=Graphique+Reduction+Risques)
-
-<div style="page-break-after: always;"></div>
+<div align="center">![Diagramm 1](frontend/src/assets/public/images/juice/diagramm1.png){width=70%}</div>
 
 ## 2. Cadre Méthodologique
 
@@ -74,16 +70,7 @@ Mon protocole d'intervention a suivi un processus itératif rigoureux :
     *   **Validation statique** : J'ai relancé l'analyse SonarQube pour confirmer que les *Quality Gates* passent au vert et que les règles de sécurité ne détectent plus les vulnérabilités corrigées (plus de "Hotspots" critiques).
     *   **Validation dynamique** : J'ai procédé à des tests fonctionnels manuels pour chaque correctif (ex: tentative de login, commande B2B avec payloads malveillants, vérification de l'accès fichiers) afin de m'assurer que la correction est effective et n'a pas introduit de régression.
 
-### Scénario de test type
-Pour chaque vulnérabilité traitée, le cycle suivant a été respecté :
-*   Identification précise dans le code source.
-*   Évaluation du risque (Score CVSS / OWASP).
-*   Implémentation du patch de sécurité.
-*   Contrôle de la correction via relance des scans et tests manuels.
-
-![Schéma Méthodologie](https://placehold.co/800x300?text=Schema+Methodologie+Audit)
-
-<div style="page-break-after: always;"></div>
+<div align="center">![Diagramm 2](frontend/src/assets/public/images/juice/diagramm2.png){width=70%}</div>
 
 ## 3. Analyse Technique des Vulnérabilités
 
@@ -295,18 +282,7 @@ Consolidation de tous les secrets applicatifs (clés, tokens, mnémoniques) dans
 **Implémentation technique** :
 Utilisation des guillemets pour encapsuler les chaînes multi-lignes dans le fichier dotenv, assurant un parsing correct par la librairie `dotenv`.
 
-```bash
-# .env (Exemple sécurisé)
-JWT_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-MIIEowIBAAKCAQEA...
-...
------END RSA PRIVATE KEY-----"
-MNEMONIC_SECRET="word1 word2 word3 ..."
-```
-
-![Exemple Configuration Sécurisée](https://placehold.co/600x200?text=.env+Secure+Config)
-
-<div style="page-break-after: always;"></div>
+<div align="center">![Diagramm 3](frontend/src/assets/public/images/juice/diagramm3.png){width=70%}</div>
 
 ## 5. Recommandations et Perspectives
 
@@ -331,16 +307,32 @@ En plus des correctifs appliqués, je recommande les actions suivantes pour durc
 ### Annexe A : Rapport d'analyse SonarQube (Avant/Après)
 
 *État initial : Détection des hotspots critiques*
-![SonarQube Avant](https://placehold.co/800x400?text=Dashboard+SonarQube+AVANT)
+<div align="center">![SonarQube Avant](frontend/src/assets/public/images/juice/juice-not-reviewed.png){width=100%}</div>
 
 *État final : Validation des correctifs (Quality Gate)*
-![SonarQube Après](https://placehold.co/800x400?text=Dashboard+SonarQube+APRES)
+<div align="center">![SonarQube Après](frontend/src/assets/public/images/juice/juice-fixed.png){width=100%}</div>
 
-### Annexe B : Cartographie de l'Architecture Sécurisée
+### Annexe B : Comparaison Avant/Après des Analyses de Sécurité
 
-![Architecture Cible](https://placehold.co/800x500?text=Architecture+Securisee+Cible)
+<div align="center">![Comparaison Avant/Après](frontend/src/assets/public/images/juice/juice-compare.png){width=100%}</div>
 
-### Annexe C : Extrait des logs d'audit de sécurité
+### Annexe C : Security Hotspots Avant/Après
+
+*Hotspots critiques détectés avant correction*
+<div align="center">![Security Hotspots Avant](frontend/src/assets/public/images/juice/juice-issues-hotspots.png){width=100%}</div>
+
+*Hotspots résolus après application des correctifs*
+<div align="center">![Security Hotspots Après](frontend/src/assets/public/images/juice/juice-fixed.png){width=100%}</div>
+
+### Annexe D : Issues Avant/Après
+
+*Issues de qualité détectées avant correction*
+<div align="center">![Issues Avant](frontend/src/assets/public/images/juice/juice-issues.png){width=100%}</div>
+
+*Issues résolues après refactoring*
+<div align="center">![Issues Après](frontend/src/assets/public/images/juice/juice-issues-fixed.png){width=100%}</div>
+
+### Annexe E : Extrait des logs d'audit de sécurité
 
 ```json
 {
