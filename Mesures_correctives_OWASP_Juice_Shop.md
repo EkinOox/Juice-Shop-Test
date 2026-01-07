@@ -1,8 +1,6 @@
 # Rapport de Projet : Audit et Sécurisation OWASP Juice Shop
 
-<div align="center">
-
-<div align="center">![Logo Université/Formation](https://cdn.carrevolutis.com/reborn-production-cdn-bucket/societes/1175/esgi_n_1727696310.png){width=70%}</div>
+![Logo Université/Formation](https://cdn.carrevolutis.com/reborn-production-cdn-bucket/societes/1175/esgi_n_1727696310.png){width=70%}
 
 ## Mesures correctives et durcissement applicatif
 **Projet de Sécurité Web Avancée**
@@ -16,11 +14,9 @@ Diochon Kyllian
 **Contexte académique :**
 5ESGI-IW : Sécurité du Web
 
-<div align="center">![Image de garde](https://juice-shop.github.io/juice-shop/assets/JuiceShopCTF_Logo.png){width=70%}</div>
+![Image de garde](https://juice-shop.github.io/juice-shop/assets/JuiceShopCTF_Logo.png){width=70%}
 
-</div>
-
-<div style="page-break-after: always;"></div>
+---
 
 ## Table des matières
 
@@ -50,7 +46,7 @@ J'ai focalisé mes travaux de correction sur la résorption de la dette techniqu
 *   **Implémentation de mécanismes de validation stricte** (Whitelisting/Regex) pour neutraliser les vecteurs d'attaque.
 *   **Revue de code et refactoring** des zones critiques identifiées par l'analyse statique.
 
-<div align="center">![Diagramm 1](frontend/src/assets/public/images/juice/diagramm1.png){width=70%}</div>
+![Diagramm 1](frontend/src/assets/public/images/juice/diagramm1.png){width=70%}
 
 ## 2. Cadre Méthodologique
 
@@ -70,7 +66,7 @@ Mon protocole d'intervention a suivi un processus itératif rigoureux :
     *   **Validation statique** : J'ai relancé l'analyse SonarQube pour confirmer que les *Quality Gates* passent au vert et que les règles de sécurité ne détectent plus les vulnérabilités corrigées (plus de "Hotspots" critiques).
     *   **Validation dynamique** : J'ai procédé à des tests fonctionnels manuels pour chaque correctif (ex: tentative de login, commande B2B avec payloads malveillants, vérification de l'accès fichiers) afin de m'assurer que la correction est effective et n'a pas introduit de régression.
 
-<div align="center">![Diagramm 2](frontend/src/assets/public/images/juice/diagramm2.png){width=70%}</div>
+![Diagramm 2](frontend/src/assets/public/images/juice/diagramm2.png){width=70%}
 
 ## 3. Analyse Technique des Vulnérabilités
 
@@ -180,7 +176,7 @@ Enfin, j'ai traité les "Code Smells" identifiés par SonarQube pour améliorer 
 **Bilan de l'opération** :
 L'application respecte désormais les standards de qualité "A" sur tous les axes SonarQube. Le code est non seulement sécurisé, mais aussi robuste, lisible et prêt pour la maintenance future.
 
-<div style="page-break-after: always;"></div>
+---
 
 ## 4. Protocole de Remédiation
 
@@ -282,7 +278,7 @@ Consolidation de tous les secrets applicatifs (clés, tokens, mnémoniques) dans
 **Implémentation technique** :
 Utilisation des guillemets pour encapsuler les chaînes multi-lignes dans le fichier dotenv, assurant un parsing correct par la librairie `dotenv`.
 
-<div align="center">![Diagramm 3](frontend/src/assets/public/images/juice/diagramm3.png){width=70%}</div>
+![Diagramm 3](frontend/src/assets/public/images/juice/diagramm3.png){width=70%}
 
 ## 5. Recommandations et Perspectives
 
@@ -300,37 +296,43 @@ En plus des correctifs appliqués, je recommande les actions suivantes pour durc
 *   Intégration systématique des nouveaux tests unitaires de sécurité dans le pipeline CI/CD pour bloquer toute réintroduction future de ces vulnérabilités.
 *   Mise en place d'un scanneur de dépendances (comme Snyk ou Dependabot) en mode bloquant sur les Pull Requests.
 
-<div style="page-break-after: always;"></div>
+---
 
 ## 6. Annexes
 
 ### Annexe A : Rapport d'analyse SonarQube (Avant/Après)
 
 *État initial : Détection des hotspots critiques*
-<div align="center">![SonarQube Avant](frontend/src/assets/public/images/juice/juice-not-reviewed.png){width=100%}</div>
+
+<img src="frontend/src/assets/public/images/juice/juice-not-reviewed.png" alt="SonarQube Avant" width="100%" />
 
 *État final : Validation des correctifs (Quality Gate)*
-<div align="center">![SonarQube Après](frontend/src/assets/public/images/juice/juice-fixed.png){width=100%}</div>
+
+<img src="frontend/src/assets/public/images/juice/juice-fixed.png" alt="SonarQube Après" width="100%" />
 
 ### Annexe B : Comparaison Avant/Après des Analyses de Sécurité
 
-<div align="center">![Comparaison Avant/Après](frontend/src/assets/public/images/juice/juice-compare.png){width=100%}</div>
+<img src="frontend/src/assets/public/images/juice/juice-compare.png" alt="Comparaison Avant/Après" width="100%" />
 
 ### Annexe C : Security Hotspots Avant/Après
 
 *Hotspots critiques détectés avant correction*
-<div align="center">![Security Hotspots Avant](frontend/src/assets/public/images/juice/juice-issues-hotspots.png){width=100%}</div>
+
+<img src="frontend/src/assets/public/images/juice/juice-issues-hotspots.png" alt="Security Hotspots Avant" width="100%" />
 
 *Hotspots résolus après application des correctifs*
-<div align="center">![Security Hotspots Après](frontend/src/assets/public/images/juice/juice-fixed.png){width=100%}</div>
+
+<img src="frontend/src/assets/public/images/juice/juice-fixed.png" alt="Security Hotspots Après" width="100%" />
 
 ### Annexe D : Issues Avant/Après
 
 *Issues de qualité détectées avant correction*
-<div align="center">![Issues Avant](frontend/src/assets/public/images/juice/juice-issues.png){width=100%}</div>
+
+<img src="frontend/src/assets/public/images/juice/juice-issues.png" alt="Issues Avant" width="100%" />
 
 *Issues résolues après refactoring*
-<div align="center">![Issues Après](frontend/src/assets/public/images/juice/juice-issues-fixed.png){width=100%}</div>
+
+<img src="frontend/src/assets/public/images/juice/juice-issues-fixed.png" alt="Issues Après" width="100%" />
 
 ### Annexe E : Extrait des logs d'audit de sécurité
 
